@@ -200,8 +200,10 @@
       enable = true;
       config = {
         init.defaultBranch = "main";
-        user.email = "saitheninja@gmail.com";
-        user.name = "sai";
+        user = {
+          email = "saitheninja@gmail.com";
+          name = "sai";
+        };
       };
     };
 
