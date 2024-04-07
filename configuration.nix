@@ -107,6 +107,7 @@
       piper # mouse controls
       thunderbird
       vscode-fhs
+      gh # GitHub CLI
       # dev
       #vscode-with-extensions.override {
       #  vscodeExtensions = with vscode-extensions; [
