@@ -207,7 +207,12 @@
       };
     };
 
-    direnv.enable = true;
+    direnv = {
+      enable = true;
+      loadInNixShell  = true;
+      nix-direnv.enable = true;
+    };
+
     neovim.enable = true;
     partition-manager.enable = true; # KDE partition manager
     starship.enable = true;
