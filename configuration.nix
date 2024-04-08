@@ -1,22 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Bootloader
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  # networking.hostName = "nixos-laptop";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking.
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_ZA.UTF-8";
     LC_IDENTIFICATION = "en_ZA.UTF-8";
@@ -28,6 +14,9 @@
     LC_TELEPHONE = "en_ZA.UTF-8";
     LC_TIME = "en_ZA.UTF-8";
   };
+
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -41,6 +30,9 @@
     variant = "";
     options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
   };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -61,9 +53,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sai = {
