@@ -38,17 +38,8 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 
-
   # From configuration.nix when using channels instead of flakes
-
-  boot.loader = {
-    #systemd-boot.enable = true;
-    #efi.canTouchEfiVariables = true;
-  };
-
-  networking = {
-    #hostName = "nixos-laptop";
-    #wireless.enable = true;  # Enables wireless support via wpa_supplicant
-    #networkmanager.enable = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostName = "nixos-laptop";
 }
