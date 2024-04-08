@@ -1,18 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos-laptop";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   # Enable networking
   networking.networkmanager.enable = true;
 

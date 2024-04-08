@@ -5,7 +5,9 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ 
+      #(modulesPath + "/installer/scan/not-detected.nix")
+      ./configuration.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
@@ -37,4 +39,16 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+
+
+  # From configuration.nix when using channels instead of flakes
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+
+  networking.hostName = "nixos-laptop";
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 }
