@@ -17,7 +17,7 @@
         system = "x86_64-linux";
 
         modules = [
-          ./host-laptop.nix
+          ./nixos-laptop.nix
         ];
       };
     };
