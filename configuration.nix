@@ -71,7 +71,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables.EDITOR = "neovim";
+  environment.variables.EDITOR = "nvim";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
