@@ -156,17 +156,6 @@
       syntaxHighlighting.enable = true;
     };
 
-    git = {
-      enable = true;
-      config = {
-        init.defaultBranch = "main";
-        user = {
-          email = "saitheninja@gmail.com";
-          name = "sai";
-        };
-      };
-    };
-
     direnv = {
       enable = true;
       loadInNixShell  = true;
