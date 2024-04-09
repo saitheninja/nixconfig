@@ -16,7 +16,6 @@
      "nixos-laptop" = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/laptop/hardware-configuration.nix
           ./hosts/laptop/configuration.nix
           ./modules
         ];
