@@ -17,7 +17,7 @@
         system = "x86_64-linux";
 
         modules = [
-          ./nixos-laptop.nix
+          ./hosts/laptop/configuration.nix
         ];
       };
     };

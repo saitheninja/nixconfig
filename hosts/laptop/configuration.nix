@@ -1,6 +1,23 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "nixos-laptop";
+
+  # Enable networking
+  # Choose between wpa_supplicant and networkmanager
+  # networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
+
+  # Locale
   time.timeZone = "Africa/Johannesburg";
   i18n.defaultLocale = "en_ZA.UTF-8";
   i18n.extraLocaleSettings = {
@@ -15,8 +32,7 @@
     LC_TIME = "en_ZA.UTF-8";
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
