@@ -151,25 +151,6 @@
       darktable
   ];
 
-  fonts.packages = with pkgs; [
-      liberation_ttf
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-      noto-fonts-monochrome-emoji
-      unicode-emoji
-      # monospace
-      hack-font
-      (nerdfonts.override {
-        fonts = [
-          "CascadiaCode"
-          "FiraCode"
-          "Iosevka"
-        ];
-      })
-  ];
-
   programs = {
     zsh = {
       enable = true;
