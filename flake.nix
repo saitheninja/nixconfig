@@ -11,13 +11,14 @@
     };
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, ... }@inputs: {
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, nixvim, ... }@inputs: {
     nixosConfigurations = {
      "nixos-laptop" = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/laptop/configuration.nix
           ./modules
+          nixvim.nixosModules.nixvim
         ];
       };
     };

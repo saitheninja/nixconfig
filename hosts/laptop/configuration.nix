@@ -167,12 +167,20 @@
       nix-direnv.enable = true;
     };
 
-    neovim.enable = true;
     partition-manager.enable = true; # KDE partition manager
     starship.enable = true;
     usbtop.enable = true;
     wavemon.enable = true;
     wireshark.enable = true;
+
+    # neovim.enable = false;
+    nixvim = {
+      enable = true;
+      # number = true;
+      # relativenumber = true;
+
+      # shiftwidth = 2;
+    };
   };
 
   virtualisation.docker.enable = true;
