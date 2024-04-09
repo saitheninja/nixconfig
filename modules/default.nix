@@ -6,6 +6,6 @@
         ./fonts.nix
     ];
 
-    localeZa.enable = lib.mkDefault true;
-    fontsSelected.enable = lib.mkDefault true;
+    configLocaleZa.enable = lib.mkDefault true;
+    configSelectedFonts.enable = lib.mkDefault true;
 }
