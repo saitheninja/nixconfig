@@ -3,9 +3,9 @@
 {
     imports = [
         ./locale-za.nix
-        ./selected-fonts.nix
+        ./fonts.nix
     ];
 
     localeZa.enable = lib.mkDefault true;
-    selectedFonts.enable = lib.mkDefault true;
+    fontsSelected.enable = lib.mkDefault true;
 }

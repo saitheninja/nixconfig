@@ -2,7 +2,7 @@
 
 {
   options = {
-    selectedFonts.enable = lib.mkEnableOption "Installs my hand-selected fonts.";
+    fontsSelected.enable = lib.mkEnableOption "Installs my hand-selected fonts.";
   };
 
   config = lib.mkIf config.localeZa.enable {
