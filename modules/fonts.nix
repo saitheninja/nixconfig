@@ -5,7 +5,7 @@
     configSelectedFonts.enable = lib.mkEnableOption "Installs my hand-selected fonts.";
   };
 
-  config = lib.mkIf config.localeZa.enable {
+  config = lib.mkIf config.configSelectedFonts.enable {
     fonts.packages = with pkgs; [
       # latin fonts
       liberation_ttf

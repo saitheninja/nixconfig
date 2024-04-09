@@ -6,7 +6,7 @@
     configGit.enable = lib.mkEnableOption "Add my git config.";
   };
 
-  config = lib.mkIf config.localeZa.enable {
+  config = lib.mkIf config.configGit.enable {
     programs.git = {
       enable = true;
       config = {

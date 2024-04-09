@@ -5,7 +5,7 @@
     configLocaleZa.enable = lib.mkEnableOption "Sets locale to South Africa.";
   };
 
-  config = lib.mkIf config.localeZa.enable {
+  config = lib.mkIf config.configLocaleZa.enable {
     time.timeZone = "Africa/Johannesburg";
 
     i18n.defaultLocale = "en_ZA.UTF-8";
