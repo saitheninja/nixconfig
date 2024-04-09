@@ -3,7 +3,7 @@
 
 {
   options = {
-    configGit.enable = lib.mkEnableOption "Add my git config.";
+    configGit.enable = lib.mkEnableOption "Adds my git config.";
   };
 
   config = lib.mkIf config.configGit.enable {
