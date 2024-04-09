@@ -17,23 +17,6 @@
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
-  # Locale
-  time.timeZone = "Africa/Johannesburg";
-  i18n.defaultLocale = "en_ZA.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_ZA.UTF-8";
-    LC_IDENTIFICATION = "en_ZA.UTF-8";
-    LC_MEASUREMENT = "en_ZA.UTF-8";
-    LC_MONETARY = "en_ZA.UTF-8";
-    LC_NAME = "en_ZA.UTF-8";
-    LC_NUMERIC = "en_ZA.UTF-8";
-    LC_PAPER = "en_ZA.UTF-8";
-    LC_TELEPHONE = "en_ZA.UTF-8";
-    LC_TIME = "en_ZA.UTF-8";
-  };
-
-
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
@@ -84,7 +67,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.variables.EDITOR = "nvim";
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
   environment.systemPackages = with pkgs; [
       # filesystem drivers
