@@ -172,15 +172,6 @@
     usbtop.enable = true;
     wavemon.enable = true;
     wireshark.enable = true;
-
-    # neovim.enable = false;
-    nixvim = {
-      enable = true;
-      # number = true;
-      # relativenumber = true;
-
-      # shiftwidth = 2;
-    };
   };
 
   virtualisation.docker.enable = true;
