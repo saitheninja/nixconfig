@@ -29,7 +29,7 @@
 				# search
 				ignorecase = true; # ignore case if all lowercase
 				smartcase = true; # case-sensitive if mixed-case
-        inccommand = true; # show split with search results
+        inccommand = "split"; # incremental preview for substitute
 
 				# ui
 				background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
@@ -58,22 +58,61 @@
       plugins = {
         comment.enable = true;
 
+        # completions
+        cmp.enable = true;
+        cmp-buffer.enable = true;
+        cmp-cmdline.enable = true;
+        cmp-cmdline-history.enable = true;
+        cmp-emoji.enable = true;
+        cmp-nvim-lsp.enable = true;
+        cmp-nvim-lsp-signature-help.enable = true;
+        cmp-nvim-lua.enable = true;
+        cmp-path.enable = true;
+        cmp-treesitter.enable = true;
+
+        # debugger
+        #dap.enable = true;
+
+				#emmet.enable = true;
+        #gitblame.enable = true;
+        gitsigns.enable = true;
+        indent-blankline.enable = true;
+
         # lsp
         lsp = {
           enable = true;
           servers = {
-            #lua-ls.enable = true;
+            emmet_ls.enable = true;
+            eslint.enable = true;
+            gdscript.enable = true;
+            html.enable = true;
+            jsonls.enable = true;
+            lua-ls = {
+              enable = true;
+              settings.telemetry.enable = false;
+            };
             nixd.enable = true;
+            sqls.enable = true;
             svelte.enable = true;
+            tailwindcss.enable = true;
             tsserver.enable = true;
+            typos-lsp.enable = true;
+            yamlls.enable = true;
           };
         };
-        lsp-lines.enable = true;
+        lsp-format.enable = true;
+        lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
+        lspkind.enable = true; # add pictograms
+
+        nvim-tree.enable = true;
+        #neo-tree.enable = true;
+				telescope.enable = true;
+        todo-comments.enable = true;
 
         # treesitter
         treesitter = {
           enable = true;
-          folding = true;
+          folding = false;
           indent = true;
         };
         treesitter-context.enable = true;
@@ -89,8 +128,7 @@
           lspInterop.enable = true;
         };
 
-				#emmet.enable = true;
-				#telescope.enable = true;
+        ts-autotag.enable = true;
 			};
 		};
 	};

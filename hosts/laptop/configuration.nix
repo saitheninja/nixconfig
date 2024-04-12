@@ -85,6 +85,7 @@
       btop
       fzf
       fastfetch
+      ripgrep
       #systeroid
       # desktop
       piper # mouse controls
