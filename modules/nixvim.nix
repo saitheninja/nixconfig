@@ -37,7 +37,7 @@
         cursorlineopt = "number"; # line, number, both (line,number), screenline
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
-				signcolumn = "yes"; # text shifts when it gets toggled
+				signcolumn = "yes"; # text shifts when column gets toggled
         # splitbelow = true;
         # splitright = true;
         termguicolors = true;
