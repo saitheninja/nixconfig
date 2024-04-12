@@ -19,16 +19,17 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
     options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
   };
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
