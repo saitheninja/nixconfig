@@ -75,17 +75,13 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
 
+        # formatters
         conform-nvim = {
           enable = true;
-          formatOnSave = ''
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              pattern = "*",
-              callback = function(args)
-                require("conform").format({ bufnr = args.buf })
-              end,
-            })
-          '';
-
+          formatOnSave = {
+            lspFallback = true;
+            timeoutMs = 500;
+          };
           formattersByFt = {
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
             scss = [ "stylelint" ];
@@ -107,8 +103,9 @@
               [
                 "prettier_d"
                 "prettier"
+                # "eslint_d" ?
               ]
-            ]; # eslint_d?
+            ];
             svelte = [
               [
                 "prettier_d"
@@ -122,18 +119,29 @@
               ]
             ];
 
+            markdown = [
+              [
+                "prettierd"
+                "prettier"
+              ]
+            ];
+            yaml = [
+              "yamllint"
+              "yamlfmt"
+            ];
+
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             sh = [ "shfmt" ];
 
-            "*" = [ "trim_newlines" ]; # all filetypes
-            "_" = [
-              "trim_newlines"
-              "trim_whitespace"
-            ]; # filetypes that don't have a formatter configured
+            # "*" = [ "trim_newlines" ]; # all filetypes
+            # "_" = [
+            #   "trim_newlines"
+            #   "trim_whitespace"
+            # ]; # filetypes that don't have a formatter configured
 
-            #python = [ "isort" "black" ]; # run sequentially
-            #html = [ [ "prettier_d" "prettier" ] ]; # run first available
+            # python = [ "isort" "black" ]; # run sequentially
+            # html = [ [ "prettier_d" "prettier" ] ]; # run first available
           };
         };
 
@@ -211,6 +219,7 @@
           enable = true;
           folding = false;
           indent = true;
+          nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
         treesitter-context.enable = true;
         treesitter-refactor = {
