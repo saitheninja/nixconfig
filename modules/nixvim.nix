@@ -1,61 +1,66 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-	options = {
-		configNixvim.enable = lib.mkEnableOption "Adds Neovim, configured with nixvim.";
-	};
+  options = {
+    configNixvim.enable = lib.mkEnableOption "Adds Neovim, configured with nixvim.";
+  };
 
-	config = lib.mkIf config.configNixvim.enable {
-		programs.nixvim = {
-			enable = true;
+  config = lib.mkIf config.configNixvim.enable {
+    programs.nixvim = {
+      enable = true;
 
-			globals.mapleader = " ";
+      globals.mapleader = " ";
 
-			clipboard.register = "unnamedplus"; # use system clipboard as default register
+      clipboard.register = "unnamedplus"; # use system clipboard as default register
 
-			opts = {
-    		# line numbers
-				number = true;
-				relativenumber = true;
+      opts = {
+        # line numbers
+        number = true;
+        relativenumber = true;
 
-				# indents
-				autoindent = true; # copy indent from current line when starting a new line
-				smartindent = true; # do smart autoindenting when starting a new line
-				expandtab = true; # expands tabs to spaces
-				shiftwidth = 2; # number of spaces to use for each step of indent
-				tabstop = 2; # number of spaces that a tab in a file counts for
-				breakindent = true; # every wrapped line will continue visually indented
+        # indents
+        autoindent = true; # copy indent from current line when starting a new line
+        smartindent = true; # do smart autoindenting when starting a new line
+        expandtab = true; # expands tabs to spaces
+        shiftwidth = 2; # number of spaces to use for each step of indent
+        tabstop = 2; # number of spaces that a tab in a file counts for
+        breakindent = true; # every wrapped line will continue visually indented
 
-				# search
-				ignorecase = true; # ignore case if all lowercase
-				smartcase = true; # case-sensitive if mixed-case
+        # search
+        ignorecase = true; # ignore case if all lowercase
+        smartcase = true; # case-sensitive if mixed-case
         inccommand = "split"; # incremental preview for substitute
 
-				# ui
-				background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
-				#cursorline = true; # highlight cursor line
+        # ui
+        background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
+        #cursorline = true; # highlight cursor line
         #cursorlineopt = "number"; # line, number, both (line,number), screenline
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
-				signcolumn = "yes"; # text shifts when column gets toggled
+        signcolumn = "yes"; # text shifts when column gets toggled
         # splitbelow = true;
         # splitright = true;
         termguicolors = true;
-				visualbell = true;
+        visualbell = true;
         virtualedit = "block"; # the cursor can be positioned where there is no actual character (in visual block mode)
-			};
+      };
 
-			colorschemes = {
-				# gruvbox.enable = true;
+      colorschemes = {
+        # gruvbox.enable = true;
 
-				catppuccin = {
-					enable = true;
+        catppuccin = {
+          enable = true;
           settings = {
-					  flavour = "mocha"; # latte, frappe, macchiato, mocha
-					  transparent_background = false;
+            flavour = "mocha"; # latte, frappe, macchiato, mocha
+            transparent_background = false;
           };
-				};
-			};
+        };
+      };
 
       plugins = {
         # completions
@@ -73,31 +78,60 @@
         conform-nvim = {
           enable = true;
           formatOnSave = ''
-            require("conform").setup({
-              format_on_save = {
-                -- These options will be passed to conform.format()
-                timeout_ms = 500,
-                lsp_fallback = true,
-              },
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              pattern = "*",
+              callback = function(args)
+                require("conform").format({ bufnr = args.buf })
+              end,
             })
           '';
+
           formattersByFt = {
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
-            scss = [ "stylelint" ]; 
-            less = [ "stylelint" ]; 
+            scss = [ "stylelint" ];
+            less = [ "stylelint" ];
 
-            html = [ [ "prettier_d" "prettier" ] ];
-            json = [ [ "prettier_d" "prettier" ] ];
-            javascript = [ [ "prettier_d" "prettier" ] ]; # eslint_d?
-            svelte = [ [ "prettier_d" "prettier" ] ];
-            typescript = [ [ "prettier_d" "prettier" ] ];
+            html = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            json = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            javascript = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ]; # eslint_d?
+            svelte = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            typescript = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
 
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             sh = [ "shfmt" ];
 
-            "_" = [ "trim_newlines" "trim_whitespace" ]; # filetypes that don't have a formatter configured
-            #"*" = [ "trim_newlines" "trim_whitespace" ]; # all filetypes
+            "*" = [ "trim_newlines" ]; # all filetypes
+            "_" = [
+              "trim_newlines"
+              "trim_whitespace"
+            ]; # filetypes that don't have a formatter configured
+
             #python = [ "isort" "black" ]; # run sequentially
             #html = [ [ "prettier_d" "prettier" ] ]; # run first available
           };
@@ -106,7 +140,7 @@
         comment.enable = true; # "gc" to comment
         cursorline = {
           enable = true;
-          #cursorline.number = true; # highlight line number
+          cursorline.number = false; # highlight line number --- options reversed??
         };
 
         # debugger
@@ -155,7 +189,7 @@
         lspkind.enable = true; # add pictograms
 
         neogit.enable = true; # git client
-        neoscroll.enable = true; # smooth scrollling
+        #neoscroll.enable = true; # smooth scrollling
         #neotest.enable = true # interact with tests from inside neovim
 
         # none-ls - diagnostics, formatting, completion
@@ -169,7 +203,7 @@
         #neo-tree.enable = true;
         #oil.enable = true; # view files as a buffer
         rainbow-delimiters.enable = true; # matching bracket pairs get coloured the same
-				telescope.enable = true; # popup fuzzy finder, with previews
+        telescope.enable = true; # popup fuzzy finder, with previews
         todo-comments.enable = true; # highlight comments like TODO
 
         # treesitter - parse text as an AST (abstract syntax tree) for better understanding
@@ -194,7 +228,7 @@
         trouble.enable = true; # view problems
         ts-autotag.enable = true; # autoclose and autorename html tags
         which-key.enable = true; # show shortcuts
-			};
-		};
-	};
+      };
+    };
+  };
 }
