@@ -153,8 +153,8 @@
         #   enable = true;
         # };
 
+        notify.enable = true; # fancy notification popup
         nvim-colorizer.enable = true; # highlight colour hex codes in their colour
-        nvim-notify.enable = true; # fancy notification popup
         nvim-tree.enable = true; # file explorer
         #neo-tree.enable = true;
         #oil.enable = true; # view files as a buffer
