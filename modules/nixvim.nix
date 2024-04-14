@@ -33,8 +33,8 @@
 
 				# ui
 				background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
-				cursorline = true; # highlight cursor line
-        cursorlineopt = "number"; # line, number, both (line,number), screenline
+				#cursorline = true; # highlight cursor line
+        #cursorlineopt = "number"; # line, number, both (line,number), screenline
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
 				signcolumn = "yes"; # text shifts when column gets toggled
@@ -46,18 +46,16 @@
 			};
 
 			colorschemes = {
-				gruvbox.enable = true;
+				#gruvbox.enable = true;
 
-				# catppuccin = {
-				# 	enable = true;
-				# 	flavour = "latte"; # latte, mocha, frappe, macchiato
-				# 	transparentBackground = false;
-				# };
+				catppuccin = {
+					enable = true;
+					flavour = "mocha"; # latte, frappe, macchiato, mocha
+					transparentBackground = true;
+				};
 			};
 
       plugins = {
-        comment.enable = true;
-
         # completions
         cmp.enable = true;
         cmp-buffer.enable = true;
@@ -70,13 +68,55 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
 
+        conform-nvim = {
+          enable = true;
+          formatOnSave = true;
+          formattersByFt = {
+            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
+            scss = [ "stylelint" ]; 
+            less = [ "stylelint" ]; 
+
+            html = [ [ "prettier_d" "prettier" ] ];
+            json = [ [ "prettier_d" "prettier" ] ];
+            javascript = [ [ "prettier_d" "prettier" ] ]; # eslint_d?
+            svelte = [ [ "prettier_d" "prettier" ] ];
+            typescript = [ [ "prettier_d" "prettier" ] ];
+
+            lua = [ "stylua" ];
+            nix = [ "nixfmt" ];
+            sh = [ "shfmt" ];
+
+            "_" = [ "trim_newlines" "trim_whitespace" ]; # filetypes that don't have a formatter configured
+            #"*" = [ "trim_newlines" "trim_whitespace" ]; # all filetypes
+            #python = [ "isort" "black" ]; # run sequentially
+            #html = [ [ "prettier_d" "prettier" ] ]; # run first available
+          };
+        };
+
+        comment.enable = true; # "gc" to comment
+        cursorline = {
+          enable = true;
+          #cursorline.number = true; # highlight line number
+        };
+
         # debugger
         #dap.enable = true;
 
-				#emmet.enable = true;
         #gitblame.enable = true;
-        gitsigns.enable = true;
-        indent-blankline.enable = true;
+        gitsigns.enable = true; # show git status as coloured line in signcolumn
+        indent-blankline.enable = true; # show indent guides
+
+        lint = {
+          enable = true;
+          lintersByFt = {
+            css = [ "stylelint" ];
+            javascript = [ "eslint" ]; # eslint_d?
+            svelte = [ "eslint" ];
+            typescript = [ "eslint" ];
+
+            nix = [ "nix" ];
+          };
+        };
 
         # lsp
         lsp = {
@@ -101,15 +141,28 @@
           };
         };
         lsp-format.enable = true;
-        lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
+        #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
         lspkind.enable = true; # add pictograms
 
-        nvim-tree.enable = true;
-        #neo-tree.enable = true;
-				telescope.enable = true;
-        todo-comments.enable = true;
+        neogit.enable = true; # git client
+        neoscroll.enable = true; # smooth scrollling
+        #neotest.enable = true # interact with tests from inside neovim
 
-        # treesitter
+        # none-ls - diagnostics, formatting, completion
+        # none-ls = {
+        #   enable = true;
+        # };
+
+        nvim-colorizer.enable = true; # highlight colour hex codes in their colour
+        nvim-notify.enable = true; # fancy notification popup
+        nvim-tree.enable = true; # file explorer
+        #neo-tree.enable = true;
+        #oil.enable = true; # view files as a buffer
+        rainbow-delimiters.enable = true; # matching bracket pairs get coloured the same
+				telescope.enable = true; # popup fuzzy finder, with previews
+        todo-comments.enable = true; # highlight comments like TODO
+
+        # treesitter - parse text as an AST (abstract syntax tree) for better understanding
         treesitter = {
           enable = true;
           folding = false;
@@ -119,8 +172,8 @@
         treesitter-refactor = {
           enable = true;
           highlightCurrentScope.enable = true;
-          highlightDefinitions.enable = true;
-          navigation.enable = true;
+          highlightDefinitions.enable = true; # pins scope context to top
+          navigation.enable = true; # go to definition gnd
           smartRename.enable = true;
         };
         treesitter-textobjects = {
@@ -128,7 +181,9 @@
           lspInterop.enable = true;
         };
 
-        ts-autotag.enable = true;
+        trouble.enable = true; # view problems
+        ts-autotag.enable = true; # autoclose and autorename html tags
+        whichkey.enable = true; # show shortcuts
 			};
 		};
 	};
