@@ -70,7 +70,14 @@
 
         conform-nvim = {
           enable = true;
-          formatOnSave = true;
+          formatOnSave = ''
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              pattern = "*",
+              callback = function(args)
+                require("conform").format({ bufnr = args.buf })
+              end,
+            })
+          '';
           formattersByFt = {
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
             scss = [ "stylelint" ]; 
