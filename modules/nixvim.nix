@@ -56,7 +56,7 @@
         catppuccin = {
           enable = true;
           settings = {
-            flavour = "mocha"; # latte, frappe, macchiato, mocha
+            flavour = "mocha"; # light to dark: latte, frappe, macchiato, mocha
             transparent_background = false;
           };
         };
@@ -93,17 +93,17 @@
                 "prettier"
               ]
             ];
-            json = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
             javascript = [
               [
                 "prettier_d"
                 "prettier"
                 # "eslint_d" ?
+              ]
+            ];
+            json = [
+              [
+                "prettier_d"
+                "prettier"
               ]
             ];
             svelte = [
@@ -119,16 +119,16 @@
               ]
             ];
 
-            markdown = [
-              [
-                "prettierd"
-                "prettier"
-              ]
-            ];
-            yaml = [
-              "yamllint"
-              "yamlfmt"
-            ];
+            # markdown = [
+            #   [
+            #     "prettierd"
+            #     "prettier"
+            #   ]
+            # ];
+            # yaml = [
+            #   "yamllint"
+            #   "yamlfmt"
+            # ];
 
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
@@ -158,6 +158,7 @@
         gitsigns.enable = true; # show git status as coloured line in signcolumn
         indent-blankline.enable = true; # show indent guides
 
+        # linters
         lint = {
           enable = true;
           lintersByFt = {
@@ -170,7 +171,7 @@
           };
         };
 
-        # lsp
+        # language servers
         lsp = {
           enable = true;
           servers = {
@@ -233,9 +234,9 @@
           enable = true;
           lspInterop.enable = true;
         };
+        ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
 
         trouble.enable = true; # view problems
-        ts-autotag.enable = true; # autoclose and autorename html tags
         which-key.enable = true; # show shortcuts
       };
     };
