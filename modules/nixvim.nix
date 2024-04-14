@@ -183,7 +183,7 @@
 
         trouble.enable = true; # view problems
         ts-autotag.enable = true; # autoclose and autorename html tags
-        whichkey.enable = true; # show shortcuts
+        which-key.enable = true; # show shortcuts
 			};
 		};
 	};
