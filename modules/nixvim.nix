@@ -46,12 +46,14 @@
 			};
 
 			colorschemes = {
-				#gruvbox.enable = true;
+				# gruvbox.enable = true;
 
 				catppuccin = {
 					enable = true;
-					flavour = "mocha"; # latte, frappe, macchiato, mocha
-					transparentBackground = true;
+          settings = {
+					  flavour = "mocha"; # latte, frappe, macchiato, mocha
+					  transparent_background = false;
+          };
 				};
 			};
 
