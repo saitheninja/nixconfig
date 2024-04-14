@@ -134,6 +134,7 @@
       docker
       docker-compose
       godot_4
+      nixfmt-rfc-style
       # art
       gimp
       krita
