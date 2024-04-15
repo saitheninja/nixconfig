@@ -14,9 +14,11 @@
     programs.nixvim = {
       enable = true;
 
-      globals.mapleader = " ";
-
       clipboard.register = "unnamedplus"; # use system clipboard as default register
+
+      # keymaps
+      globals.mapleader = " ";
+      #keymaps = { };
 
       opts = {
         # line numbers
@@ -40,12 +42,13 @@
         background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
         #cursorline = true; # highlight cursor line
         #cursorlineopt = "number"; # line, number, both (line,number), screenline
+        colorcolumn = 80; # column line
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
         signcolumn = "yes"; # text shifts when column gets toggled
         # splitbelow = true;
         # splitright = true;
-        termguicolors = true;
+        termguicolors = true; # enable 24-bit colours
         visualbell = true;
         virtualedit = "block"; # the cursor can be positioned where there is no actual character (in visual block mode)
       };
@@ -147,8 +150,11 @@
 
         comment.enable = true; # "gc" to comment
         cursorline = {
-          enable = true;
-          cursorline.number = false; # highlight line number --- options reversed??
+          enable = true; # underline all instances of the word under the cursor
+          cursorline = {
+            number = true; # highlight line number --- options reversed??
+            timeout = 500; # timeout before highlighting the line
+          };
         };
 
         # debugger
