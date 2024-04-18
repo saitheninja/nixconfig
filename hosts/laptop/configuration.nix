@@ -175,7 +175,7 @@
       vteIntegration = true;
       shellAliases = {
         cat = "bat";
-        ls = "eza";
+        ls = "eza --icons=always";
       };
 
       # plugins
