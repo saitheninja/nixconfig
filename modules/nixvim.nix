@@ -42,7 +42,7 @@
         background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
         #cursorline = true; # highlight cursor line
         #cursorlineopt = "number"; # line, number, both (line,number), screenline
-        colorcolumn = "80"; # column line
+        #colorcolumn = "80"; # column line
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
         signcolumn = "yes"; # text shifts when column gets toggled
