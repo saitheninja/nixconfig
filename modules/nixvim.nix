@@ -15,6 +15,7 @@
       enable = true;
 
       clipboard.register = "unnamedplus"; # use system clipboard as default register
+      clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
       # keymaps
       globals.mapleader = " ";
@@ -54,8 +55,6 @@
       };
 
       colorschemes = {
-        # gruvbox.enable = true;
-
         catppuccin = {
           enable = true;
           settings = {

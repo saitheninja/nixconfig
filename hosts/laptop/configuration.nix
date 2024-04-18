@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -29,7 +34,6 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -58,12 +62,19 @@
   users.users.sai = {
     isNormalUser = true;
     description = "sai";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -71,89 +82,90 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
   environment.systemPackages = with pkgs; [
-      # filesystem drivers
-      exfat
-      ntfs3g
-      # browsers
-      chromium
-      firefox
-      google-chrome
-      #ungoogled-chromium
-      # terminal
-      vim
-      wget
-      curl
-      eza # better ls
-      bat # better cat
-      btop
-      fzf
-      fastfetch
-      ripgrep
-      #systeroid
-      # desktop
-      piper # mouse controls
-      thunderbird
-      vscode-fhs
-      gh # GitHub CLI
-      # dev
-      #vscode-with-extensions.override {
-      #  vscodeExtensions = with vscode-extensions; [
-           # asvetliakov.vscode-neovim
-           # bbenoist.nix
-           # bierner.emojisense
-           # bungcip.better-toml
-           # cweijan.vscode-database-client2
-           # davidanson.vscode-markdownlint
-           # dbaeumer.vscode-eslint
-           # dotenv.dotenv-vscode
-           # eamodio.gitlens
-           # esbenp.prettier-vscode
-           # firefox-devtools.vscode-firefox-debug
-           # github.github-vscode-theme
-           # github.vscode-pull-request-github
-           # github.vscode-github-actions
-           # jock.svg
-           # ms-azuretools.vscode-docker
-           # ms-vscode-remote.remote-ssh
-           # ms-vscode-remote.remote-containers
-           # mkhl.direnv
-           # mikestead.dotenv
-           # mechatroner.rainbow-csv
-           # matthewpi.caddyfile-support
-           # redhat.vscode-yaml
-           # stylelint.vscode-stylelint
-           # svelte.svelte-vscode
-           # tamasfe.even-better-toml
-           # tomoki1207.pdf
-           # usernamehw.errorlens
-           # vscode-icons-team.vscode-icons
-           # vincaslt.highlight-matching-tag
-           # viktorqvarfordt.vscode-pitch-black-theme
-           # wix.vscode-import-cost
-           # waderyan.gitblame
-      #  ]
-      #}
-      docker
-      docker-compose
-      godot_4
-      nixfmt-rfc-style
-      # art
-      gimp
-      krita
-      inkscape
-      #aseprite
-      #pixelorama
-      #blender
-      #obs-studio
-      # music
-      #ardour
-      #bespokesynth
-      #guitarix
-      #lmms
-      #surge-XT
-      #zrythm
-      # photography
-      darktable
+    # filesystem drivers
+    exfat
+    ntfs3g
+    # browsers
+    chromium
+    firefox
+    google-chrome
+    #ungoogled-chromium
+    # terminal
+    vim
+    wget
+    curl
+    eza # better ls
+    bat # better cat
+    btop
+    fzf
+    fastfetch
+    ripgrep
+    wl-clipboard
+    #systeroid
+    # desktop
+    piper # mouse controls
+    thunderbird
+    vscode-fhs
+    gh # GitHub CLI
+    # dev
+    #vscode-with-extensions.override {
+    #  vscodeExtensions = with vscode-extensions; [
+    # asvetliakov.vscode-neovim
+    # bbenoist.nix
+    # bierner.emojisense
+    # bungcip.better-toml
+    # cweijan.vscode-database-client2
+    # davidanson.vscode-markdownlint
+    # dbaeumer.vscode-eslint
+    # dotenv.dotenv-vscode
+    # eamodio.gitlens
+    # esbenp.prettier-vscode
+    # firefox-devtools.vscode-firefox-debug
+    # github.github-vscode-theme
+    # github.vscode-pull-request-github
+    # github.vscode-github-actions
+    # jock.svg
+    # ms-azuretools.vscode-docker
+    # ms-vscode-remote.remote-ssh
+    # ms-vscode-remote.remote-containers
+    # mkhl.direnv
+    # mikestead.dotenv
+    # mechatroner.rainbow-csv
+    # matthewpi.caddyfile-support
+    # redhat.vscode-yaml
+    # stylelint.vscode-stylelint
+    # svelte.svelte-vscode
+    # tamasfe.even-better-toml
+    # tomoki1207.pdf
+    # usernamehw.errorlens
+    # vscode-icons-team.vscode-icons
+    # vincaslt.highlight-matching-tag
+    # viktorqvarfordt.vscode-pitch-black-theme
+    # wix.vscode-import-cost
+    # waderyan.gitblame
+    #  ]
+    #}
+    docker
+    docker-compose
+    godot_4
+    nixfmt-rfc-style
+    # art
+    gimp
+    krita
+    inkscape
+    #aseprite
+    #pixelorama
+    #blender
+    #obs-studio
+    # music
+    #ardour
+    #bespokesynth
+    #guitarix
+    #lmms
+    #surge-XT
+    #zrythm
+    # photography
+    darktable
   ];
 
   programs = {
@@ -163,7 +175,7 @@
       vteIntegration = true;
       shellAliases = {
         cat = "bat";
-	ls = "eza";
+        ls = "eza";
       };
 
       # plugins
@@ -173,7 +185,7 @@
 
     direnv = {
       enable = true;
-      loadInNixShell  = true;
+      loadInNixShell = true;
       nix-direnv.enable = true;
     };
 
@@ -185,7 +197,6 @@
   };
 
   virtualisation.docker.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
