@@ -83,6 +83,8 @@
       vim
       wget
       curl
+      eza # better ls
+      bat # better cat
       btop
       fzf
       fastfetch
@@ -159,6 +161,11 @@
       enable = true;
       enableCompletion = true;
       vteIntegration = true;
+      shellAliases = {
+        cat = "bat";
+	ls = "eza";
+      };
+
       # plugins
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
