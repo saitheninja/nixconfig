@@ -65,6 +65,9 @@
       };
 
       plugins = {
+        # auto-session.enable = true; # session manager
+        bufferline.enable = true;
+
         # completions
         cmp.enable = true;
         cmp-buffer.enable = true;
@@ -157,7 +160,12 @@
         };
 
         # debugger
-        #dap.enable = true;
+        dap = {
+          enable = true;
+          extensions = {
+            dap-ui.enable = true;
+          };
+        };
 
         #gitblame.enable = true;
         gitsigns.enable = true; # show git status as coloured line in signcolumn
@@ -168,9 +176,11 @@
           enable = true;
           lintersByFt = {
             css = [ "stylelint" ];
+
             javascript = [ "eslint" ]; # eslint_d?
-            svelte = [ "eslint" ];
             typescript = [ "eslint" ];
+
+            svelte = [ "eslint" ];
 
             nix = [ "nix" ];
           };
@@ -200,7 +210,7 @@
         };
         lsp-format.enable = true;
         #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
-        lspkind.enable = true; # add pictograms
+        lspkind.enable = true; # add pictograms for lsp completion items
 
         neogit.enable = true; # git client
         #neoscroll.enable = true; # smooth scrollling
@@ -214,13 +224,13 @@
         notify.enable = true; # fancy notification popup
         nvim-colorizer.enable = true; # highlight colour hex codes in their colour
         nvim-tree.enable = true; # file explorer
-        #neo-tree.enable = true;
-        #oil.enable = true; # view files as a buffer
+        # neo-tree.enable = true; # file explorer
+        # oil.enable = true; # view files as a buffer
         rainbow-delimiters.enable = true; # matching bracket pairs get coloured the same
         telescope.enable = true; # popup fuzzy finder, with previews
         todo-comments.enable = true; # highlight comments like TODO
 
-        # treesitter - parse text as an AST (abstract syntax tree) for better understanding
+        # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         treesitter = {
           enable = true;
           folding = false;
