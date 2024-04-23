@@ -66,7 +66,9 @@
 
       plugins = {
         # auto-session.enable = true; # session manager
-        bufferline.enable = true;
+
+        bufferline.enable = true; # bufferline (top)
+        lualine.enable = true; # statusline (bottom)
 
         # completions
         cmp.enable = true;
@@ -226,7 +228,7 @@
         nvim-tree.enable = true; # file explorer
         # neo-tree.enable = true; # file explorer
         # oil.enable = true; # view files as a buffer
-        rainbow-delimiters.enable = true; # matching bracket pairs get coloured the same
+        rainbow-delimiters.enable = true; # matching brackets get matching colours
         telescope.enable = true; # popup fuzzy finder, with previews
         todo-comments.enable = true; # highlight comments like TODO
 
