@@ -71,6 +71,7 @@
     shell = pkgs.zsh;
   };
 
+  # enable flakes
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -83,6 +84,46 @@
     options = "--delete-older-than 30d";
   };
 
+  # prefer programs to environment.systemPackages
+  programs = {
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      vteIntegration = true;
+
+      shellAliases = {
+        cat = "bat";
+        ls = "eza --icons=always";
+      };
+
+      # plugins
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+    };
+
+    chromium = {
+      enable = true;
+    };
+
+    direnv = {
+      enable = true;
+      loadInNixShell = true;
+      nix-direnv.enable = true;
+    };
+
+    firefox = {
+      enable = true;
+    };
+
+    partition-manager.enable = true; # KDE partition manager
+    starship.enable = true;
+    usbtop.enable = true;
+    wavemon.enable = true;
+    wireshark.enable = true;
+  };
+
+  virtualisation.docker.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   environment.variables.EDITOR = "nvim";
@@ -92,27 +133,40 @@
     # filesystem drivers
     exfat
     ntfs3g
+
     # browsers
     google-chrome
     #ungoogled-chromium
+
     # terminal
-    vim
-    wget
-    curl
-    eza # better ls
     bat # better cat
-    btop
-    fzf
-    fastfetch
-    ripgrep
+    btop # better htop
+    du-dust # better du
+    eza # better ls
+    fastfetch # maintained replacement for neofetch
+    systeroid # better sysctl
+
+    # nixos deps
+    curl
+    wget
+    vim
+
+    # neovim deps
+    fzf # telescope
+    ripgrep # telescope
+    nixfmt-rfc-style
     wl-clipboard
-    #systeroid
+
     # desktop
     piper # mouse controls
     thunderbird
-    vscode-fhs
-    gh # GitHub CLI
+    vlc
+
     # dev
+    docker
+    docker-compose
+    gh # GitHub CLI
+    vscode-fhs
     #vscode-with-extensions.override {
     #  vscodeExtensions = with vscode-extensions; [
     # asvetliakov.vscode-neovim
@@ -150,18 +204,22 @@
     # waderyan.gitblame
     #  ]
     #}
-    docker
-    docker-compose
-    godot_4
-    nixfmt-rfc-style
+
     # art
+    godot_4
+    #blender
+
+    # images
     gimp
     krita
     inkscape
+    darktable
     #aseprite
     #pixelorama
-    #blender
+
+    # video
     #obs-studio
+
     # music
     #ardour
     #bespokesynth
@@ -169,47 +227,7 @@
     #lmms
     #surge-XT
     #zrythm
-    # photography
-    darktable
   ];
-
-  programs = {
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      vteIntegration = true;
-      shellAliases = {
-        cat = "bat";
-        ls = "eza --icons=always";
-      };
-
-      # plugins
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-    };
-
-    chromium = {
-      enable = true;
-    };
-
-    direnv = {
-      enable = true;
-      loadInNixShell = true;
-      nix-direnv.enable = true;
-    };
-
-    firefox = {
-      enable = true;
-    };
-
-    partition-manager.enable = true; # KDE partition manager
-    starship.enable = true;
-    usbtop.enable = true;
-    wavemon.enable = true;
-    wireshark.enable = true;
-  };
-
-  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
