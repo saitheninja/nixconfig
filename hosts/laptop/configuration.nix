@@ -93,8 +93,6 @@
     exfat
     ntfs3g
     # browsers
-    chromium
-    firefox
     google-chrome
     #ungoogled-chromium
     # terminal
@@ -190,10 +188,18 @@
       syntaxHighlighting.enable = true;
     };
 
+    chromium = {
+      enable = true;
+    };
+
     direnv = {
       enable = true;
       loadInNixShell = true;
       nix-direnv.enable = true;
+    };
+
+    firefox = {
+      enable = true;
     };
 
     partition-manager.enable = true; # KDE partition manager
