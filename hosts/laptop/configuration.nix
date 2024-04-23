@@ -101,9 +101,9 @@
       syntaxHighlighting.enable = true;
     };
 
-    chromium = {
-      enable = true;
-    };
+    # chromium = {
+    #   enable = true;
+    # };
 
     direnv = {
       enable = true;
@@ -136,6 +136,7 @@
 
     # browsers
     google-chrome
+    chromium
     #ungoogled-chromium
 
     # terminal
