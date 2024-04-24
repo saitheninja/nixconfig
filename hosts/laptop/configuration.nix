@@ -146,6 +146,7 @@
     eza # better ls
     fastfetch # maintained replacement for neofetch
     systeroid # better sysctl
+    hollywood # fun
 
     # nixos deps
     curl
