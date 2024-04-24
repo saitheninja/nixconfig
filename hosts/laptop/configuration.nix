@@ -145,7 +145,7 @@
     du-dust # better du
     eza # better ls
     fastfetch # maintained replacement for neofetch
-    hollywood # fun
+    #hollywood # fun
     systeroid # better sysctl
     zellij # terminal multiplexer
 
@@ -217,7 +217,7 @@
     krita
     inkscape
     darktable
-    aseprite
+    #aseprite
     #pixelorama
 
     # video
