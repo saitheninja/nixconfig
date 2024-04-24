@@ -145,8 +145,9 @@
     du-dust # better du
     eza # better ls
     fastfetch # maintained replacement for neofetch
-    systeroid # better sysctl
     hollywood # fun
+    systeroid # better sysctl
+    zellij # terminal multiplexer
 
     # nixos deps
     curl
@@ -156,7 +157,7 @@
     # neovim deps
     fzf # telescope
     ripgrep # telescope
-    nixfmt-rfc-style
+    nixfmt-rfc-style # conform
     wl-clipboard
 
     # desktop
@@ -216,7 +217,7 @@
     krita
     inkscape
     darktable
-    #aseprite
+    aseprite
     #pixelorama
 
     # video
