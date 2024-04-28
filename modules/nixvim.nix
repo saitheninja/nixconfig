@@ -221,9 +221,7 @@
 
         notify.enable = true; # fancy notification popup
         nvim-colorizer.enable = true; # highlight css colours blue #666
-        nvim-tree.enable = true; # file explorer
-        # neo-tree.enable = true; # file explorer
-        # oil.enable = true; # view files as a buffer
+        neo-tree.enable = true; # file explorer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
         telescope.enable = true; # popup fuzzy finder, with previews
         todo-comments.enable = true; # highlight comments like TODO
