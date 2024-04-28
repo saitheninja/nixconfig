@@ -254,6 +254,40 @@
       # keymaps
       globals.mapleader = " ";
       keymaps = [
+        # telescope.nvim
+        {
+          action = "<cmd>Telescope find_files<CR>";
+          key = "<leader>ff";
+          mode = "n";
+          options = {
+            desc = "Telescope find files.";
+          };
+        }
+        {
+          action = "<cmd>Telescope live_grep<CR>";
+          key = "<leader>fg";
+          mode = "n";
+          options = {
+            desc = "Telescope live grep.";
+          };
+        }
+        {
+          action = "<cmd>Telescope buffers<CR>";
+          key = "<leader>fb";
+          mode = "n";
+          options = {
+            desc = "Telescope buffers.";
+          };
+        }
+        {
+          action = "<cmd>Telescope help_tags<CR>";
+          key = "<leader>fh";
+          mode = "n";
+          options = {
+            desc = "Telescope help tags.";
+          };
+        }
+
         # trouble.nvim
         {
           action = "<cmd>TroubleToggle<CR>";
