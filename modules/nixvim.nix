@@ -17,10 +17,6 @@
       clipboard.register = "unnamedplus"; # use system clipboard as default register
       clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
-      # keymaps
-      globals.mapleader = " ";
-      #keymaps = { };
-
       opts = {
         # line numbers
         number = true;
@@ -224,7 +220,7 @@
         # };
 
         notify.enable = true; # fancy notification popup
-        nvim-colorizer.enable = true; # highlight colour hex codes in their colour
+        nvim-colorizer.enable = true; # highlight css colours blue #666
         nvim-tree.enable = true; # file explorer
         # neo-tree.enable = true; # file explorer
         # oil.enable = true; # view files as a buffer
@@ -256,6 +252,60 @@
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
       };
+
+      # keymaps
+      globals.mapleader = " ";
+      keymaps = [
+        # trouble.nvim
+        {
+          action = "<cmd>TroubleToggle<CR>";
+          key = "<leader>xx";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle.";
+          };
+        }
+        {
+          action = "<cmd>TroubleToggle workspace_diagnostics<CR>";
+          key = "<leader>xw";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle workspace diagnostics.";
+          };
+        }
+        {
+          action = "<cmd>TroubleToggle document_diagnostics<CR>";
+          key = "<leader>xd";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle document diagnostics.";
+          };
+        }
+        {
+          action = "<cmd>TroubleToggle quickfix<CR>";
+          key = "<leader>xq";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle quickfix list.";
+          };
+        }
+        {
+          action = "<cmd>TroubleToggle loclist<CR>";
+          key = "<leader>xl";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle location list."; # location list is a window-local quickfix list
+          };
+        }
+        {
+          action = "<cmd>TroubleToggle lsp_references<CR>";
+          key = "gR";
+          mode = "n";
+          options = {
+            desc = "Trouble toggle LSP references.";
+          };
+        }
+      ];
     };
   };
 }
