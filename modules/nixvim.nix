@@ -254,6 +254,32 @@
       # keymaps
       globals.mapleader = " ";
       keymaps = [
+        # neo-tree.nvim
+        {
+          action = "<cmd>Neotree toggle=true reveal=true<CR>"; # default action=focus position=left source=filesystem
+          key = "<leader>ee";
+          mode = "n";
+          options = {
+            desc = "Neotree toggle show files.";
+          };
+        }
+        {
+          action = "<cmd>Neotree toggle=true reveal=true source=buffers position=float<CR>";
+          key = "<leader>eb";
+          mode = "n";
+          options = {
+            desc = "Neotree toggle show buffers.";
+          };
+        }
+        {
+          action = "<cmd>Neotree toggle=true reveal=true source=git_status position=right<CR>";
+          key = "<leader>eg";
+          mode = "n";
+          options = {
+            desc = "Neotree toggle show git status.";
+          };
+        }
+
         # telescope.nvim
         {
           action = "<cmd>Telescope find_files<CR>";
