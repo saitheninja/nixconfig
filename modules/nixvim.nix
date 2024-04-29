@@ -30,6 +30,12 @@
         smartcase = true; # case-sensitive if mixed-case
         inccommand = "split"; # incremental preview for substitute
 
+        # folding
+        foldenable = true;
+        foldcolumn = "1"; # width
+        foldlevel = 99; # minimum level of fold that will be closed by default
+        foldlevelstart = 1; # level of fold when a new buffer is opened
+
         # ui
         background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
         #cursorline = true; # highlight cursor line
@@ -42,7 +48,7 @@
         # splitright = true;
         termguicolors = true; # enable 24-bit colours
         visualbell = true;
-        virtualedit = "block"; # the cursor can be positioned where there is no actual character (in visual block mode)
+        virtualedit = "block"; # when in visual block mode, the cursor can be positioned where there is no actual character
       };
 
       colorschemes = {
@@ -50,7 +56,7 @@
           enable = true;
           settings = {
             flavour = "mocha"; # light to dark: latte, frappe, macchiato, mocha
-            transparent_background = false;
+            transparent_background = true;
           };
         };
       };
@@ -74,14 +80,18 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
+        friendly-snippets.enable = true;
+        luasnip.enable = true;
 
         # formatters
         conform-nvim = {
           enable = true;
+
           formatOnSave = {
             lspFallback = true;
             timeoutMs = 500;
           };
+
           formattersByFt = {
             # run sequentially
             # python = [ "isort" "black" ];
@@ -152,18 +162,22 @@
         };
 
         comment.enable = true; # "gc" to comment
+
         cursorline = {
           enable = true; # underline all instances of the word under the cursor
+
           cursorline = {
             number = true; # highlight line number --- options reversed??
             timeout = 500; # timeout before highlighting the line
           };
         };
+
         indent-blankline.enable = true; # show indent guides
 
         # debugger
         dap = {
           enable = true;
+
           extensions = {
             dap-ui.enable = true;
             dap-virtual-text.enable = true;
@@ -173,8 +187,7 @@
         # git
         diffview.enable = true;
         gitsigns.enable = true; # show git status as coloured line in signcolumn
-        neogit.enable = true; # git client
-        # laztgit.enable = true;
+        neogit.enable = true;
 
         # linters
         lint = {
@@ -224,15 +237,18 @@
         #   enable = true;
         # };
 
+        neo-tree.enable = true; # file explorer
+
         notify.enable = true; # fancy notification popup
         nvim-colorizer.enable = true; # highlight css colours blue #666
-        neo-tree.enable = true; # file explorer
+        nvim-ufo.enable = true;
         rainbow-delimiters.enable = true; # matching brackets get matching colours
         todo-comments.enable = true; # highlight comments like TODO
         toggleterm.enable = true;
 
         telescope = {
           enable = true; # popup fuzzy finder, with previews
+
           extensions = {
             file-browser.enable = true;
             fzf-native.enable = true; # fzf implemented in C for telescope
@@ -245,8 +261,8 @@
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         treesitter = {
           enable = true;
-          folding = true;
-          indent = true;
+          folding = false; # unstable
+          indent = false; # unstable
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
         treesitter-context.enable = true;
@@ -265,13 +281,9 @@
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         trouble.enable = true; # view problems
-        twilight.enable = true; # dim code outside bit that is being edited
+        twilight.enable = true; # dim code outside current scope
         which-key.enable = true; # show shortcuts
         zellij.enable = true; # terminal multiplexer
-
-        # snippets
-        luasnip.enable = true;
-        friendly-snippets.enable = true;
       };
 
       # keymaps
@@ -384,6 +396,24 @@
           mode = "n";
           options = {
             desc = "Trouble toggle LSP references.";
+          };
+        }
+
+        # nvim-ufo
+        {
+          action = "<cmd>Ufo openAllFolds<CR>";
+          key = "zR";
+          mode = "n";
+          options = {
+            desc = "UFO open all folds.";
+          };
+        }
+        {
+          action = "<cmd>Ufo closeAllFolds<CR>";
+          key = "zM";
+          mode = "n";
+          options = {
+            desc = "UFO close all folds.";
           };
         }
       ];
