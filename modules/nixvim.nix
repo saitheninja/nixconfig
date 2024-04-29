@@ -34,7 +34,7 @@
         foldenable = true;
         foldcolumn = "1"; # width
         foldlevel = 99; # minimum level of fold that will be closed by default
-        foldlevelstart = 1; # level of fold when a new buffer is opened
+        foldlevelstart = 99; # level of fold when a new buffer is opened
 
         # ui
         background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
@@ -412,7 +412,7 @@
         # nvim-ufo
         {
           action = "<cmd>Ufo openAllFolds<CR>";
-          key = "zR";
+          key = "<leader>zR";
           mode = "n";
           options = {
             desc = "UFO open all folds.";
@@ -420,7 +420,7 @@
         }
         {
           action = "<cmd>Ufo closeAllFolds<CR>";
-          key = "zM";
+          key = "<leader>zM";
           mode = "n";
           options = {
             desc = "UFO close all folds.";
