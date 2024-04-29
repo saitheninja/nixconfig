@@ -187,7 +187,13 @@
         # git
         diffview.enable = true;
         gitsigns.enable = true; # show git status as coloured line in signcolumn
-        neogit.enable = true;
+        neogit = {
+          enable = true;
+          integrations = {
+            diffview = true;
+            telescope = true;
+          };
+        };
 
         # linters
         lint = {
@@ -315,6 +321,34 @@
           };
         }
 
+        # neogit
+        {
+          action = "<cmd>Neogit<CR>";
+          key = "<leader>gg";
+          mode = "n";
+          options = {
+            desc = "Neogit open status buffer in new tab.";
+          };
+        }
+
+        # nvim-ufo
+        {
+          action = "<cmd>Ufo openAllFolds<CR>";
+          key = "<leader>zR";
+          mode = "n";
+          options = {
+            desc = "UFO open all folds.";
+          };
+        }
+        {
+          action = "<cmd>Ufo closeAllFolds<CR>";
+          key = "<leader>zM";
+          mode = "n";
+          options = {
+            desc = "UFO close all folds.";
+          };
+        }
+
         # telescope.nvim
         {
           action = "<cmd>Telescope find_files<CR>";
@@ -405,25 +439,7 @@
           key = "<leader>tt";
           mode = "n";
           options = {
-            desc = "Twilight toggle";
-          };
-        }
-
-        # nvim-ufo
-        {
-          action = "<cmd>Ufo openAllFolds<CR>";
-          key = "<leader>zR";
-          mode = "n";
-          options = {
-            desc = "UFO open all folds.";
-          };
-        }
-        {
-          action = "<cmd>Ufo closeAllFolds<CR>";
-          key = "<leader>zM";
-          mode = "n";
-          options = {
-            desc = "UFO close all folds.";
+            desc = "Twilight toggle.";
           };
         }
       ];
