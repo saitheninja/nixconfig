@@ -189,7 +189,7 @@
         gitsigns.enable = true; # show git status as coloured line in signcolumn
         neogit = {
           enable = true;
-          integrations = {
+          settings.integrations = {
             diffview = true;
             telescope = true;
           };
