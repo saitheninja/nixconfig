@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 
 {
   options = {
@@ -71,12 +66,14 @@
         cmp-buffer.enable = true;
         cmp-cmdline.enable = true;
         cmp-cmdline-history.enable = true;
+        cmp-dap.enable = true;
         cmp-emoji.enable = true;
         cmp-nvim-lsp.enable = true;
         cmp-nvim-lsp-signature-help.enable = true;
         cmp-nvim-lua.enable = true;
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
+        cmp_luasnip.enable = true;
 
         # formatters
         conform-nvim = {
@@ -86,6 +83,12 @@
             timeoutMs = 500;
           };
           formattersByFt = {
+            # run sequentially
+            # python = [ "isort" "black" ];
+
+            # run first available
+            # html = [ [ "prettier_d" "prettier" ] ]; 
+
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
             scss = [ "stylelint" ];
             less = [ "stylelint" ];
@@ -137,14 +140,14 @@
             nix = [ "nixfmt" ];
             sh = [ "shfmt" ];
 
-            # "*" = [ "trim_newlines" ]; # all filetypes
-            # "_" = [
-            #   "trim_newlines"
-            #   "trim_whitespace"
-            # ]; # filetypes that don't have a formatter configured
+            # all filetypes
+            # "*" = [ "trim_newlines" ]; 
 
-            # python = [ "isort" "black" ]; # run sequentially
-            # html = [ [ "prettier_d" "prettier" ] ]; # run first available
+            # filetypes that don't have a formatter configured
+            "_" = [
+              "trim_newlines"
+              "trim_whitespace"
+            ];
           };
         };
 
@@ -156,18 +159,22 @@
             timeout = 500; # timeout before highlighting the line
           };
         };
+        indent-blankline.enable = true; # show indent guides
 
         # debugger
         dap = {
           enable = true;
           extensions = {
             dap-ui.enable = true;
+            dap-virtual-text.enable = true;
           };
         };
 
-        #gitblame.enable = true;
+        # git
+        diffview.enable = true;
         gitsigns.enable = true; # show git status as coloured line in signcolumn
-        indent-blankline.enable = true; # show indent guides
+        neogit.enable = true; # git client
+        # laztgit.enable = true;
 
         # linters
         lint = {
@@ -210,8 +217,6 @@
         #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
         lspkind.enable = true; # add pictograms for lsp completion items
 
-        neogit.enable = true; # git client
-        #neoscroll.enable = true; # smooth scrollling
         #neotest.enable = true # interact with tests from inside neovim
 
         # none-ls - diagnostics, formatting, completion
@@ -223,13 +228,24 @@
         nvim-colorizer.enable = true; # highlight css colours blue #666
         neo-tree.enable = true; # file explorer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
-        telescope.enable = true; # popup fuzzy finder, with previews
         todo-comments.enable = true; # highlight comments like TODO
+        toggleterm.enable = true;
+
+        telescope = {
+          enable = true; # popup fuzzy finder, with previews
+          extensions = {
+            file-browser.enable = true;
+            fzf-native.enable = true; # fzf implemented in C for telescope
+            media-files.enable = true; # preview media files
+            ui-select.enable = true; # set vim.ui.select to telescope
+            undo.enable = true; # view and search undo tree
+          };
+        };
 
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         treesitter = {
           enable = true;
-          folding = false;
+          folding = true;
           indent = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
@@ -237,7 +253,7 @@
         treesitter-refactor = {
           enable = true;
           highlightCurrentScope.enable = true;
-          highlightDefinitions.enable = true; # pins scope context to top
+          highlightDefinitions.enable = true; # sticky scope context to top
           navigation.enable = true; # go to definition gnd
           smartRename.enable = true;
         };
@@ -246,9 +262,16 @@
           lspInterop.enable = true;
         };
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
+        ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         trouble.enable = true; # view problems
+        twilight.enable = true; # dim code outside bit that is being edited
         which-key.enable = true; # show shortcuts
+        zellij.enable = true; # terminal multiplexer
+
+        # snippets
+        luasnip.enable = true;
+        friendly-snippets.enable = true;
       };
 
       # keymaps
