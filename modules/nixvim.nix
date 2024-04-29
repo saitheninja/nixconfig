@@ -399,6 +399,16 @@
           };
         }
 
+        # twilight
+        {
+          action = "<cmd>Twilight<CR>";
+          key = "<leader>tt";
+          mode = "n";
+          options = {
+            desc = "Twilight toggle";
+          };
+        }
+
         # nvim-ufo
         {
           action = "<cmd>Ufo openAllFolds<CR>";
