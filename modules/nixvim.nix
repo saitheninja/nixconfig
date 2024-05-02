@@ -88,10 +88,10 @@
         conform-nvim = {
           enable = true;
 
-          formatOnSave = {
-            lspFallback = true;
-            timeoutMs = 500;
-          };
+          # formatOnSave = {
+          #   lspFallback = true;
+          #   timeoutMs = 500;
+          # };
 
           formattersByFt = {
             # run sequentially
@@ -312,6 +312,19 @@
           action = "<cmd>nohlsearch<CR>";
           options = {
             desc = "Turn off search highlight until next search command.";
+          };
+        }
+
+          # conform
+        {
+          action = "<cmd>Format<CR>";
+          key = "<leader>cf";
+          mode = [
+            "n"
+            "v"
+          ];
+          options = {
+            desc = "Conform format buffer.";
           };
         }
 
