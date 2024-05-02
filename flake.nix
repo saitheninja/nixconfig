@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
