@@ -63,10 +63,43 @@
 
       plugins = {
         # auto-session.enable = true; # session manager
+        comment.enable = true; # "gc" to comment
         nvim-autopairs.enable = true; # pair brackets, quotes
 
+        # ui
         bufferline.enable = true; # bufferline (top)
         lualine.enable = true; # statusline (bottom)
+
+        cursorline = {
+          enable = true; # underline all instances of the word under the cursor
+
+          cursorline = {
+            number = true; # highlight line number --- options reversed??
+            timeout = 500; # timeout before highlighting the line
+          };
+        };
+        indent-blankline.enable = true; # show indent guides
+
+        neo-tree.enable = true; # file explorer
+        notify.enable = true; # fancy notification popup
+        nvim-colorizer.enable = true; # highlight css colours blue #666
+        nvim-ufo.enable = true; # folding
+        rainbow-delimiters.enable = true; # matching brackets get matching colours
+        telescope = {
+          enable = true; # popup fuzzy finder, with previews
+
+          extensions = {
+            file-browser.enable = true;
+            fzf-native.enable = true; # fzf implemented in C for telescope
+            media-files.enable = true; # preview media files
+            ui-select.enable = true; # set vim.ui.select to telescope
+            undo.enable = true; # view and search undo tree
+          };
+        };
+        todo-comments.enable = true; # highlight comments like TODO
+        trouble.enable = true; # view problems
+        twilight.enable = true; # dim code outside current scope
+        which-key.enable = true; # show shortcuts
 
         # completions
         cmp.enable = true;
@@ -81,6 +114,8 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
+
+        # snippets
         friendly-snippets.enable = true;
         luasnip.enable = true;
 
@@ -94,11 +129,8 @@
           # };
 
           formattersByFt = {
-            # run sequentially
-            # python = [ "isort" "black" ];
-
-            # run first available
-            # html = [ [ "prettier_d" "prettier" ] ]; 
+            # run sequentially: [ ...formatters ]
+            # run first available: [[ ...formatters ]]
 
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
             scss = [ "stylelint" ];
@@ -114,7 +146,6 @@
               [
                 "prettier_d"
                 "prettier"
-                # "eslint_d" ?
               ]
             ];
             json = [
@@ -136,16 +167,18 @@
               ]
             ];
 
-            # markdown = [
-            #   [
-            #     "prettierd"
-            #     "prettier"
-            #   ]
-            # ];
-            # yaml = [
-            #   "yamllint"
-            #   "yamlfmt"
-            # ];
+            markdown = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            yaml = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
 
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
@@ -160,20 +193,9 @@
               "trim_whitespace"
             ];
           };
+
+          notifyOnError = true;
         };
-
-        comment.enable = true; # "gc" to comment
-
-        cursorline = {
-          enable = true; # underline all instances of the word under the cursor
-
-          cursorline = {
-            number = true; # highlight line number --- options reversed??
-            timeout = 500; # timeout before highlighting the line
-          };
-        };
-
-        indent-blankline.enable = true; # show indent guides
 
         # debugger
         dap = {
@@ -190,6 +212,7 @@
         gitsigns.enable = true; # show git status as coloured line in signcolumn
         neogit = {
           enable = true;
+
           settings.integrations = {
             diffview = true;
             telescope = true;
@@ -199,10 +222,11 @@
         # linters
         lint = {
           enable = true;
+
           lintersByFt = {
             css = [ "stylelint" ];
 
-            javascript = [ "eslint" ]; # eslint_d?
+            javascript = [ "eslint" ];
             typescript = [ "eslint" ];
 
             svelte = [ "eslint" ];
@@ -214,6 +238,7 @@
         # language servers
         lsp = {
           enable = true;
+
           servers = {
             emmet_ls.enable = true;
             eslint.enable = true;
@@ -237,34 +262,6 @@
         #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
         lspkind.enable = true; # add pictograms for lsp completion items
 
-        #neotest.enable = true # interact with tests from inside neovim
-
-        # none-ls - diagnostics, formatting, completion
-        # none-ls = {
-        #   enable = true;
-        # };
-
-        neo-tree.enable = true; # file explorer
-
-        notify.enable = true; # fancy notification popup
-        nvim-colorizer.enable = true; # highlight css colours blue #666
-        nvim-ufo.enable = true;
-        rainbow-delimiters.enable = true; # matching brackets get matching colours
-        todo-comments.enable = true; # highlight comments like TODO
-        toggleterm.enable = true;
-
-        telescope = {
-          enable = true; # popup fuzzy finder, with previews
-
-          extensions = {
-            file-browser.enable = true;
-            fzf-native.enable = true; # fzf implemented in C for telescope
-            media-files.enable = true; # preview media files
-            ui-select.enable = true; # set vim.ui.select to telescope
-            undo.enable = true; # view and search undo tree
-          };
-        };
-
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         treesitter = {
           enable = true;
@@ -287,9 +284,8 @@
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
-        trouble.enable = true; # view problems
-        twilight.enable = true; # dim code outside current scope
-        which-key.enable = true; # show shortcuts
+        # terminal
+        toggleterm.enable = true;
         zellij.enable = true; # terminal multiplexer
       };
 
@@ -328,6 +324,7 @@
           };
         }
 
+        # neo-tree
         {
           action = "<cmd>Neotree toggle=true reveal=true<CR>"; # default action=focus position=left source=filesystem
           key = "<leader>ee";
@@ -381,7 +378,7 @@
           };
         }
 
-        # telescope.nvim
+        # telescope
         {
           action = "<cmd>Telescope find_files<CR>";
           key = "<leader>ff";
@@ -415,7 +412,7 @@
           };
         }
 
-        # trouble.nvim
+        # trouble
         {
           action = "<cmd>TroubleToggle<CR>";
           key = "<leader>xx";
