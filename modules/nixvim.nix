@@ -63,6 +63,7 @@
 
       plugins = {
         # auto-session.enable = true; # session manager
+        nvim-autopairs.enable = true; # pair brackets, quotes
 
         bufferline.enable = true; # bufferline (top)
         lualine.enable = true; # statusline (bottom)
