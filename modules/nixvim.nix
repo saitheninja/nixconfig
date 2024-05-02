@@ -296,7 +296,25 @@
       # keymaps
       globals.mapleader = " ";
       keymaps = [
-        # neo-tree.nvim
+        # neovim
+        {
+          mode = "n";
+          key = "<leader>lw";
+          action = "<cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
+          options = {
+            desc = "Toggle line wrap";
+            # silent = true; # will not be echoed on the command line
+          };
+        }
+        {
+          mode = "n";
+          key = "<BS>";
+          action = "<cmd>nohlsearch<CR>";
+          options = {
+            desc = "Turn off search highlight until next search command.";
+          };
+        }
+
         {
           action = "<cmd>Neotree toggle=true reveal=true<CR>"; # default action=focus position=left source=filesystem
           key = "<leader>ee";
