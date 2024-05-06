@@ -67,7 +67,7 @@
       "wheel"
       "docker"
     ];
-    packages = with pkgs; [ ];
+    # packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
@@ -105,11 +105,11 @@
     #   enable = true;
     # };
 
-    direnv = {
-      enable = true;
-      loadInNixShell = true;
-      nix-direnv.enable = true;
-    };
+    # direnv = {
+    #   enable = true;
+    #   loadInNixShell = true;
+    #   nix-direnv.enable = true;
+    # };
 
     firefox = {
       enable = true;
@@ -124,11 +124,10 @@
 
   virtualisation.docker.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.variables.EDITOR = "nvim";
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # filesystem drivers
     exfat
@@ -145,8 +144,9 @@
     du-dust # better du
     eza # better ls
     fastfetch # maintained replacement for neofetch
-    #hollywood # fun
-    systeroid # better sysctl
+    # hollywood # fun
+    # systeroid # better sysctl
+    zathura # terminal pdf viewer
     zellij # terminal multiplexer
 
     # nixos deps
@@ -212,22 +212,22 @@
     godot_4
     #blender
 
-    # images
-    gimp
-    krita
-    inkscape
-    darktable
-    #aseprite
-    #pixelorama
+    # image editors
+    inkscape # vectors
+    gimp # photoshop
+    krita # drawing
+    darktable # photos
+    #aseprite # licence requires building from source
+    pixelorama # godot pixel art
 
     # video
-    #obs-studio
+    #obs-studio # screen capture
 
     # music
-    #ardour
-    #bespokesynth
+    #ardour # daw
+    #bespokesynth # live daw
     #guitarix
-    #lmms
+    #lmms # daw
     #surge-XT
     #zrythm
   ];
