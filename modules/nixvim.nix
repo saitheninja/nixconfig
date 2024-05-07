@@ -132,29 +132,18 @@
             # run sequentially: [ ...formatters ]
             # run first available: [[ ...formatters ]]
 
-            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
-            scss = [ "stylelint" ];
-            less = [ "stylelint" ];
+            # css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
+            # scss = [ "stylelint" ];
+            # less = [ "stylelint" ];
 
-            html = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
+            # html = [
+            #   [
+            #     "prettier_d"
+            #     "prettier"
+            #   ]
+            # ];
+
             javascript = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            json = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            svelte = [
               [
                 "prettier_d"
                 "prettier"
@@ -166,14 +155,26 @@
                 "prettier"
               ]
             ];
+            svelte = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
 
-            markdown = [
+            json = [
               [
                 "prettier_d"
                 "prettier"
               ]
             ];
             yaml = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            markdown = [
               [
                 "prettier_d"
                 "prettier"
@@ -188,10 +189,10 @@
             # "*" = [ "trim_newlines" ]; 
 
             # filetypes that don't have a formatter configured
-            "_" = [
-              "trim_newlines"
-              "trim_whitespace"
-            ];
+            # "_" = [
+            #   "trim_newlines"
+            #   "trim_whitespace"
+            # ];
           };
 
           notifyOnError = true;
