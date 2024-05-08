@@ -116,7 +116,7 @@
     };
 
     partition-manager.enable = true; # KDE partition manager
-    starship.enable = true;
+    starship.enable = true; # automatically pretty terminal prompt
     usbtop.enable = true;
     wavemon.enable = true;
     wireshark.enable = true;
@@ -217,7 +217,7 @@
     gimp # photoshop
     krita # drawing
     darktable # photos
-    #aseprite # licence requires building from source
+    #aseprite # pixel art # licence requires building from source
     pixelorama # godot pixel art
 
     # video

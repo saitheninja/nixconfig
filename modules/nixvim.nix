@@ -56,7 +56,7 @@
           enable = true;
           settings = {
             flavour = "mocha"; # light to dark: latte, frappe, macchiato, mocha
-            transparent_background = true;
+            transparent_background = false;
           };
         };
       };
@@ -71,11 +71,18 @@
         lualine.enable = true; # statusline (bottom)
 
         cursorline = {
-          enable = true; # underline all instances of the word under the cursor
+          enable = true;
 
           cursorline = {
-            number = true; # highlight line number --- options reversed??
-            timeout = 500; # timeout before highlighting the line
+            enable = true; # highlight current line
+            number = true; # also highlight line number
+            timeout = 0; # timeout before cursorline highlight appears
+          };
+
+          cursorword = {
+            enable = true; # underline all instances of word under cursor
+            hl = { underline = true; };
+            minLength = 3;
           };
         };
         indent-blankline.enable = true; # show indent guides
@@ -123,25 +130,25 @@
         conform-nvim = {
           enable = true;
 
-          # formatOnSave = {
-          #   lspFallback = true;
-          #   timeoutMs = 500;
-          # };
+          formatOnSave = {
+            lspFallback = true;
+            timeoutMs = 500;
+          };
 
           formattersByFt = {
-            # run sequentially: [ ...formatters ]
-            # run first available: [[ ...formatters ]]
+            # run sequentially: css = [ ...formatters ]
+            # run first available: html = [[ ...formatters ]]
 
-            # css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
-            # scss = [ "stylelint" ];
-            # less = [ "stylelint" ];
+            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
+            scss = [ "stylelint" ];
+            less = [ "stylelint" ];
 
-            # html = [
-            #   [
-            #     "prettier_d"
-            #     "prettier"
-            #   ]
-            # ];
+            html = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
 
             javascript = [
               [
@@ -229,7 +236,6 @@
 
             javascript = [ "eslint" ];
             typescript = [ "eslint" ];
-
             svelte = [ "eslint" ];
 
             nix = [ "nix" ];
@@ -293,7 +299,7 @@
       # keymaps
       globals.mapleader = " ";
       keymaps = [
-        # neovim
+        # neovim settings
         {
           mode = "n";
           key = "<leader>lw";
@@ -312,14 +318,15 @@
           };
         }
 
-          # conform
+        # conform
         {
           action = "<cmd>Format<CR>";
           key = "<leader>cf";
-          mode = [
-            "n"
-            "v"
-          ];
+          # mode = [
+          #   "n"
+          #   "v"
+          # ];
+          mode = "n";
           options = {
             desc = "Conform format buffer.";
           };
