@@ -155,6 +155,7 @@
     vim
 
     # neovim deps
+    fd # telescope # better find
     fzf # telescope
     ripgrep # telescope
     nixfmt-rfc-style # conform

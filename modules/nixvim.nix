@@ -69,7 +69,6 @@
         # ui
         bufferline.enable = true; # bufferline (top)
         lualine.enable = true; # statusline (bottom)
-
         cursorline = {
           enable = true;
 
@@ -81,7 +80,9 @@
 
           cursorword = {
             enable = true; # underline all instances of word under cursor
-            hl = { underline = true; };
+            hl = {
+              underline = true;
+            };
             minLength = 3;
           };
         };
@@ -90,7 +91,8 @@
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-colorizer.enable = true; # highlight css colours blue #666
-        nvim-ufo.enable = true; # folding
+        nvim-ufo.enable = true; # better folding
+        oil.enable = true; # file explorer as a buffer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
         telescope = {
           enable = true; # popup fuzzy finder, with previews
@@ -105,7 +107,6 @@
         };
         todo-comments.enable = true; # highlight comments like TODO
         trouble.enable = true; # view problems
-        twilight.enable = true; # dim code outside current scope
         which-key.enable = true; # show shortcuts
 
         # completions
@@ -128,7 +129,7 @@
 
         # formatters
         conform-nvim = {
-          enable = true;
+          enable = false;
 
           formatOnSave = {
             lspFallback = true;
@@ -311,7 +312,7 @@
         }
         {
           mode = "n";
-          key = "<BS>";
+          key = "<leader>//";
           action = "<cmd>nohlsearch<CR>";
           options = {
             desc = "Turn off search highlight until next search command.";
@@ -322,11 +323,10 @@
         {
           action = "<cmd>Format<CR>";
           key = "<leader>cf";
-          # mode = [
-          #   "n"
-          #   "v"
-          # ];
-          mode = "n";
+          mode = [
+            "n"
+            "v"
+          ];
           options = {
             desc = "Conform format buffer.";
           };
@@ -349,19 +349,11 @@
             desc = "Neotree toggle show buffers.";
           };
         }
-        {
-          action = "<cmd>Neotree toggle=true reveal=true source=git_status position=right<CR>";
-          key = "<leader>eg";
-          mode = "n";
-          options = {
-            desc = "Neotree toggle show git status.";
-          };
-        }
 
         # neogit
         {
-          action = "<cmd>Neogit<CR>";
-          key = "<leader>gg";
+          action = "<cmd>Neogit kind=auto<CR>";
+          key = "<leader>gs";
           mode = "n";
           options = {
             desc = "Neogit open status buffer in new tab.";
@@ -383,6 +375,16 @@
           mode = "n";
           options = {
             desc = "UFO close all folds.";
+          };
+        }
+
+        # oil
+        {
+          action = "<cmd>Oil<CR>";
+          key = "<leader>oe";
+          mode = "n";
+          options = {
+            desc = "Oil open parent directory.";
           };
         }
 
@@ -467,16 +469,6 @@
           mode = "n";
           options = {
             desc = "Trouble toggle LSP references.";
-          };
-        }
-
-        # twilight
-        {
-          action = "<cmd>Twilight<CR>";
-          key = "<leader>tt";
-          mode = "n";
-          options = {
-            desc = "Twilight toggle.";
           };
         }
       ];
