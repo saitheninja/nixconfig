@@ -49,6 +49,9 @@
         termguicolors = true; # enable 24-bit colours
         visualbell = true;
         virtualedit = "block"; # when in visual block mode, the cursor can be positioned where there is no actual character
+
+        # sessionsoptions suggested by auto-session adds winpos, localoptions
+        sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
       };
 
       colorschemes = {
@@ -62,7 +65,7 @@
       };
 
       plugins = {
-        # auto-session.enable = true; # session manager
+        auto-session.enable = true;
 
         # ui
         lualine = {
@@ -343,6 +346,32 @@
           options = {
             desc = "Neovim: turn off search highlight (any search command turns on)";
             silent = true;
+          };
+        }
+
+        #auto-session
+        {
+          action = "<cmd>SessionSave<CR>";
+          key = "<leader>sw";
+          mode = "n";
+          options = {
+            desc = "auto-session: write session";
+          };
+        }
+        {
+          action = "<cmd>SessionRestore<CR>";
+          key = "<leader>sr";
+          mode = "n";
+          options = {
+            desc = "auto-session: restore session";
+          };
+        }
+        {
+          action = "<cmd>Autosession search<CR>";
+          key = "<leader>ss";
+          mode = "n";
+          options = {
+            desc = "auto-session: search sessions"; # <C-s> restore, <C-d> delete
           };
         }
 
