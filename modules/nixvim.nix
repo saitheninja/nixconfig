@@ -67,8 +67,33 @@
         nvim-autopairs.enable = true; # pair brackets, quotes
 
         # ui
-        bufferline.enable = true; # bufferline (top)
-        lualine.enable = true; # statusline (bottom)
+        lualine = {
+          enable = true; # statusline (bottom window or global), tabline (top global), winbar (top window)
+
+          # extensions = [
+          #   "neo-tree"
+          #   "oil"
+          #   "toggleterm"
+          #   "trouble"
+          # ];
+
+          inactiveSections = {
+            lualine_b = [
+              { name = "diff"; }
+              { name = "diagnostics"; }
+            ];
+            lualine_z = [];
+          };
+
+          tabline = {
+            # data
+            lualine_a = [ { name = "buffers"; } ];
+            # views
+            lualine_y = [ { name = "windows"; } ];
+            lualine_z = [ { name = "tabs"; } ];
+          };
+        };
+
         cursorline = {
           enable = true;
 
