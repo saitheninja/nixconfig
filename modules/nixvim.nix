@@ -63,8 +63,6 @@
 
       plugins = {
         # auto-session.enable = true; # session manager
-        comment.enable = true; # "gc" to comment
-        nvim-autopairs.enable = true; # pair brackets, quotes
 
         # ui
         lualine = {
@@ -111,11 +109,14 @@
             minLength = 3;
           };
         };
+
         indent-blankline.enable = true; # show indent guides
 
+        comment.enable = true; # "gc" to comment
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
-        nvim-colorizer.enable = true; # highlight css colours blue #666
+        nvim-autopairs.enable = true; # pair brackets, quotes
+        #nvim-colorizer.enable = true; # highlight css colours blue #666
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
@@ -327,26 +328,26 @@
       keymaps = [
         # neovim settings
         {
-          mode = "n";
-          key = "<leader>lw";
           action = "<cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
+          key = "<leader>nw";
+          mode = "n";
           options = {
-            desc = "Toggle line wrap";
-            # silent = true; # will not be echoed on the command line
+            desc = "Neovim: toggle line wrap";
+            silent = true; # will not be echoed on the command line
           };
         }
         {
-          mode = "n";
-          key = "<leader>//";
           action = "<cmd>nohlsearch<CR>";
+          key = "<leader>n/";
+          mode = "n";
           options = {
-            desc = "Turn off search highlight until next search command.";
+            desc = "Neovim: turn off search highlight (any search command turns on)";
+            silent = true;
           };
         }
 
         # conform
         {
-          # action = "<cmd>:lua require('conform').format({ async = true, lsp_fallback = true })<CR>";
           action = "<cmd>Format<CR>";
           key = "<leader>cf";
           mode = [
@@ -354,7 +355,7 @@
             "v"
           ];
           options = {
-            desc = "Conform format buffer.";
+            desc = "Conform: format selected text/buffer";
           };
         }
 
@@ -364,25 +365,17 @@
           key = "<leader>ee";
           mode = "n";
           options = {
-            desc = "Neotree toggle show files.";
-          };
-        }
-        {
-          action = "<cmd>Neotree toggle=true reveal=true source=buffers position=float<CR>";
-          key = "<leader>eb";
-          mode = "n";
-          options = {
-            desc = "Neotree toggle show buffers.";
+            desc = "Neotree: toggle show files";
           };
         }
 
         # neogit
         {
-          action = "<cmd>Neogit kind=auto<CR>";
+          action = "<cmd>Neogit<CR>";
           key = "<leader>gs";
           mode = "n";
           options = {
-            desc = "Neogit open status buffer in new tab.";
+            desc = "Neogit: open status buffer in new tab";
           };
         }
 
@@ -392,7 +385,7 @@
           key = "<leader>zR";
           mode = "n";
           options = {
-            desc = "UFO open all folds.";
+            desc = "UFO: open all folds";
           };
         }
         {
@@ -400,7 +393,7 @@
           key = "<leader>zM";
           mode = "n";
           options = {
-            desc = "UFO close all folds.";
+            desc = "UFO: close all folds";
           };
         }
 
@@ -410,7 +403,7 @@
           key = "<leader>oe";
           mode = "n";
           options = {
-            desc = "Oil open parent directory.";
+            desc = "Oil: open parent directory";
           };
         }
 
@@ -420,7 +413,7 @@
           key = "<leader>ff";
           mode = "n";
           options = {
-            desc = "Telescope find files.";
+            desc = "Telescope: find files";
           };
         }
         {
@@ -428,7 +421,7 @@
           key = "<leader>fg";
           mode = "n";
           options = {
-            desc = "Telescope live grep.";
+            desc = "Telescope: live grep";
           };
         }
         {
@@ -436,7 +429,7 @@
           key = "<leader>fb";
           mode = "n";
           options = {
-            desc = "Telescope buffers.";
+            desc = "Telescope: buffers";
           };
         }
         {
@@ -444,7 +437,7 @@
           key = "<leader>fh";
           mode = "n";
           options = {
-            desc = "Telescope help tags.";
+            desc = "Telescope: help tags";
           };
         }
 
@@ -454,7 +447,7 @@
           key = "<leader>xx";
           mode = "n";
           options = {
-            desc = "Trouble toggle.";
+            desc = "Trouble: toggle window";
           };
         }
         {
@@ -462,7 +455,7 @@
           key = "<leader>xw";
           mode = "n";
           options = {
-            desc = "Trouble toggle workspace diagnostics.";
+            desc = "Trouble: toggle workspace diagnostics";
           };
         }
         {
@@ -470,31 +463,15 @@
           key = "<leader>xd";
           mode = "n";
           options = {
-            desc = "Trouble toggle document diagnostics.";
+            desc = "Trouble: toggle document diagnostics";
           };
         }
-        # {
-        #   action = "<cmd>TroubleToggle quickfix<CR>";
-        #   key = "<leader>xq";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Trouble toggle quickfix list.";
-        #   };
-        # }
-        # {
-        #   action = "<cmd>TroubleToggle loclist<CR>";
-        #   key = "<leader>xl";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Trouble toggle location list."; # location list is a window-local quickfix list
-        #   };
-        # }
         # {
         #   action = "<cmd>TroubleToggle lsp_references<CR>";
         #   key = "gR";
         #   mode = "n";
         #   options = {
-        #     desc = "Trouble toggle LSP references.";
+        #     desc = "Trouble: toggle LSP references";
         #   };
         # }
       ];
