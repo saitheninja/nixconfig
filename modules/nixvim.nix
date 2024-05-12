@@ -54,11 +54,12 @@
       };
 
       colorschemes = {
-        catppuccin = {
+        cyberdream = {
           enable = true;
+
           settings = {
-            flavour = "mocha"; # light to dark: latte, frappe, macchiato, mocha
-            transparent_background = false;
+            italic_comments = true;
+            transparent = true;
           };
         };
       };
