@@ -71,6 +71,13 @@
         lualine = {
           enable = true; # statusline (bottom window or global), tabline (top global), winbar (top window)
 
+          # globalStatus = true;
+
+          # componentSeparators = {
+          #   left = "|";
+          #   right = "|";
+          # };
+
           # extensions = [
           #   "neo-tree"
           #   "oil"
@@ -78,11 +85,32 @@
           #   "trouble"
           # ];
 
-          inactiveSections = {
+          sections = {
+            lualine_a = [ { name = "mode"; } ];
             lualine_b = [
+              { name = "branch"; }
               { name = "diff"; }
               { name = "diagnostics"; }
             ];
+            lualine_c = [ { name = "filename"; } ];
+            lualine_x = [
+              # { name = "encoding"; }
+              # { name = "fileformat"; }
+              { name = "filetype"; }
+            ];
+            lualine_y = [ { name = "progress"; } ];
+            lualine_z = [ { name = "location"; } ];
+          };
+
+          inactiveSections = {
+            lualine_b = [
+              { name = "branch"; }
+              { name = "diff"; }
+              { name = "diagnostics"; }
+            ];
+            lualine_c = [ { name = "filename"; } ];
+            lualine_x = [];
+            lualine_y = [];
             lualine_z = [];
           };
 
@@ -93,6 +121,27 @@
             lualine_y = [ { name = "windows"; } ];
             lualine_z = [ { name = "tabs"; } ];
           };
+
+          # winbar = {
+          #   lualine_a = [
+          #     { name = "filename"; }
+          #   ];
+          #   lualine_c = [
+          #     { name = "diff"; }
+          #     { name = "diagnostics"; }
+          #   ];
+          #   lualine_x = [ 
+          #     { name = "progress"; }
+          #     { name = "location"; }
+          #   ];
+          # };
+          # inactiveWinbar = {
+          #   lualine_c = [
+          #     { name = "filename"; }
+          #     { name = "diff"; }
+          #     { name = "diagnostics"; }
+          #   ];
+          # };
         };
 
         cursorline = {
@@ -113,13 +162,12 @@
           };
         };
 
+        comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         indent-blankline.enable = true; # show indent guides
-
-        comment.enable = true; # "gc" to comment
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
-        #nvim-colorizer.enable = true; # highlight css colours blue #666
+        # nvim-colorizer.enable = true; # highlight css colours like blue, #666
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
@@ -349,7 +397,7 @@
           };
         }
 
-        #auto-session
+        # auto-session
         {
           action = "<cmd>SessionSave<CR>";
           key = "<leader>sw";
