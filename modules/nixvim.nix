@@ -37,20 +37,19 @@
         foldlevelstart = 99; # level of fold when a new buffer is opened
 
         # ui
-        background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
+        #background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
         #cursorline = true; # highlight cursor line
         #cursorlineopt = "number"; # line, number, both (line,number), screenline
         #colorcolumn = "80"; # column line
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
-        signcolumn = "yes"; # text shifts when column gets toggled
-        # splitbelow = true;
-        # splitright = true;
+
+        signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         visualbell = true;
         virtualedit = "block"; # when in visual block mode, the cursor can be positioned where there is no actual character
 
-        # sessionsoptions suggested by auto-session adds winpos, localoptions
+        # suggested by auto-session; adds winpos, localoptions
         sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
       };
 
@@ -167,7 +166,6 @@
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
-        # nvim-colorizer.enable = true; # highlight css colours like blue, #666
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
         rainbow-delimiters.enable = true; # matching brackets get matching colours
@@ -214,9 +212,6 @@
           # };
 
           formattersByFt = {
-            # run sequentially: css = [ ...formatters ]
-            # run first available: html = [[ ...formatters ]]
-
             css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
             scss = [ "stylelint" ];
             less = [ "stylelint" ];
@@ -269,6 +264,12 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             sh = [ "shfmt" ];
+
+            # run sequentially
+            # css = [ ...formatters ]
+
+            # run first available
+            # html = [[ ...formatters ]]
 
             # all filetypes
             # "*" = [ "trim_newlines" ]; 
@@ -527,22 +528,22 @@
             desc = "Trouble: toggle window";
           };
         }
-        {
-          action = "<cmd>TroubleToggle workspace_diagnostics<CR>";
-          key = "<leader>xw";
-          mode = "n";
-          options = {
-            desc = "Trouble: toggle workspace diagnostics";
-          };
-        }
-        {
-          action = "<cmd>TroubleToggle document_diagnostics<CR>";
-          key = "<leader>xd";
-          mode = "n";
-          options = {
-            desc = "Trouble: toggle document diagnostics";
-          };
-        }
+        # {
+        #   action = "<cmd>TroubleToggle workspace_diagnostics<CR>";
+        #   key = "<leader>xw";
+        #   mode = "n";
+        #   options = {
+        #     desc = "Trouble: toggle workspace diagnostics";
+        #   };
+        # }
+        # {
+        #   action = "<cmd>TroubleToggle document_diagnostics<CR>";
+        #   key = "<leader>xd";
+        #   mode = "n";
+        #   options = {
+        #     desc = "Trouble: toggle document diagnostics";
+        #   };
+        # }
         # {
         #   action = "<cmd>TroubleToggle lsp_references<CR>";
         #   key = "gR";
