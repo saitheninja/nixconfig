@@ -154,13 +154,6 @@
     wget
     vim
 
-    # neovim deps
-    fd # telescope # better find
-    fzf # telescope
-    ripgrep # telescope
-    nixfmt-rfc-style # conform
-    wl-clipboard
-
     # desktop
     piper # mouse controls
     thunderbird

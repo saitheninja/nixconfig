@@ -109,9 +109,9 @@
               { name = "diagnostics"; }
             ];
             lualine_c = [ { name = "filename"; } ];
-            lualine_x = [];
-            lualine_y = [];
-            lualine_z = [];
+            lualine_x = [ ];
+            lualine_y = [ ];
+            lualine_z = [ ];
           };
 
           tabline = {
@@ -566,6 +566,14 @@
           require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
       '';
+
+      extraPackages = [
+        "fd" # telescope # better find
+        "fzf" # telescope # fuzzy find
+        "ripgrep" # telescope # faster grep
+        "nixfmt-rfc-style" # conform
+        "wl-clipboard" # wayland clipboard
+      ];
     };
   };
 }
