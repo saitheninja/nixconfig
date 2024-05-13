@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   options = {
@@ -8,6 +13,24 @@
   config = lib.mkIf config.configNixvim.enable {
     programs.nixvim = {
       enable = true;
+
+      extraPackages = with pkgs; [
+        # neovim
+        # "wl-clipboard" # wayland clipboard
+
+        # conform
+        nixfmt-rfc-style # format nix
+        shfmt # format bash
+        stylua # format lua
+
+        # telescope
+        fd # better find
+        fzf # fuzzy find
+        ripgrep # faster grep
+
+        # treesitter
+        gcc
+      ];
 
       # clipboard.register = "unnamedplus"; # use system clipboard as default register
       # clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
@@ -550,15 +573,6 @@
           require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
       '';
-
-
-      extraPackages = [
-        "fd" # telescope # better find
-        "fzf" # telescope # fuzzy find
-        "ripgrep" # telescope # faster grep
-        "nixfmt-rfc-style" # conform
-        "wl-clipboard" # wayland clipboard
-      ];
     };
   };
 }
