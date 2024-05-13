@@ -21,9 +21,9 @@
         wl-clipboard # wayland clipboard
 
         # conform
-        nixfmt-rfc-style # format nix
-        shfmt # format bash
-        stylua # format lua
+        nixfmt-rfc-style
+        shfmt # bash
+        stylua
 
         # telescope
         fd # better find
@@ -31,7 +31,7 @@
         ripgrep # faster grep
 
         # treesitter
-        gcc
+        gcc # c compiler
       ];
 
       # clipboard.register = "unnamedplus"; # use system clipboard as default register
@@ -44,7 +44,7 @@
 
         # indents
         autoindent = true; # copy indent from current line when starting a new line
-        # smartindent = true; # do smart autoindenting when starting a new line
+        smartindent = true; # do smart autoindenting when starting a new line
         expandtab = true; # expands tabs to spaces
         shiftwidth = 2; # number of spaces to use for each step of indent
         tabstop = 2; # number of spaces that a tab in a file counts for
@@ -57,23 +57,23 @@
 
         # folding
         foldenable = true;
-        foldcolumn = "1"; # width
-        foldlevel = 99; # minimum level of fold that will be closed by default
-        foldlevelstart = 99; # level of fold when a new buffer is opened
-
-        # cursor
-        cursorline = true; # highlight cursor line
-        cursorlineopt = "number,line"; # number, line, both, screenline
+        foldcolumn = "0"; # width
+        foldlevel = 99; # minimum depth that will be folded by default
+        foldlevelstart = 99; # fold depth open when a new buffer is opened
 
         # scroll
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
 
+        # cursor
+        cursorline = true; # highlight cursor line
+        cursorlineopt = "number,line"; # number, line, both, screenline
+
         #colorcolumn = "80"; # column line
         signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
-        # visualbell = true;
-        virtualedit = "block"; # when in visual block mode, the cursor can be positioned where there is no actual character
+        virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
+        #visualbell = true;
 
         # suggested by auto-session; adds winpos, localoptions
         sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
@@ -170,26 +170,12 @@
           # };
         };
 
-        indent-blankline = {
-          # show indent guides
-          enable = true;
-
-          settings = {
-            scope = {
-              # underline top and bottom of scope
-              enabled = true;
-              show_exact_scope = true;
-            };
-          };
-        };
-
-        comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
+        # comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
-        # rainbow-delimiters.enable = true; # matching brackets get matching colours
         telescope = {
           enable = true; # popup fuzzy finder, with previews
 
@@ -204,14 +190,14 @@
         todo-comments.enable = true; # highlight comments like TODO
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
-        # virt-column = {
-        #   enable = true;
-        #
-        #   settings = {
-        #     enabled = true;
-        #     virtcolumn = "80";
-        #   };
-        # };
+        virt-column = {
+          enable = true;
+
+          settings = {
+            enabled = true;
+            virtcolumn = "80";
+          };
+        };
 
         # completions
         cmp.enable = true;
@@ -378,17 +364,30 @@
         lspkind.enable = true; # add pictograms for lsp completion items
 
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
+        indent-blankline = {
+          # show indent guides
+          enable = true;
+
+          # underline top and bottom of scope
+          settings = {
+            scope = {
+              enabled = true;
+              show_exact_scope = true;
+            };
+          };
+        };
+        rainbow-delimiters.enable = true; # matching brackets get matching colours
         treesitter = {
           enable = true;
-          folding = true; # unstable
-          indent = true; # unstable
+          folding = true;
+          indent = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
         treesitter-context.enable = true;
         treesitter-refactor = {
           enable = true;
           highlightCurrentScope.enable = true;
-          highlightDefinitions.enable = true;
+          highlightDefinitions.enable = false;
           navigation.enable = true; # "go to definition" for symbol under cursor
           smartRename.enable = true;
         };
@@ -401,7 +400,7 @@
 
         # terminal
         #toggleterm.enable = true;
-        zellij.enable = true; # terminal multiplexer
+        #zellij.enable = true; # terminal multiplexer
       };
 
       # keymaps
