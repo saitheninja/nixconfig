@@ -9,8 +9,8 @@
     programs.nixvim = {
       enable = true;
 
-      clipboard.register = "unnamedplus"; # use system clipboard as default register
-      clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
+      # clipboard.register = "unnamedplus"; # use system clipboard as default register
+      # clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
       opts = {
         # line numbers
@@ -19,7 +19,7 @@
 
         # indents
         autoindent = true; # copy indent from current line when starting a new line
-        smartindent = true; # do smart autoindenting when starting a new line
+        # smartindent = true; # do smart autoindenting when starting a new line
         expandtab = true; # expands tabs to spaces
         shiftwidth = 2; # number of spaces to use for each step of indent
         tabstop = 2; # number of spaces that a tab in a file counts for
@@ -36,17 +36,18 @@
         foldlevel = 99; # minimum level of fold that will be closed by default
         foldlevelstart = 99; # level of fold when a new buffer is opened
 
-        # ui
-        #background = "dark"; # it tells Nvim what the "inherited" (terminal/GUI) background looks like
-        #cursorline = true; # highlight cursor line
-        #cursorlineopt = "number"; # line, number, both (line,number), screenline
-        #colorcolumn = "80"; # column line
+        # cursor
+        cursorline = true; # highlight cursor line
+        cursorlineopt = "number,line"; # number, line, both, screenline
+
+        # scroll
         scrolloff = 999; # minimum number of rows to keep around the cursor
         sidescrolloff = 10; # minimum number of columns to keep around the cursor
 
+        #colorcolumn = "80"; # column line
         signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
-        visualbell = true;
+        # visualbell = true;
         virtualedit = "block"; # when in visual block mode, the cursor can be positioned where there is no actual character
 
         # suggested by auto-session; adds winpos, localoptions
@@ -144,32 +145,26 @@
           # };
         };
 
-        cursorline = {
+        indent-blankline = {
+          # show indent guides
           enable = true;
 
-          cursorline = {
-            enable = true; # highlight current line
-            number = true; # also highlight line number
-            timeout = 0; # timeout before cursorline highlight appears
-          };
-
-          cursorword = {
-            enable = true; # underline all instances of word under cursor
-            hl = {
-              underline = true;
+          settings = {
+            scope = {
+              # underline top and bottom of scope
+              enabled = true;
+              show_exact_scope = true;
             };
-            minLength = 3;
           };
         };
 
         comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
-        indent-blankline.enable = true; # show indent guides
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
-        rainbow-delimiters.enable = true; # matching brackets get matching colours
+        # rainbow-delimiters.enable = true; # matching brackets get matching colours
         telescope = {
           enable = true; # popup fuzzy finder, with previews
 
@@ -184,6 +179,14 @@
         todo-comments.enable = true; # highlight comments like TODO
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
+        # virt-column = {
+        #   enable = true;
+        #
+        #   settings = {
+        #     enabled = true;
+        #     virtcolumn = "80";
+        #   };
+        # };
 
         # completions
         cmp.enable = true;
@@ -352,16 +355,16 @@
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         treesitter = {
           enable = true;
-          folding = false; # unstable
-          indent = false; # unstable
+          folding = true; # unstable
+          indent = true; # unstable
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
         treesitter-context.enable = true;
         treesitter-refactor = {
           enable = true;
           highlightCurrentScope.enable = true;
-          highlightDefinitions.enable = true; # sticky scope context to top
-          navigation.enable = true; # go to definition gnd
+          highlightDefinitions.enable = true;
+          navigation.enable = true; # "go to definition" for symbol under cursor
           smartRename.enable = true;
         };
         treesitter-textobjects = {
@@ -372,7 +375,7 @@
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         # terminal
-        toggleterm.enable = true;
+        #toggleterm.enable = true;
         zellij.enable = true; # terminal multiplexer
       };
 
@@ -526,48 +529,28 @@
           key = "<leader>xx";
           mode = "n";
           options = {
-            desc = "Trouble: toggle window";
+            desc = "Trouble: toggle diagnostics window";
           };
         }
-        # {
-        #   action = "<cmd>TroubleToggle workspace_diagnostics<CR>";
-        #   key = "<leader>xw";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Trouble: toggle workspace diagnostics";
-        #   };
-        # }
-        # {
-        #   action = "<cmd>TroubleToggle document_diagnostics<CR>";
-        #   key = "<leader>xd";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Trouble: toggle document diagnostics";
-        #   };
-        # }
-        # {
-        #   action = "<cmd>TroubleToggle lsp_references<CR>";
-        #   key = "gR";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Trouble: toggle LSP references";
-        #   };
-        # }
       ];
 
       extraConfigLua = ''
         vim.api.nvim_create_user_command("Format", function(args)
           local range = nil
+
           if args.count ~= -1 then
             local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+
             range = {
               start = { args.line1, 0 },
               ["end"] = { args.line2, end_line:len() },
             }
           end
+
           require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
       '';
+
 
       extraPackages = [
         "fd" # telescope # better find
