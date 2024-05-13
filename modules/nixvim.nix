@@ -1,7 +1,7 @@
 {
-  pkgs,
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -11,12 +11,14 @@
   };
 
   config = lib.mkIf config.configNixvim.enable {
+    environment.variables.EDITOR = "nvim";
+
     programs.nixvim = {
       enable = true;
 
       extraPackages = with pkgs; [
         # neovim
-        # "wl-clipboard" # wayland clipboard
+        wl-clipboard # wayland clipboard
 
         # conform
         nixfmt-rfc-style # format nix
