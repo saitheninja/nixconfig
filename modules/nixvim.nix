@@ -410,7 +410,15 @@
           indent = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
-        treesitter-context.enable = true;
+
+        treesitter-context = {
+          enable = true;
+
+          settings = {
+            enable = false; # off by default - toggle with TSContextToggle
+          };
+        };
+
         treesitter-refactor = {
           enable = true;
           highlightCurrentScope.enable = true;
@@ -571,6 +579,16 @@
           mode = "n";
           options = {
             desc = "Telescope: help tags";
+          };
+        }
+
+        # treesitter
+        {
+          action = "<cmd>TSContextToggle<CR>";
+          key = "<leader>tc";
+          mode = "n";
+          options = {
+            desc = "Treesitter: toggle sticky context";
           };
         }
 
