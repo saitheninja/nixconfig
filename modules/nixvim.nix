@@ -35,7 +35,7 @@
       ];
 
       # clipboard.register = "unnamedplus"; # use system clipboard as default register
-      # clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
+      clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
       opts = {
         # line numbers
@@ -95,21 +95,23 @@
 
         # ui
         lualine = {
-          enable = true; # statusline (bottom window or global), tabline (top global), winbar (top window)
+          enable = true; # statusline (bottom of window or global), tabline (top global), winbar (top of window)
 
-          # globalStatus = true;
+          extensions = [
+            "neo-tree"
+            "nvim-dap-ui"
+            "oil"
+            "trouble"
+          ];
 
-          # componentSeparators = {
-          #   left = "|";
-          #   right = "|";
-          # };
-
-          # extensions = [
-          #   "neo-tree"
-          #   "oil"
-          #   "toggleterm"
-          #   "trouble"
-          # ];
+          componentSeparators = {
+            left = "";
+            right = "";
+          };
+          sectionSeparators = {
+            left = "";
+            right = "";
+          };
 
           sections = {
             lualine_a = [ { name = "mode"; } ];
@@ -118,59 +120,75 @@
               { name = "diff"; }
               { name = "diagnostics"; }
             ];
-            lualine_c = [ { name = "filename"; } ];
-            lualine_x = [
-              # { name = "encoding"; }
-              # { name = "fileformat"; }
-              { name = "filetype"; }
+            lualine_c = [
+              {
+                name = "filename";
+                extraConfig = {
+                  path = 1;
+                };
+              }
+              { name = "searchcount"; }
             ];
-            lualine_y = [ { name = "progress"; } ];
+            lualine_x = [ { name = "filetype"; } ];
+            lualine_y = [
+              { name = "progress"; }
+              { name = "selectioncount"; }
+            ];
             lualine_z = [ { name = "location"; } ];
           };
 
           inactiveSections = {
             lualine_b = [
-              { name = "branch"; }
-              { name = "diff"; }
-              { name = "diagnostics"; }
+              {
+                name = "diff";
+                extraConfig = {
+                  color = "Conceal";
+                  colored = false;
+                };
+                #color = "Conceal"; # doesn't work
+              }
+              {
+                name = "diagnostics";
+                extraConfig = {
+                  color = "Conceal";
+                  colored = false;
+                };
+              }
             ];
-            lualine_c = [ { name = "filename"; } ];
-            lualine_x = [ ];
-            lualine_y = [ ];
-            lualine_z = [ ];
+            lualine_c = [
+              {
+                name = "filename";
+                extraConfig = {
+                  color = "Conceal";
+                  colored = false;
+                };
+              }
+            ];
+            lualine_x = [
+              {
+                name = "progress";
+                extraConfig = {
+                  color = "Conceal";
+                  colored = false;
+                };
+              }
+              {
+                name = "location";
+                extraConfig = {
+                  color = "Conceal";
+                  colored = false;
+                };
+              }
+            ];
           };
 
           tabline = {
-            # data
             lualine_a = [ { name = "buffers"; } ];
-            # views
-            lualine_y = [ { name = "windows"; } ];
             lualine_z = [ { name = "tabs"; } ];
           };
-
-          # winbar = {
-          #   lualine_a = [
-          #     { name = "filename"; }
-          #   ];
-          #   lualine_c = [
-          #     { name = "diff"; }
-          #     { name = "diagnostics"; }
-          #   ];
-          #   lualine_x = [ 
-          #     { name = "progress"; }
-          #     { name = "location"; }
-          #   ];
-          # };
-          # inactiveWinbar = {
-          #   lualine_c = [
-          #     { name = "filename"; }
-          #     { name = "diff"; }
-          #     { name = "diagnostics"; }
-          #   ];
-          # };
         };
 
-        # comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
+        comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
@@ -187,7 +205,6 @@
             undo.enable = true; # view and search undo tree
           };
         };
-        todo-comments.enable = true; # highlight comments like TODO
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
         virt-column = {
@@ -195,9 +212,15 @@
 
           settings = {
             enabled = true;
+            char = "│";
+            highlight = "Conceal"; # default "NonText"
             virtcolumn = "80";
           };
         };
+
+        # snippets
+        friendly-snippets.enable = true;
+        luasnip.enable = true;
 
         # completions
         cmp.enable = true;
@@ -212,10 +235,6 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
-
-        # snippets
-        friendly-snippets.enable = true;
-        luasnip.enable = true;
 
         # formatters
         conform-nvim = {
@@ -370,13 +389,21 @@
 
           # underline top and bottom of scope
           settings = {
+            indent = {
+              char = "│";
+            };
+
             scope = {
               enabled = true;
-              show_exact_scope = true;
+              #show_start = true;
+              #show_end = true;
+              #show_exact_scope = true;
             };
           };
         };
+
         rainbow-delimiters.enable = true; # matching brackets get matching colours
+
         treesitter = {
           enable = true;
           folding = true;
