@@ -29,9 +29,6 @@
         fd # better find
         fzf # fuzzy find
         ripgrep # faster grep
-
-        # treesitter
-        gcc # c compiler
       ];
 
       # clipboard.register = "unnamedplus"; # use system clipboard as default register
@@ -69,6 +66,7 @@
         cursorline = true; # highlight cursor line
         cursorlineopt = "number,line"; # number, line, both, screenline
 
+        # ...rest
         #colorcolumn = "80"; # column line
         signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
@@ -93,12 +91,10 @@
       plugins = {
         auto-session.enable = true;
 
-        # ui
         lualine = {
           enable = true; # statusline (bottom of window or global), tabline (top global), winbar (top of window)
 
           extensions = [
-            "neo-tree"
             "nvim-dap-ui"
             "oil"
             "trouble"
@@ -189,11 +185,11 @@
         };
 
         comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
-        neo-tree.enable = true; # file explorer
         notify.enable = true; # fancy notification popup
         nvim-autopairs.enable = true; # pair brackets, quotes
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
+
         telescope = {
           enable = true; # popup fuzzy finder, with previews
 
@@ -205,13 +201,16 @@
             undo.enable = true; # view and search undo tree
           };
         };
+
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
+
         virt-column = {
-          enable = true;
+          enable = true; # allow text characters to be used as colorcolumn
 
           settings = {
             enabled = true;
+
             char = "│";
             highlight = "Conceal"; # default "NonText"
             virtcolumn = "80";
@@ -236,9 +235,8 @@
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
 
-        # formatters
         conform-nvim = {
-          enable = true;
+          enable = true; # formatter
 
           # formatOnSave = {
           #   lspFallback = true;
@@ -318,9 +316,8 @@
           notifyOnError = true;
         };
 
-        # debugger
         dap = {
-          enable = true;
+          enable = true; # debugger
 
           extensions = {
             dap-ui.enable = true;
@@ -443,27 +440,26 @@
       keymaps = [
         # neovim settings
         {
-          action = "<cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
+          # :h <Cmd>
+          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
           key = "<leader>nw";
           mode = "n";
           options = {
             desc = "Neovim: toggle line wrap";
-            silent = true; # will not be echoed on the command line
           };
         }
         {
-          action = "<cmd>nohlsearch<CR>";
+          action = "<Cmd>nohlsearch<CR>"; # short command: nohl
           key = "<leader>n/";
           mode = "n";
           options = {
-            desc = "Neovim: turn off search highlight (any search command turns on)";
-            silent = true;
+            desc = "Neovim: turn off search highlight (search commands turns on)";
           };
         }
 
         # auto-session
         {
-          action = "<cmd>SessionSave<CR>";
+          action = "<Cmd>SessionSave<CR>";
           key = "<leader>sw";
           mode = "n";
           options = {
@@ -471,7 +467,7 @@
           };
         }
         {
-          action = "<cmd>SessionRestore<CR>";
+          action = "<Cmd>SessionRestore<CR>";
           key = "<leader>sr";
           mode = "n";
           options = {
@@ -479,17 +475,17 @@
           };
         }
         {
-          action = "<cmd>Autosession search<CR>";
+          action = "<Cmd>Autosession search<CR>";
           key = "<leader>ss";
           mode = "n";
           options = {
-            desc = "auto-session: search sessions"; # <C-s> restore, <C-d> delete
+            desc = "auto-session: search sessions (<C-s> restore, <C-d> delete)";
           };
         }
 
         # conform
         {
-          action = "<cmd>Format<CR>";
+          action = "<Cmd>Format<CR>";
           key = "<leader>cf";
           mode = [
             "n"
@@ -500,19 +496,9 @@
           };
         }
 
-        # neo-tree
-        {
-          action = "<cmd>Neotree toggle=true reveal=true<CR>"; # default action=focus position=left source=filesystem
-          key = "<leader>ee";
-          mode = "n";
-          options = {
-            desc = "Neotree: toggle show files";
-          };
-        }
-
         # neogit
         {
-          action = "<cmd>Neogit<CR>";
+          action = "<Cmd>Neogit<CR>";
           key = "<leader>gs";
           mode = "n";
           options = {
@@ -522,7 +508,7 @@
 
         # nvim-ufo
         {
-          action = "<cmd>Ufo openAllFolds<CR>";
+          action = "<Cmd>Ufo openAllFolds<CR>";
           key = "<leader>zR";
           mode = "n";
           options = {
@@ -530,7 +516,7 @@
           };
         }
         {
-          action = "<cmd>Ufo closeAllFolds<CR>";
+          action = "<Cmd>Ufo closeAllFolds<CR>";
           key = "<leader>zM";
           mode = "n";
           options = {
@@ -540,7 +526,7 @@
 
         # oil
         {
-          action = "<cmd>Oil<CR>";
+          action = "<Cmd>Oil<CR>";
           key = "<leader>oe";
           mode = "n";
           options = {
@@ -550,7 +536,7 @@
 
         # telescope
         {
-          action = "<cmd>Telescope find_files<CR>";
+          action = "<Cmd>Telescope find_files<CR>";
           key = "<leader>ff";
           mode = "n";
           options = {
@@ -558,7 +544,7 @@
           };
         }
         {
-          action = "<cmd>Telescope live_grep<CR>";
+          action = "<Cmd>Telescope live_grep<CR>";
           key = "<leader>fg";
           mode = "n";
           options = {
@@ -566,7 +552,7 @@
           };
         }
         {
-          action = "<cmd>Telescope buffers<CR>";
+          action = "<Cmd>Telescope buffers<CR>";
           key = "<leader>fb";
           mode = "n";
           options = {
@@ -574,7 +560,7 @@
           };
         }
         {
-          action = "<cmd>Telescope help_tags<CR>";
+          action = "<Cmd>Telescope help_tags<CR>";
           key = "<leader>fh";
           mode = "n";
           options = {
@@ -584,7 +570,7 @@
 
         # treesitter
         {
-          action = "<cmd>TSContextToggle<CR>";
+          action = "<Cmd>TSContextToggle<CR>";
           key = "<leader>tc";
           mode = "n";
           options = {
@@ -594,7 +580,7 @@
 
         # trouble
         {
-          action = "<cmd>TroubleToggle<CR>";
+          action = "<Cmd>TroubleToggle<CR>";
           key = "<leader>xx";
           mode = "n";
           options = {
