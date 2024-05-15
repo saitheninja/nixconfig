@@ -186,7 +186,6 @@
 
         comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         notify.enable = true; # fancy notification popup
-        nvim-autopairs.enable = true; # pair brackets, quotes
         nvim-ufo.enable = true; # better folding
         oil.enable = true; # file explorer as a buffer
 
@@ -381,38 +380,48 @@
 
         # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
         indent-blankline = {
-          # show indent guides
-          enable = true;
+          enable = true; # show indent guides
 
-          # underline top and bottom of scope
           settings = {
             indent = {
               char = "│";
             };
 
             scope = {
-              enabled = true;
-              #show_start = true;
-              #show_end = true;
-              #show_exact_scope = true;
+              enabled = true; # underline top and bottom of scope
+
+              highlight = "Comment";
+              show_start = true;
+              show_end = true;
+              #show_exact_scope = false;
             };
           };
         };
-
+        nvim-autopairs.enable = true; # pair brackets, quotes
         rainbow-delimiters.enable = true; # matching brackets get matching colours
-
         treesitter = {
           enable = true;
+
           folding = true;
+          incrementalSelection = {
+            enable = true;
+
+            # keymaps = {
+            #   initSelection = "gnn";
+            #   nodeDecremental = "grm";
+            #   nodeIncremental = "grn";
+            #   scopeIncremental = "grc";
+            # };
+          };
           indent = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
         };
 
         treesitter-context = {
-          enable = true;
+          enable = true; # sticky scope
 
           settings = {
-            enable = false; # off by default - toggle with TSContextToggle
+            enable = false; # toggle with TSContextToggle
           };
         };
 
@@ -632,6 +641,7 @@
       ];
 
       extraConfigLua = ''
+        -- Conform
         vim.api.nvim_create_user_command("Format", function(args)
           local range = nil
 
@@ -646,6 +656,34 @@
 
           require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
+
+        -- indent-blankline + rainbow-delimiters
+        local highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        }
+        local hooks = require "ibl.hooks"
+
+        -- create the highlight groups in the highlight setup hook, so that they are reset every time the colorscheme changes
+        hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
+          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
+        end)
+
+        vim.g.rainbow_delimiters = { highlight = highlight }
+        require("ibl").setup { scope = { highlight = highlight } }
+
+        hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
       '';
     };
   };
