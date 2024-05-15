@@ -35,36 +35,41 @@
       clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
       opts = {
+        # cursor
+        cursorline = true; # highlight cursor line
+        cursorlineopt = "number,line"; # number, line, both, screenline
+
+        # folding
+        # suggested by nvim-ufo
+        foldenable = true;
+        foldcolumn = "1"; # width
+        foldlevel = 99; # minimum depth that will be folded by default
+        foldlevelstart = 99; # fold depth open when a new buffer is opened
+
+        # indents
+        autoindent = true; # copy indent from current line when starting a new line
+        smartindent = true; # smart autoindent when starting a new line
+        expandtab = true; # expand tabs to spaces
+        shiftwidth = 2; # number of spaces to use for each step of indent
+        tabstop = 2; # number of spaces that a tab counts for
+        breakindent = true; # wrapped lines will get visually indented
+
         # line numbers
         number = true;
         relativenumber = true;
 
-        # indents
-        autoindent = true; # copy indent from current line when starting a new line
-        smartindent = true; # do smart autoindenting when starting a new line
-        expandtab = true; # expands tabs to spaces
-        shiftwidth = 2; # number of spaces to use for each step of indent
-        tabstop = 2; # number of spaces that a tab in a file counts for
-        breakindent = true; # every wrapped line will continue visually indented
+        # scroll
+        scrolloff = 999; # minimum number of rows to keep around the cursor
+        sidescrolloff = 10; # minimum number of columns to keep around the cursor
 
         # search
         ignorecase = true; # ignore case if all lowercase
         smartcase = true; # case-sensitive if mixed-case
         inccommand = "split"; # incremental preview for substitute
 
-        # folding
-        foldenable = true;
-        foldcolumn = "0"; # width
-        foldlevel = 99; # minimum depth that will be folded by default
-        foldlevelstart = 99; # fold depth open when a new buffer is opened
-
-        # scroll
-        scrolloff = 999; # minimum number of rows to keep around the cursor
-        sidescrolloff = 10; # minimum number of columns to keep around the cursor
-
-        # cursor
-        cursorline = true; # highlight cursor line
-        cursorlineopt = "number,line"; # number, line, both, screenline
+        # sessions
+        # suggested by auto-session; adds winpos, localoptions
+        sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
 
         # ...rest
         #colorcolumn = "80"; # column line
@@ -72,9 +77,6 @@
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
         #visualbell = true;
-
-        # suggested by auto-session; adds winpos, localoptions
-        sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
       };
 
       colorschemes = {
@@ -370,7 +372,7 @@
             svelte.enable = true;
             tailwindcss.enable = true;
             tsserver.enable = true;
-            typos-lsp.enable = false;
+            typos-lsp.enable = true;
             yamlls.enable = true;
           };
         };
@@ -454,14 +456,14 @@
             desc = "Neovim: toggle line wrap";
           };
         }
-        {
-          action = "<Cmd>nohlsearch<CR>"; # :noh[lsearch]
-          key = "<leader>n/";
-          mode = "n";
-          options = {
-            desc = "Neovim: turn off search highlight (search commands turns on)";
-          };
-        }
+        # {
+        #   action = "<Cmd>nohlsearch<CR>"; # :noh[lsearch]
+        #   key = "<leader>n/";
+        #   mode = "n";
+        #   options = {
+        #     desc = "Neovim: turn off search highlight (search commands turns on)";
+        #   };
+        # }
         # neovim buffers
         {
           action = "<Cmd>bnext<CR>";
@@ -561,7 +563,7 @@
           };
         }
 
-        # nvim-ufo
+        # nvim-ufo - built in commands change foldlevel, ufo commands don't
         {
           action = "<Cmd>Ufo openAllFolds<CR>";
           key = "<leader>zR";
@@ -576,6 +578,22 @@
           mode = "n";
           options = {
             desc = "UFO: close all folds";
+          };
+        }
+        {
+          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
+          key = "<leader>zr";
+          mode = "n";
+          options = {
+            desc = "UFO: open folds";
+          };
+        }
+        {
+          action = "<Cmd>Ufo closeFoldsWith<CR>";
+          key = "<leader>zm";
+          mode = "n";
+          options = {
+            desc = "UFO: close folds";
           };
         }
 
