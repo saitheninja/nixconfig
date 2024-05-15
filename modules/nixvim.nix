@@ -416,17 +416,11 @@
           };
         };
 
-        treesitter-refactor = {
-          enable = true;
-          highlightCurrentScope.enable = true;
-          highlightDefinitions.enable = false;
-          navigation.enable = true; # "go to definition" for symbol under cursor
-          smartRename.enable = true;
-        };
         treesitter-textobjects = {
           enable = true;
           lspInterop.enable = true;
         };
+
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
