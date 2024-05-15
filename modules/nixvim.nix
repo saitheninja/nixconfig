@@ -371,7 +371,7 @@
             svelte.enable = true;
             tailwindcss.enable = true;
             tsserver.enable = true;
-            typos-lsp.enable = true;
+            typos-lsp.enable = false;
             yamlls.enable = true;
           };
         };
@@ -434,8 +434,7 @@
       keymaps = [
         # neovim settings
         {
-          # :h <Cmd>
-          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
+          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>"; # :h <Cmd>
           key = "<leader>nw";
           mode = "n";
           options = {
@@ -443,11 +442,60 @@
           };
         }
         {
-          action = "<Cmd>nohlsearch<CR>"; # short command: nohl
+          action = "<Cmd>nohlsearch<CR>"; # :noh[lsearch]
           key = "<leader>n/";
           mode = "n";
           options = {
             desc = "Neovim: turn off search highlight (search commands turns on)";
+          };
+        }
+        # neovim buffers
+        {
+          action = "<Cmd>bnext<CR>";
+          key = "<leader>bn";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer next";
+          };
+        }
+        {
+          action = "<Cmd>bprevious<CR>";
+          key = "<leader>bp";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer previous";
+          };
+        }
+        {
+          action = "<Cmd>bprevious<CR>";
+          key = "<leader>bN";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer previous";
+          };
+        }
+        {
+          action = "<Cmd>bfirst<CR>";
+          key = "<leader>bf";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer first";
+          };
+        }
+        {
+          action = "<Cmd>blast<CR>";
+          key = "<leader>bl";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer last";
+          };
+        }
+        {
+          action = "<Cmd>ball<CR>"; # see also :unh[ide]
+          key = "<leader>ba";
+          mode = "n";
+          options = {
+            desc = "Neovim: one window for each buffer";
           };
         }
 
