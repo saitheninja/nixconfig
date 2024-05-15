@@ -378,7 +378,7 @@
         #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
         lspkind.enable = true; # add pictograms for lsp completion items
 
-        # treesitter - parse text as an AST (Abstract Syntax Tree) for better understanding
+        # treesitter
         indent-blankline = {
           enable = true; # show indent guides
 
@@ -390,17 +390,21 @@
             scope = {
               enabled = true; # underline top and bottom of scope
 
-              highlight = "Comment";
-              show_start = true;
-              show_end = true;
-              #show_exact_scope = false;
+              # include.node_type = {
+              #   nix = [ "expression" "binding" ];
+              #   "*"  = ["*"];
+              # };
+
+              show_end = false;
+              show_exact_scope = true;
+              show_start = false;
             };
           };
         };
         nvim-autopairs.enable = true; # pair brackets, quotes
         rainbow-delimiters.enable = true; # matching brackets get matching colours
         treesitter = {
-          enable = true;
+          enable = true; # parse text as Abstract Syntax Tree (AST) for better understanding
 
           folding = true;
           incrementalSelection = {
@@ -658,6 +662,7 @@
         end, { range = true })
 
         -- indent-blankline + rainbow-delimiters
+        -- :Telescope highlights
         local highlight = {
           "RainbowDelimiterRed",
           "RainbowDelimiterYellow",
