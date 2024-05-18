@@ -188,7 +188,43 @@
 
         comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         notify.enable = true; # fancy notification popup
-        nvim-ufo.enable = true; # better folding
+        nvim-ufo = {
+          enable = true; # better folding
+
+          enableGetFoldVirtText = true;
+          # from nvim-ufo docs - display no. of folded lines instead of ellipses
+          # icon choices: ↴ ↯ 󰁂 … 
+          foldVirtTextHandler = ''
+            function(virtText, lnum, endLnum, width, truncate)
+              local newVirtText = {}
+              local suffix = (' … ↴ %d '):format(endLnum - lnum) 
+              local sufWidth = vim.fn.strdisplaywidth(suffix)
+              local targetWidth = width - sufWidth
+              local curWidth = 0
+              for _, chunk in ipairs(virtText) do
+                local chunkText = chunk[1]
+                local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                if targetWidth > curWidth + chunkWidth then
+                  table.insert(newVirtText, chunk)
+                else
+                  chunkText = truncate(chunkText, targetWidth - curWidth)
+                  -- local hlGroup = chunk[2]
+                  local hlGroup = 'Comment'
+                  table.insert(newVirtText, {chunkText, hlGroup})
+                  chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                  -- str width returned from truncate() may less than 2nd argument, need padding
+                  if curWidth + chunkWidth < targetWidth then
+                      suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+                  end
+                  break
+                end
+                curWidth = curWidth + chunkWidth
+              end
+              table.insert(newVirtText, {suffix, 'MoreMsg'})
+              return newVirtText
+            end
+          '';
+        };
         oil.enable = true; # file explorer as a buffer
 
         telescope = {
