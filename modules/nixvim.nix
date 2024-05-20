@@ -362,8 +362,16 @@
         };
 
         # git
-        diffview.enable = true;
-        gitsigns.enable = true; # show git status as coloured line in signcolumn
+        diffview.enable = true; # diffview tabpage, merge tool, file history
+        gitsigns = {
+          enable = true; # show git diffs as coloured symbols in signcolumn
+
+          settings = {
+            current_line_blame_opts = {
+              delay = 0;
+            };
+          };
+        };
         neogit = {
           enable = true;
 
@@ -580,6 +588,24 @@
           ];
           options = {
             desc = "Conform: format selected text/buffer";
+          };
+        }
+
+        # gitsigns
+        {
+          action = "<Cmd>Gitsigns toggle_current_line_blame<CR>";
+          key = "<leader>gb";
+          mode = "n";
+          options = {
+            desc = "Gitsigns: toggle line blame";
+          };
+        }
+        {
+          action = "<Cmd>Gitsigns toggle_deleted<CR>";
+          key = "<leader>gd";
+          mode = "n";
+          options = {
+            desc = "Gitsigns: toggle deleted";
           };
         }
 
