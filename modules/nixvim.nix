@@ -184,7 +184,7 @@
           };
         };
 
-        comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
+        #comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         notify.enable = true; # fancy notification popup
         nvim-ufo = {
           enable = true; # better folding
@@ -472,7 +472,7 @@
         };
 
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
-        ts-context-commentstring.enable = true; # automatically use correct comment syntax
+        #ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         # terminal
         #toggleterm.enable = true;
