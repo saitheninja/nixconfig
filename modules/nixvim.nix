@@ -512,14 +512,6 @@
           };
         }
         {
-          action = "<Cmd>bprevious<CR>";
-          key = "<leader>bN";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer previous";
-          };
-        }
-        {
           action = "<Cmd>bfirst<CR>";
           key = "<leader>bf";
           mode = "n";
@@ -541,6 +533,14 @@
           mode = "n";
           options = {
             desc = "Neovim: one window for each buffer";
+          };
+        }
+        {
+          action = "<Cmd>bdelete<CR>";
+          key = "<leader>bd";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer delete";
           };
         }
 
