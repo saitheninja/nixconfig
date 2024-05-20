@@ -7,7 +7,7 @@
 
 {
   options = {
-    configNixvim.enable = lib.mkEnableOption "Adds Neovim, configured with nixvim.";
+    configNixvim.enable = lib.mkEnableOption "Add Neovim, configured with nixvim.";
   };
 
   config = lib.mkIf config.configNixvim.enable {
@@ -59,8 +59,8 @@
         relativenumber = true;
 
         # scroll
-        scrolloff = 999; # minimum number of rows to keep around the cursor
-        sidescrolloff = 10; # minimum number of columns to keep around the cursor
+        scrolloff = 999; # minimum number of screen lines to keep visible around the cursor
+        sidescrolloff = 10; # minimum number of screen columns to keep visible around the cursor
 
         # search
         ignorecase = true; # ignore case if all lowercase
@@ -69,14 +69,12 @@
 
         # sessions
         # suggested by auto-session; adds winpos, localoptions
-        sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,winpos,localoptions";
+        sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,terminal,winpos,winsize";
 
         # ...rest
-        #colorcolumn = "80"; # column line
         signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
-        #visualbell = true;
       };
 
       colorschemes = {
@@ -192,8 +190,7 @@
           enable = true; # better folding
 
           enableGetFoldVirtText = true;
-          # from nvim-ufo docs - display no. of folded lines instead of ellipses
-          # icon choices: ↴ ↯ 󰁂 … 
+          # from nvim-ufo docs - display no. of folded lines
           foldVirtTextHandler = ''
             function(virtText, lnum, endLnum, width, truncate)
               local newVirtText = {}
@@ -272,6 +269,7 @@
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
 
+        # formatting
         conform-nvim = {
           enable = true; # formatter
 
@@ -353,6 +351,7 @@
           notifyOnError = true;
         };
 
+        # debugging
         dap = {
           enable = true; # debugger
 
@@ -483,23 +482,18 @@
       # keymaps
       globals.mapleader = " ";
       keymaps = [
+        # :h <Cmd>
+        # <Cmd> does not change modes, command is not echoed so no need for <silent>
+
         # neovim settings
         {
-          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>"; # :h <Cmd>
+          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>"; 
           key = "<leader>nw";
           mode = "n";
           options = {
             desc = "Neovim: toggle line wrap";
           };
         }
-        # {
-        #   action = "<Cmd>nohlsearch<CR>"; # :noh[lsearch]
-        #   key = "<leader>n/";
-        #   mode = "n";
-        #   options = {
-        #     desc = "Neovim: turn off search highlight (search commands turns on)";
-        #   };
-        # }
         # neovim buffers
         {
           action = "<Cmd>bnext<CR>";
