@@ -42,7 +42,7 @@
         # folding
         # suggested by nvim-ufo
         foldenable = true;
-        foldcolumn = "1"; # width
+        foldcolumn = "auto:9"; # width
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
 
@@ -89,8 +89,233 @@
       };
 
       plugins = {
-        auto-session.enable = true;
+        # completions
+        cmp.enable = true;
+        cmp-buffer.enable = true;
+        cmp-cmdline.enable = true;
+        cmp-cmdline-history.enable = true;
+        cmp-dap.enable = true;
+        cmp-emoji.enable = true;
+        cmp-nvim-lsp.enable = true;
+        cmp-nvim-lsp-signature-help.enable = true;
+        cmp-nvim-lua.enable = true;
+        cmp-path.enable = true;
+        cmp-treesitter.enable = true;
+        cmp_luasnip.enable = true;
+        # snippets
+        friendly-snippets.enable = true;
+        luasnip.enable = true;
 
+        # debugging
+        dap = {
+          enable = true; # debugger
+
+          extensions = {
+            dap-ui.enable = true;
+            dap-virtual-text.enable = true;
+          };
+        };
+
+        # formatting
+        conform-nvim = {
+          enable = true; # formatter
+
+          formattersByFt = {
+            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
+            scss = [ "stylelint" ];
+            less = [ "stylelint" ];
+
+            html = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+
+            javascript = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            typescript = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            svelte = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+
+            json = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            yaml = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+            markdown = [
+              [
+                "prettier_d"
+                "prettier"
+              ]
+            ];
+
+            lua = [ "stylua" ];
+            nix = [ "nixfmt" ];
+            sh = [ "shfmt" ];
+
+            # run sequentially
+            # css = [ ...formatters ]
+
+            # run first available
+            # html = [[ ...formatters ]]
+
+            # all filetypes
+            # "*" = [ "trim_newlines" ]; 
+
+            # filetypes that don't have a formatter configured
+            # "_" = [
+            #   "trim_newlines"
+            #   "trim_whitespace"
+            # ];
+          };
+
+          notifyOnError = true;
+        };
+
+        # git
+        diffview.enable = true; # diffview tabpage, merge tool, file history
+        gitsigns = {
+          enable = true; # show git diffs as coloured symbols in signcolumn
+
+          settings = {
+            current_line_blame_opts = {
+              delay = 0;
+            };
+          };
+        };
+        neogit = {
+          enable = true; # git interface
+
+          settings.integrations = {
+            diffview = true;
+            telescope = true;
+          };
+        };
+
+        # language servers
+        lsp = {
+          enable = true;
+
+          servers = {
+            emmet_ls.enable = true;
+            eslint.enable = true;
+            gdscript.enable = true;
+            html.enable = true;
+            jsonls.enable = true;
+            lua-ls = {
+              enable = true;
+              settings.telemetry.enable = false;
+            };
+            nixd.enable = true;
+            sqls.enable = true;
+            svelte.enable = true;
+            tailwindcss.enable = true;
+            tsserver.enable = true;
+            typos-lsp.enable = true;
+            yamlls.enable = true;
+          };
+        };
+        lspkind.enable = true; # add pictograms for lsp completion items
+
+        # linting
+        lint = {
+          enable = true;
+
+          lintersByFt = {
+            css = [ "stylelint" ];
+
+            javascript = [ "eslint" ];
+            typescript = [ "eslint" ];
+            svelte = [ "eslint" ];
+
+            nix = [ "nix" ];
+          };
+        };
+
+        # treesitter
+        #comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
+        indent-blankline = {
+          enable = true; # show indent guides
+
+          settings = {
+            indent = {
+              char = "│";
+            };
+
+            scope = {
+              enabled = true; # underline top and bottom of scope
+
+              # include.node_type = {
+              #   nix = [ "expression" "binding" ];
+              #   "*"  = ["*"];
+              # };
+
+              show_end = false;
+              show_exact_scope = true;
+              show_start = false;
+            };
+          };
+        };
+        nvim-autopairs.enable = true; # pair brackets, quotes
+        rainbow-delimiters.enable = true; # matching brackets get matching colours
+        treesitter = {
+          enable = true; # parse text as Abstract Syntax Tree (AST) for better understanding
+
+          folding = true;
+          incrementalSelection = {
+            enable = true;
+
+            # keymaps = {
+            #   initSelection = "gnn";
+            #   nodeDecremental = "grm";
+            #   nodeIncremental = "grn";
+            #   scopeIncremental = "grc";
+            # };
+          };
+          indent = true;
+          nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
+        };
+        treesitter-context = {
+          enable = true; # sticky scope
+
+          settings = {
+            enable = false; # toggle with TSContextToggle
+          };
+        };
+        treesitter-textobjects = {
+          enable = true;
+
+          lspInterop.enable = true;
+        };
+        ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
+        #ts-context-commentstring.enable = true; # automatically use correct comment syntax
+
+        # terminal
+        #toggleterm.enable = true;
+        #zellij.enable = true; # terminal multiplexer
+
+        # ui
         lualine = {
           enable = true; # statusline (bottom of window or global), tabline (top global), winbar (top of window)
 
@@ -183,62 +408,49 @@
             lualine_z = [ { name = "tabs"; } ];
           };
         };
-
-        #comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         notify.enable = true; # fancy notification popup
         nvim-ufo = {
           enable = true; # better folding
 
-          enableGetFoldVirtText = true;
-          # from nvim-ufo docs - display no. of folded lines
-          foldVirtTextHandler = ''
-            function(virtText, lnum, endLnum, width, truncate)
-              local newVirtText = {}
-              local suffix = (' … ↴ %d '):format(endLnum - lnum) 
-              local sufWidth = vim.fn.strdisplaywidth(suffix)
-              local targetWidth = width - sufWidth
-              local curWidth = 0
-              for _, chunk in ipairs(virtText) do
-                local chunkText = chunk[1]
-                local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-                if targetWidth > curWidth + chunkWidth then
-                  table.insert(newVirtText, chunk)
-                else
-                  chunkText = truncate(chunkText, targetWidth - curWidth)
-                  -- local hlGroup = chunk[2]
-                  local hlGroup = 'Comment'
-                  table.insert(newVirtText, {chunkText, hlGroup})
-                  chunkWidth = vim.fn.strdisplaywidth(chunkText)
-                  -- str width returned from truncate() may less than 2nd argument, need padding
-                  if curWidth + chunkWidth < targetWidth then
-                      suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
-                  end
-                  break
-                end
-                curWidth = curWidth + chunkWidth
-              end
-              table.insert(newVirtText, {suffix, 'MoreMsg'})
-              return newVirtText
-            end
-          '';
+          #enableGetFoldVirtText = true;
+          # from nvim-ufo docs: display no. of folded lines
+          # foldVirtTextHandler = ''
+          #   function(virtText, lnum, endLnum, width, truncate)
+          #     local newVirtText = {}
+          #     local suffix = (' … ↴ %d '):format(endLnum - lnum) 
+          #     local sufWidth = vim.fn.strdisplaywidth(suffix)
+          #     local targetWidth = width - sufWidth
+          #     local curWidth = 0
+          #
+          #     for _, chunk in ipairs(virtText) do
+          #       local chunkText = chunk[1]
+          #       local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          #
+          #       if targetWidth > curWidth + chunkWidth then
+          #         table.insert(newVirtText, chunk)
+          #       else
+          #         chunkText = truncate(chunkText, targetWidth - curWidth)
+          #         local hlGroup = chunk[2]
+          #         table.insert(newVirtText, {chunkText, hlGroup})
+          #         chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          #
+          #         -- str width returned from truncate() may less than 2nd argument, need padding
+          #         if curWidth + chunkWidth < targetWidth then
+          #           suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+          #         end
+          #         break
+          #       end
+          #
+          #       curWidth = curWidth + chunkWidth
+          #     end
+          #
+          #     table.insert(newVirtText, {suffix, 'MoreMsg'})
+          #     return newVirtText
+          #   end
+          # '';
         };
-        oil.enable = true; # file explorer as a buffer
-
-        telescope = {
-          enable = true; # popup fuzzy finder, with previews
-
-          extensions = {
-            file-browser.enable = true;
-            fzf-native.enable = true; # fzf implemented in C for telescope
-            media-files.enable = true; # preview media files
-            ui-select.enable = true; # set vim.ui.select to telescope
-            undo.enable = true; # view and search undo tree
-          };
-        };
-
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
-
         virt-column = {
           enable = true; # allow text characters to be used as colorcolumn
 
@@ -251,240 +463,20 @@
           };
         };
 
-        # snippets
-        friendly-snippets.enable = true;
-        luasnip.enable = true;
-
-        # completions
-        cmp.enable = true;
-        cmp-buffer.enable = true;
-        cmp-cmdline.enable = true;
-        cmp-cmdline-history.enable = true;
-        cmp-dap.enable = true;
-        cmp-emoji.enable = true;
-        cmp-nvim-lsp.enable = true;
-        cmp-nvim-lsp-signature-help.enable = true;
-        cmp-nvim-lua.enable = true;
-        cmp-path.enable = true;
-        cmp-treesitter.enable = true;
-        cmp_luasnip.enable = true;
-
-        # formatting
-        conform-nvim = {
-          enable = true; # formatter
-
-          # formatOnSave = {
-          #   lspFallback = true;
-          #   timeoutMs = 500;
-          # };
-
-          formattersByFt = {
-            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
-            scss = [ "stylelint" ];
-            less = [ "stylelint" ];
-
-            html = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-
-            javascript = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            typescript = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            svelte = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-
-            json = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            yaml = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-            markdown = [
-              [
-                "prettier_d"
-                "prettier"
-              ]
-            ];
-
-            lua = [ "stylua" ];
-            nix = [ "nixfmt" ];
-            sh = [ "shfmt" ];
-
-            # run sequentially
-            # css = [ ...formatters ]
-
-            # run first available
-            # html = [[ ...formatters ]]
-
-            # all filetypes
-            # "*" = [ "trim_newlines" ]; 
-
-            # filetypes that don't have a formatter configured
-            # "_" = [
-            #   "trim_newlines"
-            #   "trim_whitespace"
-            # ];
-          };
-
-          notifyOnError = true;
-        };
-
-        # debugging
-        dap = {
-          enable = true; # debugger
+        # ...rest
+        auto-session.enable = true; # session manager
+        oil.enable = true; # file explorer as a buffer
+        telescope = {
+          enable = true; # popup fuzzy finder, with previews
 
           extensions = {
-            dap-ui.enable = true;
-            dap-virtual-text.enable = true;
+            file-browser.enable = true;
+            fzf-native.enable = true; # fzf implemented in C for telescope
+            media-files.enable = true; # preview media files
+            ui-select.enable = true; # set vim.ui.select to telescope
+            undo.enable = true; # view and search undo tree
           };
         };
-
-        # git
-        diffview.enable = true; # diffview tabpage, merge tool, file history
-        gitsigns = {
-          enable = true; # show git diffs as coloured symbols in signcolumn
-
-          settings = {
-            current_line_blame_opts = {
-              delay = 0;
-            };
-          };
-        };
-        neogit = {
-          enable = true;
-
-          settings.integrations = {
-            diffview = true;
-            telescope = true;
-          };
-        };
-
-        # linters
-        lint = {
-          enable = true;
-
-          lintersByFt = {
-            css = [ "stylelint" ];
-
-            javascript = [ "eslint" ];
-            typescript = [ "eslint" ];
-            svelte = [ "eslint" ];
-
-            nix = [ "nix" ];
-          };
-        };
-
-        # language servers
-        lsp = {
-          enable = true;
-
-          servers = {
-            emmet_ls.enable = true;
-            eslint.enable = true;
-            gdscript.enable = true;
-            html.enable = true;
-            jsonls.enable = true;
-            lua-ls = {
-              enable = true;
-              settings.telemetry.enable = false;
-            };
-            nixd.enable = true;
-            sqls.enable = true;
-            svelte.enable = true;
-            tailwindcss.enable = true;
-            tsserver.enable = true;
-            typos-lsp.enable = true;
-            yamlls.enable = true;
-          };
-        };
-        #lsp-format.enable = true;
-        #lsp-lines.enable = true; # render diagnostics using virtual lines on top of the real line of code
-        lspkind.enable = true; # add pictograms for lsp completion items
-
-        # treesitter
-        indent-blankline = {
-          enable = true; # show indent guides
-
-          settings = {
-            indent = {
-              char = "│";
-            };
-
-            scope = {
-              enabled = true; # underline top and bottom of scope
-
-              # include.node_type = {
-              #   nix = [ "expression" "binding" ];
-              #   "*"  = ["*"];
-              # };
-
-              show_end = false;
-              show_exact_scope = true;
-              show_start = false;
-            };
-          };
-        };
-        nvim-autopairs.enable = true; # pair brackets, quotes
-        rainbow-delimiters.enable = true; # matching brackets get matching colours
-        treesitter = {
-          enable = true; # parse text as Abstract Syntax Tree (AST) for better understanding
-
-          folding = true;
-          incrementalSelection = {
-            enable = true;
-
-            # keymaps = {
-            #   initSelection = "gnn";
-            #   nodeDecremental = "grm";
-            #   nodeIncremental = "grn";
-            #   scopeIncremental = "grc";
-            # };
-          };
-          indent = true;
-          nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
-        };
-
-        treesitter-context = {
-          enable = true; # sticky scope
-
-          settings = {
-            enable = false; # toggle with TSContextToggle
-          };
-        };
-
-        treesitter-textobjects = {
-          enable = true;
-          lspInterop.enable = true;
-        };
-
-        ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
-        #ts-context-commentstring.enable = true; # automatically use correct comment syntax
-
-        # terminal
-        #toggleterm.enable = true;
-        #zellij.enable = true; # terminal multiplexer
       };
 
       # keymaps
@@ -495,7 +487,7 @@
 
         # neovim settings
         {
-          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>"; 
+          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
           key = "<leader>nw";
           mode = "n";
           options = {
@@ -580,7 +572,7 @@
 
         # conform
         {
-          action = "<Cmd>Format<CR>";
+          action = "<Cmd>ConformFormat<CR>";
           key = "<leader>cf";
           mode = [
             "n"
@@ -720,7 +712,7 @@
 
       extraConfigLua = ''
         -- Conform
-        vim.api.nvim_create_user_command("Format", function(args)
+        vim.api.nvim_create_user_command("ConformFormat", function(args)
           local range = nil
 
           if args.count ~= -1 then
