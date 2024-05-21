@@ -127,46 +127,46 @@
 
             html = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
 
             javascript = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
             typescript = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
             svelte = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
 
             json = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
             yaml = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
             markdown = [
               [
-                "prettier_d"
                 "prettier"
+                "prettier_d"
               ]
             ];
 
