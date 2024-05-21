@@ -316,6 +316,7 @@
         #zellij.enable = true; # terminal multiplexer
 
         # ui
+        dressing.enable = true;
         lualine = {
           enable = true; # statusline (bottom of window or global), tabline (top global), winbar (top of window)
 
