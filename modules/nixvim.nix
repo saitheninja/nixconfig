@@ -31,7 +31,7 @@
         ripgrep # faster grep
       ];
 
-      # clipboard.register = "unnamedplus"; # use system clipboard as default register
+      clipboard.register = "unnamedplus"; # use system clipboard as default register
       clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
 
       opts = {
