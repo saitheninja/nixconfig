@@ -689,6 +689,54 @@
             desc = "Telescope: help tags";
           };
         }
+        {
+          action = "<Cmd>Telescope oldfiles<CR>";
+          key = "<leader>fo";
+          mode = "n";
+          options = {
+            desc = "Telescope: oldfiles";
+          };
+        }
+        {
+          action = "<Cmd>Telescope commands<CR>";
+          key = "<leader>fc";
+          mode = "n";
+          options = {
+            desc = "Telescope: commands";
+          };
+        }
+        {
+          action = "<Cmd>Telescope marks<CR>";
+          key = "<leader>fm";
+          mode = "n";
+          options = {
+            desc = "Telescope: marks";
+          };
+        }
+        {
+          action = "<Cmd>Telescope vim_options<CR>";
+          key = "<leader>fv";
+          mode = "n";
+          options = {
+            desc = "Telescope: vim options";
+          };
+        }
+        {
+          action = "<Cmd>Telescope autocommands<CR>";
+          key = "<leader>fa";
+          mode = "n";
+          options = {
+            desc = "Telescope: autocommands";
+          };
+        }
+        {
+          action = "<Cmd>Telescope current_buffer_tags<CR>";
+          key = "<leader>ft";
+          mode = "n";
+          options = {
+            desc = "Telescope: help tags";
+          };
+        }
 
         # treesitter
         {
