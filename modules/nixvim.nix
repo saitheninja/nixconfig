@@ -466,7 +466,13 @@
 
         # ...rest
         auto-session.enable = true; # session manager
-        oil.enable = true; # file explorer as a buffer
+        oil = {
+          enable = true; # file explorer as a buffer
+
+          settings = {
+            delete_to_trash = true;
+          };
+        };
         telescope = {
           enable = true; # popup fuzzy finder, with previews
 
