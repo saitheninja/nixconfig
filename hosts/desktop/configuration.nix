@@ -6,39 +6,45 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-laptop";
+  networking.hostName = "nixos-desktop";
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  
 
   # Enable networking
-  # Choose between wpa_supplicant and networkmanager
-  # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
+  services.xserver = {
     layout = "us";
-    variant = "";
+    xkbVariant = "";
     options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true; # ALSA sound
+  sound.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
@@ -67,7 +73,7 @@
     shell = pkgs.zsh;
   };
 
-  # enable flakes
+  # Enable flakes
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -129,62 +135,25 @@
     docker-compose
     gh # GitHub CLI
     vscode-fhs
-    #vscode-with-extensions.override {
-    #  vscodeExtensions = with vscode-extensions; [
-    # asvetliakov.vscode-neovim
-    # bbenoist.nix
-    # bierner.emojisense
-    # bungcip.better-toml
-    # cweijan.vscode-database-client2
-    # davidanson.vscode-markdownlint
-    # dbaeumer.vscode-eslint
-    # dotenv.dotenv-vscode
-    # eamodio.gitlens
-    # esbenp.prettier-vscode
-    # firefox-devtools.vscode-firefox-debug
-    # github.github-vscode-theme
-    # github.vscode-pull-request-github
-    # github.vscode-github-actions
-    # jock.svg
-    # ms-azuretools.vscode-docker
-    # ms-vscode-remote.remote-ssh
-    # ms-vscode-remote.remote-containers
-    # mkhl.direnv
-    # mikestead.dotenv
-    # mechatroner.rainbow-csv
-    # matthewpi.caddyfile-support
-    # redhat.vscode-yaml
-    # stylelint.vscode-stylelint
-    # svelte.svelte-vscode
-    # tamasfe.even-better-toml
-    # tomoki1207.pdf
-    # usernamehw.errorlens
-    # vscode-icons-team.vscode-icons
-    # vincaslt.highlight-matching-tag
-    # viktorqvarfordt.vscode-pitch-black-theme
-    # wix.vscode-import-cost
-    # waderyan.gitblame
-    #  ]
-    #}
 
     # game engines
     godot_4
-
+    
     # image editors
     inkscape # vectors
     gimp # photoshop
-    #krita # drawing
+    krita # drawing
     #aseprite # pixel art # licence requires building from source
-    #pixelorama # godot pixel art
-    
+    pixelorama # godot pixel art
+
     # music
     ardour # daw
     bespokesynth # live daw
-    #guitarix
+    guitarix
     lmms # daw
-    #surge-XT
+    surge-XT
     #vcv-rack
-    #cardinal # vcv-rack as a fully open source plugin
+    cardinal # vcv-rack as a fully open source plugin
     #zrythm
 
     # photo
@@ -195,8 +164,31 @@
     obs-studio # screen capture
 
     # 3D
-    #blender
+    blender
   ];
+
+  # Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+
+  environment.variables.EDITOR = "vim";
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
