@@ -6,6 +6,8 @@
     ./hardware-configuration.nix
   ];
 
+  configNixvim.enable = false;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -138,7 +140,7 @@
 
     # game engines
     godot_4
-    
+
     # image editors
     inkscape # vectors
     gimp # photoshop
@@ -175,7 +177,7 @@
   };
   hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 
-  environment.variables.EDITOR = "vim";
+  #environment.variables.EDITOR = "vim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

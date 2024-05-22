@@ -8,13 +8,13 @@
   inputs = {
     nixpkgs-23-11.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixvim-23-11 = {
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-23-11";
+    };
     nixvim-unstable = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    nixvim-23-11 = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-23-11";
     };
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
@@ -30,8 +30,8 @@
       # self,
       nixpkgs-23-11,
       nixpkgs-unstable,
-      nixvim-unstable,
       nixvim-23-11,
+      nixvim-unstable,
       ...
     }@inputs:
     {
@@ -53,9 +53,10 @@
 
         "nixos-desktop" = nixpkgs-23-11.lib.nixosSystem {
           system = "x86_64-linux";
+
           # A Nix Module can be an attribute set, or a function that
           # returns an attribute set. By default, if a Nix Module is a
-          # function, this function have the following default parameters:
+          # function, this function has the following default parameters:
           #
           #  lib:     the nixpkgs function library, which provides many
           #             useful functions for operating Nix expressions:
@@ -78,11 +79,14 @@
           # parameters to the submodules, you'll have to manually configure
           # these parameters using `specialArgs`. 
           # specialArgs = {...};  # pass custom arguments into all sub module.
+
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules
             nixvim-23-11.nixosModules.nixvim
+            #({...}:{options.enableNixvim = false;})
           ];
+
         };
       };
     };
