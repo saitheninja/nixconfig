@@ -2,7 +2,7 @@
 
 {
   options = {
-    configSelectedFonts.enable = lib.mkEnableOption "Installs my hand-selected fonts.";
+    configSelectedFonts.enable = lib.mkEnableOption "Install my hand-selected fonts.";
   };
 
   config = lib.mkIf config.configSelectedFonts.enable {

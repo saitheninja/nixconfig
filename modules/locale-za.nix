@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
   options = {
-    configLocaleZa.enable = lib.mkEnableOption "Sets locale to South Africa.";
+    configLocaleZa.enable = lib.mkEnableOption "Set locale to South Africa.";
   };
 
   config = lib.mkIf config.configLocaleZa.enable {

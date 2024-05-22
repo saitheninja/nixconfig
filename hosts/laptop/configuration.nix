@@ -19,6 +19,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -26,12 +27,12 @@
     options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
   };
 
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -81,34 +82,11 @@
 
   # prefer programs to environment.systemPackages
   programs = {
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      vteIntegration = true;
-
-      shellAliases = {
-        cat = "bat";
-        ls = "eza --icons=always";
-      };
-
-      # plugins
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-    };
-
-    # chromium = {
-    #   enable = true;
-    # };
-
     # direnv = {
     #   enable = true;
     #   loadInNixShell = true;
     #   nix-direnv.enable = true;
     # };
-
-    firefox = {
-      enable = true;
-    };
 
     partition-manager.enable = true; # KDE partition manager
     starship.enable = true; # automatically pretty terminal prompt
@@ -122,16 +100,8 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
   nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
-    # filesystem drivers
-    exfat
-    ntfs3g
-
-    # browsers
-    google-chrome
-    chromium
-    #ungoogled-chromium
-
     # terminal
     bat # better cat
     btop # better htop
@@ -197,28 +167,35 @@
     #  ]
     #}
 
-    # art
+    # game engines
     godot_4
-    #blender
 
     # image editors
     inkscape # vectors
     gimp # photoshop
-    krita # drawing
-    darktable # photos
+    #krita # drawing
     #aseprite # pixel art # licence requires building from source
-    pixelorama # godot pixel art
+    #pixelorama # godot pixel art
+    
+    # music
+    ardour # daw
+    bespokesynth # live daw
+    #guitarix
+    lmms # daw
+    #surge-XT
+    #vcv-rack
+    #cardinal # vcv-rack as a fully open source plugin
+    #zrythm
+
+    # photo
+    darktable # raw editor
+    #vkdt-wayland # darktable fork
 
     # video
-    #obs-studio # screen capture
+    obs-studio # screen capture
 
-    # music
-    #ardour # daw
-    #bespokesynth # live daw
-    #guitarix
-    #lmms # daw
-    #surge-XT
-    #zrythm
+    # 3D
+    #blender
   ];
 
   # Open ports in the firewall.
