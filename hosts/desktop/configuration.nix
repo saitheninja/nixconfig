@@ -26,9 +26,9 @@
   services.xserver.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
     options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
   };
 
