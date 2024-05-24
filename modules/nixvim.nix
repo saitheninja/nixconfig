@@ -662,7 +662,7 @@
           };
         }
 
-        # telescope
+        # telescope file pickers
         {
           action = "<Cmd>Telescope find_files<CR>";
           key = "<leader>ff";
@@ -679,12 +679,29 @@
             desc = "Telescope: live grep";
           };
         }
+        # telescope vim pickers
+        {
+          action = "<Cmd>Telescope autocommands<CR>";
+          key = "<leader>fa";
+          mode = "n";
+          options = {
+            desc = "Telescope: autocommands";
+          };
+        }
         {
           action = "<Cmd>Telescope buffers<CR>";
           key = "<leader>fb";
           mode = "n";
           options = {
             desc = "Telescope: buffers";
+          };
+        }
+        {
+          action = "<Cmd>Telescope commands<CR>";
+          key = "<leader>fc";
+          mode = "n";
+          options = {
+            desc = "Telescope: plugin/user commands";
           };
         }
         {
@@ -696,22 +713,6 @@
           };
         }
         {
-          action = "<Cmd>Telescope oldfiles<CR>";
-          key = "<leader>fo";
-          mode = "n";
-          options = {
-            desc = "Telescope: oldfiles";
-          };
-        }
-        {
-          action = "<Cmd>Telescope commands<CR>";
-          key = "<leader>fc";
-          mode = "n";
-          options = {
-            desc = "Telescope: commands";
-          };
-        }
-        {
           action = "<Cmd>Telescope marks<CR>";
           key = "<leader>fm";
           mode = "n";
@@ -720,19 +721,11 @@
           };
         }
         {
-          action = "<Cmd>Telescope vim_options<CR>";
-          key = "<leader>fv";
+          action = "<Cmd>Telescope oldfiles<CR>";
+          key = "<leader>fo";
           mode = "n";
           options = {
-            desc = "Telescope: vim options";
-          };
-        }
-        {
-          action = "<Cmd>Telescope autocommands<CR>";
-          key = "<leader>fa";
-          mode = "n";
-          options = {
-            desc = "Telescope: autocommands";
+            desc = "Telescope: previously opened files";
           };
         }
         {
@@ -741,6 +734,14 @@
           mode = "n";
           options = {
             desc = "Telescope: help tags";
+          };
+        }
+        {
+          action = "<Cmd>Telescope vim_options<CR>";
+          key = "<leader>fv";
+          mode = "n";
+          options = {
+            desc = "Telescope: vim options";
           };
         }
 
