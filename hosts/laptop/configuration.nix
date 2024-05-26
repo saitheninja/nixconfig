@@ -34,13 +34,14 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  hardware.bluetooth.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true; # ALSA sound
+  sound.enable = false; # ALSA sound
   hardware.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -65,19 +66,6 @@
     ];
     # packages = with pkgs; [ ];
     shell = pkgs.zsh;
-  };
-
-  # enable flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  # garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
   };
 
   # prefer programs to environment.systemPackages
@@ -176,7 +164,7 @@
     #krita # drawing
     #aseprite # pixel art # licence requires building from source
     #pixelorama # godot pixel art
-    
+
     # music
     ardour # daw
     bespokesynth # live daw

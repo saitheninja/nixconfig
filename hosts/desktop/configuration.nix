@@ -75,19 +75,6 @@
     shell = pkgs.zsh;
   };
 
-  # Enable flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  # garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
-
   # prefer programs to environment.systemPackages
   programs = {
     # direnv = {
