@@ -477,11 +477,26 @@
           enable = true; # popup fuzzy finder, with previews
 
           extensions = {
-            file-browser.enable = true;
-            fzf-native.enable = true; # fzf implemented in C for telescope
+            fzf-native.enable = true; # fzf sorter written in C
             media-files.enable = true; # preview media files
             ui-select.enable = true; # set vim.ui.select to telescope
             undo.enable = true; # view and search undo tree
+          };
+
+          # provided to the require('telescope').setup function
+          settings = {
+            pickers = {
+              buffers = {
+                mappings = {
+                  n = {
+                    "dd" = {
+                      # __raw = "require('telescope.actions').delete_buffer + require('telescope.actions').move_to_top";
+                      __raw = "require('telescope.actions').delete_buffer";
+                    };
+                  };
+                };
+              };
+            };
           };
         };
       };
