@@ -18,12 +18,14 @@
 
       extraPackages = with pkgs; [
         # neovim
-        wl-clipboard # wayland clipboard
+        wl-clipboard # wayland clipboard utils
 
         # conform
         nixfmt-rfc-style
+        rustywind # tailwind class sorting
         shfmt # bash
         stylua
+        #tailwindcss-language-server
 
         # telescope
         fd # better find
@@ -121,11 +123,43 @@
           enable = true; # formatter
 
           formattersByFt = {
-            css = [ "stylelint" ]; # tailwind? does prettier plugin work? rustywind?
-            scss = [ "stylelint" ];
-            less = [ "stylelint" ];
+            # run sequentially
+            # css = [ ...formatters ]
+
+            # run first available
+            # html = [[ ...formatters ]]
+
+            # all filetypes
+            # "*" = [ "trim_newlines" ]; 
+
+            # filetypes that don't have a formatter configured
+            # "_" = [
+            #   "trim_newlines"
+            #   "trim_whitespace"
+            # ];
+
+            css = [
+              "rustywind"
+              "stylelint"
+            ];
+            scss = [
+              "rustywind"
+              "stylelint"
+            ];
+            less = [
+              "rustywind"
+              "stylelint"
+            ];
 
             html = [
+              "rustywind"
+              [
+                "prettier"
+                "prettier_d"
+              ]
+            ];
+            svelte = [
+              "rustywind"
               [
                 "prettier"
                 "prettier_d"
@@ -139,12 +173,6 @@
               ]
             ];
             typescript = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-            svelte = [
               [
                 "prettier"
                 "prettier_d"
@@ -173,21 +201,6 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             sh = [ "shfmt" ];
-
-            # run sequentially
-            # css = [ ...formatters ]
-
-            # run first available
-            # html = [[ ...formatters ]]
-
-            # all filetypes
-            # "*" = [ "trim_newlines" ]; 
-
-            # filetypes that don't have a formatter configured
-            # "_" = [
-            #   "trim_newlines"
-            #   "trim_whitespace"
-            # ];
           };
 
           notifyOnError = true;
