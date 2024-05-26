@@ -383,6 +383,7 @@
                 extraConfig = {
                   color = "Conceal";
                   colored = false;
+                  path = 1;
                 };
               }
             ];
