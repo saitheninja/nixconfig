@@ -273,7 +273,7 @@
 
           settings = {
             indent = {
-              char = "│";
+              char = "⎸";
             };
 
             scope = {
@@ -472,7 +472,7 @@
           settings = {
             enabled = true;
 
-            char = "│";
+            char = "⎹";
             highlight = "Conceal"; # default "NonText"
             virtcolumn = "80";
           };
