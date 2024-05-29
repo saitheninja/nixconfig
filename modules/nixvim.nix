@@ -265,6 +265,7 @@
 
         # ui
         dressing.enable = true;
+        fidget.enable = true; # notifications & lsp progress
         lualine = {
           enable = true; # statusline (bottom of window or global), tabline (top global), winbar (top of window)
 
@@ -357,7 +358,6 @@
             lualine_z = [ { name = "tabs"; } ];
           };
         };
-        notify.enable = true; # fancy notification popup
         nvim-ufo = {
           enable = true; # better folding
 
