@@ -73,6 +73,7 @@
         sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,terminal,winpos,winsize";
 
         # ...rest
+        colorcolumn = "81";
         signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
@@ -399,17 +400,6 @@
         };
         trouble.enable = true; # view problems
         which-key.enable = true; # show shortcuts
-        virt-column = {
-          enable = true; # allow text characters to be used as colorcolumn
-
-          settings = {
-            enabled = true;
-
-            char = "⎹";
-            highlight = "Conceal"; # default "NonText"
-            virtcolumn = "80";
-          };
-        };
 
         # ...rest
         auto-session.enable = true; # session manager
