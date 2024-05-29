@@ -30,8 +30,10 @@
         ripgrep # faster grep
       ];
 
-      clipboard.register = "unnamedplus"; # use system clipboard as default register
-      clipboard.providers.wl-copy.enable = true; # use wayland cli clipboard utils
+      clipboard = {
+        register = "unnamedplus"; # use system clipboard as default register
+        providers.wl-copy.enable = true; # use wayland cli clipboard utils
+      };
 
       opts = {
         # cursor
@@ -166,12 +168,6 @@
           enable = true;
 
           servers = {
-            # from vscode-langservers-extracted
-            cssls.enable = true; 
-            eslint.enable = true;
-            html.enable = true;
-            jsonls.enable = true;
-
             svelte.enable = true;
             tailwindcss.enable = true;
             tsserver.enable = true; # typescript
@@ -184,6 +180,12 @@
             nixd.enable = true;
             typos-lsp.enable = true;
             # yamlls.enable = true;
+
+            # from vscode-langservers-extracted
+            cssls.enable = true;
+            eslint.enable = true;
+            html.enable = true;
+            jsonls.enable = true;
           };
         };
         lspkind.enable = true; # add pictograms for lsp completion items
@@ -253,17 +255,12 @@
             enable = false; # toggle with TSContextToggle
           };
         };
-        treesitter-textobjects = {
-          enable = true;
-
-          lspInterop.enable = true;
-        };
+        # treesitter-textobjects = {
+        #   enable = true;
+        #   lspInterop.enable = true;
+        # };
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
-        #ts-context-commentstring.enable = true; # automatically use correct comment syntax
-
-        # terminal
-        #toggleterm.enable = true;
-        #zellij.enable = true; # terminal multiplexer
+        ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         # ui
         dressing.enable = true;
@@ -296,7 +293,7 @@
               {
                 name = "filename";
                 extraConfig = {
-                  path = 1;
+                  path = 1; # relative path
                 };
               }
               { name = "searchcount"; }
@@ -317,7 +314,6 @@
                   color = "Conceal";
                   colored = false;
                 };
-                #color = "Conceal"; # doesn't work
               }
               {
                 name = "diagnostics";
@@ -439,9 +435,9 @@
             pickers = {
               buffers = {
                 mappings = {
+                  # normal mode
                   n = {
                     "dd" = {
-                      # __raw = "require('telescope.actions').delete_buffer + require('telescope.actions').move_to_top";
                       __raw = "require('telescope.actions').delete_buffer";
                     };
                   };
@@ -456,7 +452,8 @@
       globals.mapleader = " ";
       keymaps = [
         # :h <Cmd>
-        # <Cmd> does not change modes, command is not echoed so no need for <silent>
+        # <Cmd> does not change modes
+        # command is not echoed so no need for <silent>
 
         # neovim settings
         {
@@ -584,7 +581,8 @@
           };
         }
 
-        # nvim-ufo - built in commands change foldlevel, ufo commands don't
+        # nvim-ufo
+        # built in commands change foldlevel, ufo commands don't
         {
           action = "<Cmd>Ufo openAllFolds<CR>";
           key = "<leader>zR";
@@ -699,7 +697,7 @@
           key = "<leader>ft";
           mode = "n";
           options = {
-            desc = "Telescope: help tags";
+            desc = "Telescope: buffer tags";
           };
         }
         {
@@ -733,24 +731,23 @@
       ];
 
       extraConfigLua = ''
-        -- Conform
+        -- from conform docs 
+        -- make format command
         vim.api.nvim_create_user_command("ConformFormat", function(args)
           local range = nil
-
           if args.count ~= -1 then
             local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-
             range = {
               start = { args.line1, 0 },
               ["end"] = { args.line2, end_line:len() },
             }
           end
-
           require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
 
-        -- indent-blankline + rainbow-delimiters
-        -- :Telescope highlights
+        -- from indent-blankline docs
+        -- rainbow-delimiters integration
+        -- `:Telescope highlights` to preview colours
         local highlight = {
           "RainbowDelimiterRed",
           "RainbowDelimiterYellow",
@@ -761,7 +758,6 @@
           "RainbowDelimiterCyan",
         }
         local hooks = require "ibl.hooks"
-
         -- create the highlight groups in the highlight setup hook, so that they are reset every time the colorscheme changes
         hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
           vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
@@ -772,10 +768,8 @@
           vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
           vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
         end)
-
         vim.g.rainbow_delimiters = { highlight = highlight }
         require("ibl").setup { scope = { highlight = highlight } }
-
         hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
       '';
     };
