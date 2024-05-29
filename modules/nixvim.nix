@@ -22,10 +22,7 @@
 
         # conform
         nixfmt-rfc-style
-        rustywind # tailwind class sorting
-        shfmt # bash
         stylua
-        #tailwindcss-language-server
 
         # telescope
         fd # better find
@@ -123,84 +120,22 @@
           enable = true; # formatter
 
           formattersByFt = {
-            # run sequentially
-            # css = [ ...formatters ]
+            html = [ "prettier" ];
 
-            # run first available
-            # html = [[ ...formatters ]]
+            css = [ "prettier" ];
 
-            # all filetypes
-            # "*" = [ "trim_newlines" ]; 
+            javascript = [ "prettier" ];
+            typescript = [ "prettier" ];
 
-            # filetypes that don't have a formatter configured
-            # "_" = [
-            #   "trim_newlines"
-            #   "trim_whitespace"
-            # ];
+            svelte = [ "prettier" ];
 
-            css = [
-              "rustywind"
-              "stylelint"
-            ];
-            scss = [
-              "rustywind"
-              "stylelint"
-            ];
-            less = [
-              "rustywind"
-              "stylelint"
-            ];
+            json = [ "prettier" ];
+            yaml = [ "prettier" ];
 
-            html = [
-              "rustywind"
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-            svelte = [
-              "rustywind"
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-
-            javascript = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-            typescript = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-
-            json = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-            yaml = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
-            markdown = [
-              [
-                "prettier"
-                "prettier_d"
-              ]
-            ];
+            markdown = [ "prettier" ];
 
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
-            sh = [ "shfmt" ];
           };
 
           notifyOnError = true;
@@ -231,22 +166,24 @@
           enable = true;
 
           servers = {
-            emmet_ls.enable = true;
+            # from vscode-langservers-extracted
+            cssls.enable = true; 
             eslint.enable = true;
-            gdscript.enable = true;
             html.enable = true;
             jsonls.enable = true;
+
+            svelte.enable = true;
+            tailwindcss.enable = true;
+            tsserver.enable = true; # typescript
+
+            # gdscript.enable = true;
             lua-ls = {
               enable = true;
               settings.telemetry.enable = false;
             };
             nixd.enable = true;
-            sqls.enable = true;
-            svelte.enable = true;
-            tailwindcss.enable = true;
-            tsserver.enable = true;
             typos-lsp.enable = true;
-            yamlls.enable = true;
+            # yamlls.enable = true;
           };
         };
         lspkind.enable = true; # add pictograms for lsp completion items
