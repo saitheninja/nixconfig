@@ -438,6 +438,8 @@
         };
       };
 
+      extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
+
       # keymaps
       globals.mapleader = " ";
       keymaps = [
@@ -613,6 +615,24 @@
           mode = "n";
           options = {
             desc = "Oil: open parent directory";
+          };
+        }
+
+        # package-info
+        {
+          action = "<Cmd>lua require('package-info').show({ force = true })<CR>"; # force refetch every time
+          key = "<leader>ns";
+          mode = "n";
+          options = {
+            desc = "Package Info: run `npm outdated --json`";
+          };
+        }
+        {
+          action = "<Cmd>lua require('package-info').change_version()<CR>"; # force refetch every time
+          key = "<leader>nv";
+          mode = "n";
+          options = {
+            desc = "Package Info: change version";
           };
         }
 
