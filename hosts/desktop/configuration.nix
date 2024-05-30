@@ -137,13 +137,28 @@
 
     # music
     ardour # daw
-    bespokesynth # live daw
-    guitarix
-    lmms # daw
-    surge-XT
-    #vcv-rack
+    audacity # audio editor & recorder
+    bespokesynth # live daw (no VST2 because of licensing)
+    calf # effects, instruments, tools
     cardinal # vcv-rack as a fully open source plugin
-    #zrythm
+    carla # plugin host
+    dragonfly-reverb # reverb plugins
+    guitarix # virtual guitar amp (standalone)
+    # helm # unmaintained predecessor to vital synth
+    infamousPlugins # LV2 plugins
+    lmms # daw
+    odin2 # synth
+    sorcer # dubstep synth
+    surge-XT # synth
+    supercollider # programming language
+    wolf-shaper # waveshaper plugin
+    x42-avldrums # Drum sample player LV2 plugin dedicated to Glen MacArthur's AVLdrums
+    x42-plugins # LV2 plugins
+    x42-gmsynth # general MIDI sample player LV2 plugin, intended as default synth for Ardour
+    yoshimi # synth
+    zrythm # daw
+    zam-plugins # processing plugins
+    zynaddsubfx # synth
 
     # photo
     darktable # raw editor
