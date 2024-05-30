@@ -747,6 +747,38 @@
             desc = "Trouble: toggle diagnostics window";
           };
         }
+        {
+          action = "<Cmd>TroubleToggle workspace_diagnostics<CR>";
+          key = "<leader>xw";
+          mode = "n";
+          options = {
+            desc = "Trouble: toggle workspace diagnostics";
+          };
+        }
+        {
+          action = "<Cmd>TroubleToggle document_diagnostics<CR>";
+          key = "<leader>xd";
+          mode = "n";
+          options = {
+            desc = "Trouble: toggle document diagnostics";
+          };
+        }
+        {
+          action = "<Cmd>TroubleToggle quickfix<CR>";
+          key = "<leader>xq";
+          mode = "n";
+          options = {
+            desc = "Trouble: toggle quickfix window";
+          };
+        }
+        {
+          action = "<Cmd>TroubleToggle loclist<CR>";
+          key = "<leader>xl";
+          mode = "n";
+          options = {
+            desc = "Trouble: toggle locationlist window";
+          };
+        }
       ];
 
       extraConfigLua = ''
