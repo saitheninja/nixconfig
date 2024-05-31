@@ -800,48 +800,96 @@
         }
       ];
 
-      extraConfigLua = ''
-        -- from conform docs 
-        -- make format command
-        vim.api.nvim_create_user_command("ConformFormat", function(args)
-          local range = nil
-          if args.count ~= -1 then
-            local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-            range = {
-              start = { args.line1, 0 },
-              ["end"] = { args.line2, end_line:len() },
-            }
+      extraConfigLua = # lua
+        ''
+          -- from conform docs 
+          -- make format command
+          local conform_format = function(opts)
+            local range = nil
+            if opts.count ~= -1 then
+              local end_line = vim.api.nvim_buf_get_lines(0, opts.line2 - 1, opts.line2, true)[1]
+              range = {
+                -- {row, col}
+                start = { opts.line1, 0 },
+                ["end"] = { opts.line2, end_line:len() },
+              }
+            end
+            require("conform").format({ async = true, lsp_fallback = true, range = range })
           end
-          require("conform").format({ async = true, lsp_fallback = true, range = range })
-        end, { range = true })
 
-        -- from indent-blankline docs
-        -- rainbow-delimiters integration
-        -- `:Telescope highlights` to preview colours
-        local highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        }
-        local hooks = require "ibl.hooks"
-        -- create the highlight groups in the highlight setup hook, so that they are reset every time the colorscheme changes
-        hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-          vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
-          vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
-        end)
-        vim.g.rainbow_delimiters = { highlight = highlight }
-        require("ibl").setup { scope = { highlight = highlight } }
-        hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-      '';
+          vim.api.nvim_create_user_command("ConformFormat", conform_format, { range = true })
+
+          -- from indent-blankline docs
+          -- rainbow-delimiters integration
+          -- `:Telescope highlights` to preview colours
+          local highlight = {
+            "RainbowDelimiterRed",
+            "RainbowDelimiterYellow",
+            "RainbowDelimiterBlue",
+            "RainbowDelimiterOrange",
+            "RainbowDelimiterGreen",
+            "RainbowDelimiterViolet",
+            "RainbowDelimiterCyan",
+          }
+          local hooks = require "ibl.hooks"
+          -- create the highlight groups in the highlight setup hook, so that they are reset every time the colorscheme changes
+          hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
+            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
+          end)
+          vim.g.rainbow_delimiters = { highlight = highlight }
+          require("ibl").setup { scope = { highlight = highlight } }
+          hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        '';
+
+      # nvim_create_user_command() takes three mandatory arguments:
+      # string that is the name of the command (must begin with an uppercase letter)
+      # string containing Vim commands or a Lua function to be executed
+      # a table with command-attributes
+      userCommands = {
+        ConformFormatBuffer = {
+          # addr = lines; # special characters refer to range of: lines (default), arguments, buffers, loaded_buffers, windows, tabs, quickfix, other
+          # bang = false; # take force/override
+          # bar = false; # pipe/chain commands
+          #command = # lua
+          #  ''
+          #    function(opts)
+          #      local range = nil
+
+          #      print(opts)
+          #      if opts.count ~= -1 then
+          #        local end_line = vim.api.nvim_buf_get_lines(0, opts.line2 - 1, opts.line2, true)[1]
+          #        print(end_line)
+
+          #        range = {
+          #          -- {row, col}
+          #          start = { opts.line1, 0 },
+          #          ["end"] = { opts.line2, end_line:len() },
+          #        }
+          #      end
+
+          #      require("conform").format({ async = true, lsp_fallback = true, range = range })
+          #    end
+          #  '';
+          command = # lua
+            ''
+              lua require("conform").format({ async = true, lsp_fallback = true, range = range })
+            '';
+          # complete = null; # autocomplete arguments of command with buffer name, dir, etc.
+          # count = null; # accept a count (either count or range)
+          desc = "Conform: format buffer or range";
+          # force = false; # overwrite existing command
+          # keepscript = false # for verbose messages, use location of where the command was invoked, instead of where the command was defined
+          # nargs = "*"; # number of arguments that the command takes: 0 (default), 1, “*” (any), “?” (0 or 1), “+” (>0)
+          range = true; # accept a range (either count or range) ("%" whole file)
+          # register = false; # first argument to the command can be an optional register
+        };
+      };
 
       withNodeJs = false;
       withRuby = false; # why is this default true?
