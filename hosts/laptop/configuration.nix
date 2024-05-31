@@ -99,6 +99,7 @@
     lazygit # git client
     # hollywood # fun
     # systeroid # better sysctl
+    whois # DNS lookup
     zathura # terminal pdf viewer
     zellij # terminal multiplexer
 
