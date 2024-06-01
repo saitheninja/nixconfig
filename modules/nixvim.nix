@@ -207,7 +207,12 @@
 
           servers = {
             # from vscode-langservers-extracted
-            cssls.enable = true;
+            cssls = {
+              enable = true;
+              settings = {
+                css.lint.unknownAtRules = "ignore";
+              };
+            };
             eslint.enable = true;
             html.enable = true;
             jsonls.enable = true;
