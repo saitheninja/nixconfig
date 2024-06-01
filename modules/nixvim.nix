@@ -172,6 +172,13 @@
           enable = true;
 
           servers = {
+            # from vscode-langservers-extracted
+            cssls.enable = true;
+            eslint.enable = true;
+            html.enable = true;
+            jsonls.enable = true;
+
+            emmet_ls.enable = true;
             svelte.enable = true;
             tailwindcss.enable = true;
             tsserver.enable = true; # typescript
@@ -184,12 +191,6 @@
             nixd.enable = true;
             typos-lsp.enable = true;
             # yamlls.enable = true;
-
-            # from vscode-langservers-extracted
-            cssls.enable = true;
-            eslint.enable = true;
-            html.enable = true;
-            jsonls.enable = true;
           };
         };
         lspkind.enable = true; # add pictograms for lsp completion items
