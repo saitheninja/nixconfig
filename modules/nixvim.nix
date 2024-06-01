@@ -367,7 +367,15 @@
           };
 
           tabline = {
-            lualine_a = [ { name = "buffers"; } ];
+            lualine_a = [
+              {
+                name = "buffers";
+                extraConfig = {
+                  mode = 4; # buffer name + buffer number
+                  show_filename_only = false;
+                };
+              }
+            ];
             lualine_z = [ { name = "tabs"; } ];
           };
         };
