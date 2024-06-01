@@ -95,19 +95,52 @@
 
       plugins = {
         # completions
-        cmp.enable = true;
-        cmp-buffer.enable = true;
-        cmp-cmdline.enable = true;
-        cmp-cmdline-history.enable = true;
-        cmp-dap.enable = true;
+        cmp = {
+          enable = true;
+
+          settings = {
+            mapping = {
+              "<C-Space>" = "cmp.mapping.complete()";
+              "<C-e>" = "cmp.mapping.abort()"; # default
+              "<CR>" = "cmp.mapping.confirm({ select = true })";
+
+              "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})"; # insert and select modes
+              "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              # "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
+              # "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
+
+              "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+              "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            };
+            snippets.expand = ''
+              function(args)
+                require('luasnip').lsp_expand(args.body)
+              end
+            '';
+
+            sources = [
+              { name = "nvim_lsp_signature_help"; }
+              { name = "nvim_lsp"; }
+              { name = "luasnip"; }
+              { name = "emoji"; }
+              # { name = "treesitter"; }
+              # { name = "buffer"; }
+              # { name = "path"; }
+              # { name = "nvim_lua"; }
+            ];
+          };
+        };
+        cmp-buffer.enable = true; # text within current buffer
+        # cmp-cmdline.enable = true;
+        # cmp-cmdline-history.enable = true;
+        # cmp-dap.enable = true;
         cmp-emoji.enable = true;
         cmp-nvim-lsp.enable = true;
-        cmp-nvim-lsp-signature-help.enable = true;
-        cmp-nvim-lua.enable = true;
-        cmp-path.enable = true;
-        cmp-treesitter.enable = true;
+        cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
+        # cmp-nvim-lua.enable = true; # neovim Lua API
+        cmp-path.enable = true; # file system paths
+        # cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
-        emmet.enable = true;
         # snippets
         friendly-snippets.enable = true;
         luasnip.enable = true;
