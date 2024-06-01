@@ -107,6 +107,7 @@
         cmp-path.enable = true;
         cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
+        emmet.enable = true;
         # snippets
         friendly-snippets.enable = true;
         luasnip.enable = true;
