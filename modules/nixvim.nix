@@ -43,7 +43,7 @@
         # folding
         # suggested by nvim-ufo
         foldenable = true;
-        foldcolumn = "auto:9"; # width
+        foldcolumn = "auto"; # width
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
 
@@ -74,7 +74,7 @@
 
         # ...rest
         colorcolumn = "81";
-        signcolumn = "yes:4"; # text shifts when column gets toggled, so just leave it on
+        signcolumn = "yes:2"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
       };
@@ -119,10 +119,10 @@
             '';
 
             sources = [
-              { name = "nvim_lsp_signature_help"; }
               { name = "nvim_lsp"; }
+              { name = "nvim_lsp_signature_help"; }
               { name = "luasnip"; }
-              { name = "emoji"; }
+              # { name = "emoji"; }
               # { name = "treesitter"; }
               # { name = "buffer"; }
               # { name = "path"; }
@@ -130,15 +130,15 @@
             ];
           };
         };
-        cmp-buffer.enable = true; # text within current buffer
+        # cmp-buffer.enable = true; # text within current buffer
         # cmp-cmdline.enable = true;
         # cmp-cmdline-history.enable = true;
         # cmp-dap.enable = true;
-        cmp-emoji.enable = true;
+        # cmp-emoji.enable = true;
         cmp-nvim-lsp.enable = true;
         cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
         # cmp-nvim-lua.enable = true; # neovim Lua API
-        cmp-path.enable = true; # file system paths
+        # cmp-path.enable = true; # file system paths
         # cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
         # snippets
