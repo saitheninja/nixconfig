@@ -99,6 +99,15 @@
           enable = true;
 
           settings = {
+            # formatting = {
+            #   expandable_indicator = true;
+            #   fields = [
+            #     "kind"
+            #     "abbr"
+            #     "menu"
+            #   ];
+            # };
+
             mapping = {
               "<C-Space>" = "cmp.mapping.complete()";
               "<C-e>" = "cmp.mapping.abort()"; # default
@@ -112,6 +121,7 @@
               "<C-b>" = "cmp.mapping.scroll_docs(-4)";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
             };
+
             snippets.expand = ''
               function(args)
                 require('luasnip').lsp_expand(args.body)
@@ -128,6 +138,18 @@
               # { name = "path"; }
               # { name = "nvim_lua"; }
             ];
+
+            window = {
+              completion = {
+                border = "single";
+                scrolloff = 5;
+                winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
+              };
+              documentation = {
+                border = "single";
+                winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
+              };
+            };
           };
         };
         # cmp-buffer.enable = true; # text within current buffer
