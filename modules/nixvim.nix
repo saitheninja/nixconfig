@@ -74,7 +74,7 @@
 
         # ...rest
         colorcolumn = "81";
-        signcolumn = "yes:2"; # text shifts when column gets toggled, so just leave it on
+        signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
       };
@@ -89,9 +89,9 @@
           };
         };
       };
-      highlightOverride = {
-        MarkSignHL.link = "CursorLineNr";
-      };
+      # highlightOverride = {
+      #   MarkSignHL.link = "CursorLineNr";
+      # };
 
       plugins = {
         # completions
@@ -440,22 +440,22 @@
             lualine_z = [ { name = "tabs"; } ];
           };
         };
-        marks = {
-          enable = true;
+       # marks = {
+       #    enable = true;
 
           # ' position before the latest jump
           # ^ last insert position (same position as `gi`)
           # . last change position
           # < start of last selected Visual area in the current buffer
           # > end of last selected Visual area in the current buffer
-          builtinMarks = [
-            "'"
-            "^"
-            "."
-            "<"
-            ">"
-          ];
-        };
+        #   builtinMarks = [
+        #     "'"
+        #     "^"
+        #     "."
+        #     "<"
+        #     ">"
+        #   ];
+        # };
         nvim-ufo = {
           enable = true; # better folding
 
