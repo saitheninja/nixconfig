@@ -239,7 +239,7 @@
             html.enable = true;
             jsonls.enable = true;
 
-            emmet_ls.enable = true;
+            emmet-ls.enable = true;
             svelte.enable = true;
             tailwindcss.enable = true;
             tsserver.enable = true; # typescript
