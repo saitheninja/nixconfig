@@ -43,7 +43,7 @@
         # folding
         # suggested by nvim-ufo
         foldenable = true;
-        foldcolumn = "auto"; # width
+        foldcolumn = "auto:9"; # width
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
 
@@ -74,7 +74,7 @@
 
         # ...rest
         colorcolumn = "81";
-        signcolumn = "yes"; # text shifts when column gets toggled, so just leave it on
+        signcolumn = "yes:1"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
       };
@@ -439,22 +439,6 @@
             lualine_z = [ { name = "tabs"; } ];
           };
         };
-       # marks = {
-       #    enable = true;
-
-          # ' position before the latest jump
-          # ^ last insert position (same position as `gi`)
-          # . last change position
-          # < start of last selected Visual area in the current buffer
-          # > end of last selected Visual area in the current buffer
-        #   builtinMarks = [
-        #     "'"
-        #     "^"
-        #     "."
-        #     "<"
-        #     ">"
-        #   ];
-        # };
         nvim-ufo = {
           enable = true; # better folding
 
@@ -955,7 +939,7 @@
           # force = false; # overwrite existing command
           # keepscript = false # for verbose messages, use location of where the command was invoked, instead of where the command was defined
           # nargs = "*"; # number of arguments that the command takes: 0 (default), 1, “*” (any), “?” (0 or 1), “+” (>0)
-          range = true; # accept a range (either count or range) ("%" whole file)
+          range = true; # accept a range (either count or range) ("%" means whole file)
           # register = false; # first argument to the command can be an optional register
         };
       };
