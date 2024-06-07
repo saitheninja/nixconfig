@@ -198,6 +198,7 @@
 
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
+            rust = [ "rustfmt" ];
           };
 
           notifyOnError = true;
@@ -249,6 +250,11 @@
               settings.telemetry.enable = false;
             };
             nixd.enable = true;
+            rust-analyzer = {
+              enable = true;
+              installCargo = false;
+              installRustc = false;
+            };
             typos-lsp.enable = true;
             # yamlls.enable = true;
           };
