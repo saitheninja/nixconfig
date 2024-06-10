@@ -5,13 +5,10 @@
   # `outputs` function will return all the build results of the flake.
   # Each item in `inputs` will be passed as a parameter to
   # the `outputs` function after being pulled and built.
+
   inputs = {
-    nixpkgs-23-11.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim-23-11 = {
-      url = "github:nix-community/nixvim/nixos-23.11";
-      inputs.nixpkgs.follows = "nixpkgs-23-11";
-    };
     nixvim-unstable = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -28,9 +25,8 @@
   outputs =
     {
       # self,
-      nixpkgs-23-11,
+      nixpkgs-24-05,
       nixpkgs-unstable,
-      nixvim-23-11,
       nixvim-unstable,
       ...
     }@inputs:
@@ -51,7 +47,7 @@
           ];
         };
 
-        "nixos-desktop" = nixpkgs-23-11.lib.nixosSystem {
+        "nixos-desktop" = nixpkgs-24-05.lib.nixosSystem {
           system = "x86_64-linux";
 
           # A Nix Module can be an attribute set, or a function that
@@ -83,10 +79,8 @@
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules
-            nixvim-23-11.nixosModules.nixvim
             #({...}:{options.enableNixvim = false;})
           ];
-
         };
       };
     };
