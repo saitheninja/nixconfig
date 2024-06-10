@@ -3,7 +3,7 @@
 {
   imports = [
     ./browsers.nix
-    ./fs-drivers.nix
+    ./filesystem-drivers.nix
     ./git.nix
     ./locale-za.nix
     ./nix-conf.nix
