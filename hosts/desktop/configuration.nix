@@ -55,8 +55,12 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
-  nixpkgs.config.allowUnfree = true;
+  environment.shellAliases = {
+    cat = "bat";
+    ls = "eza --icons=always";
+  };
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # terminal
     bat # better cat

@@ -11,10 +11,6 @@
         enable = true;
 
         enableCompletion = true;
-        shellAliases = {
-          cat = "bat";
-          ls = "eza --icons=always";
-        };
         vteIntegration = true;
 
         # plugins
