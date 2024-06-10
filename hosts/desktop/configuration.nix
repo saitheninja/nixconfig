@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
   ];
 
-  configNixvim.enable = false;
+  # configNixvim.enable = false;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
