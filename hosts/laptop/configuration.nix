@@ -116,7 +116,6 @@
     # dev
     docker
     docker-compose
-    gh # GitHub CLI
     vscode-fhs
     #vscode-with-extensions.override {
     #  vscodeExtensions = with vscode-extensions; [

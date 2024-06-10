@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   options = {
@@ -18,5 +18,9 @@
         };
       };
     };
+
+    environment.systemPackages = with pkgs; [
+      gh # GitHub CLI
+    ];
   };
 }
