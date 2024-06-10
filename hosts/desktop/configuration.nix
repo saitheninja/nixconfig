@@ -24,19 +24,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sai = {
-    isNormalUser = true;
-    description = "sai";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-    # packages = with pkgs; [ ];
-    shell = pkgs.zsh;
-  };
-
   # prefer programs to environment.systemPackages
   programs = {
     # direnv = {
