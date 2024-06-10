@@ -40,7 +40,6 @@
     #   nix-direnv.enable = true;
     # };
 
-    partition-manager.enable = true; # KDE partition manager
     starship.enable = true; # automatically pretty terminal prompt
     usbtop.enable = true;
     wavemon.enable = true;
