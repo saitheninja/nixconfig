@@ -10,6 +10,7 @@
     ./nix-conf.nix
     ./nixvim.nix
     ./selected-fonts.nix
+    ./sound.nix
     ./zsh.nix
   ];
 
@@ -21,6 +22,7 @@
   configNixConf.enable = lib.mkDefault true;
   configNixvim.enable = lib.mkDefault true;
   configSelectedFonts.enable = lib.mkDefault true;
+  configSound.enable = lib.mkDefault true;
   configZsh.enable = lib.mkDefault true;
 }
 
