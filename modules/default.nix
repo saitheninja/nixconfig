@@ -7,7 +7,7 @@
     ./git.nix
     ./kde-plasma-6.nix
     ./locale-za.nix
-    ./nix-conf.nix
+    ./nix-config.nix
     ./nixvim.nix
     ./selected-fonts.nix
     ./sound.nix
@@ -20,7 +20,7 @@
   configGit.enable = lib.mkDefault true;
   configKdePlasma6.enable = lib.mkDefault true;
   configLocaleZa.enable = lib.mkDefault true;
-  configNixConf.enable = lib.mkDefault true;
+  configNixConfig.enable = lib.mkDefault true;
   configNixvim.enable = lib.mkDefault true;
   configSelectedFonts.enable = lib.mkDefault true;
   configSound.enable = lib.mkDefault true;
