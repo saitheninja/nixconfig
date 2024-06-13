@@ -21,11 +21,13 @@
       unicode-emoji
 
       # monospace
+      cascadia-code # built in support for Nerd Font (NF) and Powerline (PL) symbols
       hack-font
+
       # specific nerd fonts because the package is huge
       (nerdfonts.override {
         fonts = [
-          "CascadiaCode"
+          # "CascadiaCode"
           "FiraCode"
           "Iosevka"
         ];
