@@ -70,8 +70,8 @@
         inccommand = "split"; # incremental preview for substitute
 
         # sessions
-        # suggested by auto-session; adds winpos, localoptions
-        sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,terminal,winpos,winsize";
+        # auto-session suggests adding: winpos, localoptions
+        sessionoptions = "blank,buffers,curdir,folds,help,tabpages,terminal,winpos,winsize";
 
         # ...rest
         colorcolumn = "81";
@@ -601,22 +601,22 @@
         }
 
         # auto-session
-        {
-          action = "<Cmd>SessionSave<CR>";
-          key = "<leader>sw";
-          mode = "n";
-          options = {
-            desc = "auto-session: write session";
-          };
-        }
-        {
-          action = "<Cmd>SessionRestore<CR>";
-          key = "<leader>sr";
-          mode = "n";
-          options = {
-            desc = "auto-session: restore session";
-          };
-        }
+        # {
+        #   action = "<Cmd>SessionSave<CR>";
+        #   key = "<leader>sw";
+        #   mode = "n";
+        #   options = {
+        #     desc = "auto-session: write session";
+        #   };
+        # }
+        # {
+        #   action = "<Cmd>SessionRestore<CR>";
+        #   key = "<leader>sr";
+        #   mode = "n";
+        #   options = {
+        #     desc = "auto-session: restore session";
+        #   };
+        # }
         {
           action = "<Cmd>Autosession search<CR>";
           key = "<leader>ss";
