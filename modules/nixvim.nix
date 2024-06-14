@@ -438,7 +438,7 @@
               {
                 name = "buffers";
                 extraConfig = {
-                  mode = 4; # buffer name + buffer number
+                  mode = 2; # buffer name + buffer index
                   show_filename_only = false;
                 };
               }
