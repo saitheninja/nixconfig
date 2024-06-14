@@ -54,6 +54,7 @@
         shiftwidth = 2; # number of spaces to use for each step of indent
         tabstop = 2; # number of spaces that a tab counts for
         breakindent = true; # wrapped lines will get visually indented
+        showbreak = "->"; # string to put at the start of wrapped lines
 
         # line numbers
         number = true;
