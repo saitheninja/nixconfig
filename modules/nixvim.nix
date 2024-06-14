@@ -513,6 +513,12 @@
             pickers = {
               buffers = {
                 mappings = {
+                  # insert mode
+                  i = {
+                    "<C-d>" = {
+                      __raw = "require('telescope.actions').delete_buffer";
+                    };
+                  };
                   # normal mode
                   n = {
                     "dd" = {
