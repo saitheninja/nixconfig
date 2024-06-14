@@ -287,7 +287,7 @@
         };
 
         # treesitter
-        #comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
+        comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
         indent-blankline = {
           enable = true; # show indent guides
 
