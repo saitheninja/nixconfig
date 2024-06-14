@@ -116,8 +116,8 @@
 
               "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})"; # insert and select modes
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-              # "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
-              # "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
+              "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
+              "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
 
               "<C-b>" = "cmp.mapping.scroll_docs(-4)";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
@@ -130,8 +130,8 @@
             '';
 
             sources = [
-              { name = "nvim_lsp"; }
               { name = "nvim_lsp_signature_help"; }
+              { name = "nvim_lsp"; }
               { name = "luasnip"; }
               # { name = "emoji"; }
               # { name = "treesitter"; }
