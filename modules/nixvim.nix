@@ -90,9 +90,6 @@
           };
         };
       };
-      # highlightOverride = {
-      #   MarkSignHL.link = "CursorLineNr";
-      # };
 
       plugins = {
         # completions
@@ -234,7 +231,7 @@
             cssls = {
               enable = true;
               settings = {
-                css.lint.unknownAtRules = "ignore";
+                css.lint.unknownAtRules = "ignore"; # ignore tailwind stuff
               };
             };
             eslint.enable = true;
@@ -333,13 +330,14 @@
           enable = true; # sticky scope
 
           settings = {
-            enable = false; # toggle with TSContextToggle
+            enable = false; # toggle with :TSContextToggle
           };
         };
-        # treesitter-textobjects = {
-        #   enable = true;
-        #   lspInterop.enable = true;
-        # };
+        treesitter-textobjects = {
+          enable = true;
+
+          lspInterop.enable = true;
+        };
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
