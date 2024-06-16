@@ -627,7 +627,7 @@
         # conform
         {
           action = "<Cmd>ConformFormat<CR>";
-          key = "<leader>cf";
+          key = "<leader>cc";
           mode = [
             "n"
             "v"
