@@ -231,6 +231,7 @@
         lsp = {
           enable = true;
 
+          inlayHints = true;
           servers = {
             # from vscode-langservers-extracted
             cssls = {
@@ -552,6 +553,14 @@
           mode = "n";
           options = {
             desc = "Neovim: toggle line wrap";
+          };
+        }
+        {
+          action = "<Cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
+          key = "<leader>nh";
+          mode = "n";
+          options = {
+            desc = "Neovim: toggle lsp inlay hint";
           };
         }
         # neovim buffers
