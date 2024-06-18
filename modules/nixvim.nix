@@ -24,6 +24,9 @@
         nixfmt-rfc-style
         stylua
 
+        # lsp
+        # zls # zig # waiting for 0.13 to hit unstable
+
         # telescope
         fd # better find
         fzf # fuzzy find
@@ -197,6 +200,8 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
+
+            # zig = [ "zig fmt" ];
           };
 
           notifyOnError = true;
@@ -255,6 +260,7 @@
             };
             typos-lsp.enable = true;
             # yamlls.enable = true;
+            # zls.enable = true;
           };
         };
         lspkind.enable = true; # add pictograms for lsp completion items
