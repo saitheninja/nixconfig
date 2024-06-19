@@ -32,12 +32,12 @@
         fzf # fuzzy find
         ripgrep # faster grep
       ];
+      extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
 
       clipboard = {
         register = "unnamedplus"; # use system clipboard as default register
         providers.wl-copy.enable = true; # use wayland cli clipboard utils
       };
-
       opts = {
         # cursor
         cursorline = true; # highlight cursor line
@@ -93,7 +93,6 @@
           };
         };
       };
-
       highlightOverride = {
         NonText = {
           link = "Conceal"; # override NonText with link to Conceal
@@ -546,8 +545,6 @@
           };
         };
       };
-
-      extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
 
       # keymaps
       globals.mapleader = " ";
