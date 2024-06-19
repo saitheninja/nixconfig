@@ -893,20 +893,17 @@
         ''
           -- from conform docs 
           -- make format command
-          local conform_format = function(opts)
+          vim.api.nvim_create_user_command("ConformFormat", function(args)
             local range = nil
-            if opts.count ~= -1 then
-              local end_line = vim.api.nvim_buf_get_lines(0, opts.line2 - 1, opts.line2, true)[1]
+            if args.count ~= -1 then
+              local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
               range = {
-                -- {row, col}
-                start = { opts.line1, 0 },
-                ["end"] = { opts.line2, end_line:len() },
+                start = { args.line1, 0 },
+                ["end"] = { args.line2, end_line:len() },
               }
             end
-            require("conform").format({ async = true, lsp_fallback = true, range = range })
-          end
-
-          vim.api.nvim_create_user_command("ConformFormat", conform_format, { range = true })
+            require("conform").format({ async = true, lsp_format = "fallback", range = range })
+          end, { range = true })
 
           -- from indent-blankline docs
           -- rainbow-delimiters integration
