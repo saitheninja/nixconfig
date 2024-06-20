@@ -285,8 +285,6 @@
             javascript = [ "eslint" ];
             typescript = [ "eslint" ];
             svelte = [ "eslint" ];
-
-            nix = [ "nix" ];
           };
         };
 
