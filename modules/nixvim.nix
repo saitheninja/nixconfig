@@ -815,14 +815,6 @@
           };
         }
         {
-          action = "<Cmd>Telescope current_buffer_tags<CR>";
-          key = "<leader>ft";
-          mode = "n";
-          options = {
-            desc = "Telescope: buffer tags";
-          };
-        }
-        {
           action = "<Cmd>Telescope vim_options<CR>";
           key = "<leader>fv";
           mode = "n";
