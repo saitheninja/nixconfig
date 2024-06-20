@@ -292,6 +292,7 @@
           };
         };
         lspkind.enable = true; # add pictograms for lsp completion items
+        inc-rename.enable = true; # preview rename while typing
 
         # linting
         lint = {
@@ -672,6 +673,16 @@
           ];
           options = {
             desc = "Conform: format selected text/buffer";
+          };
+        }
+
+        # inc-rename
+        {
+          action = ":IncRename ";
+          key = "<leader>rn";
+          mode = "n";
+          options = {
+            desc = "Inc-rename: start rename";
           };
         }
 
