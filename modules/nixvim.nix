@@ -241,6 +241,24 @@
           enable = true;
 
           inlayHints = true;
+          keymaps = {
+            # Mappings for `vim.diagnostic.<action>` functions
+            diagnostic = {
+              "<leader>k" = "goto_prev";
+              "<leader>j" = "goto_next";
+            };
+
+            # Mappings for `vim.lsp.buf.<action>` functions
+            lspBuf = {
+              glK = "hover";
+              gld = "definition";
+              glD = "references";
+              gli = "implementation";
+              glt = "type_definition";
+              glr = "rename";
+            };
+          };
+
           servers = {
             # from vscode-langservers-extracted
             cssls = {
