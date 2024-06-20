@@ -105,15 +105,6 @@
           enable = true;
 
           settings = {
-            # formatting = {
-            #   expandable_indicator = true;
-            #   fields = [
-            #     "kind"
-            #     "abbr"
-            #     "menu"
-            #   ];
-            # };
-
             mapping = {
               # defaults
               "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
@@ -125,11 +116,6 @@
               "<C-Space>" = "cmp.mapping.complete()"; # trigger completions
               "<C-e>" = "cmp.mapping.abort()";
               "<CR>" = "cmp.mapping.confirm({ select = true })";
-
-              # alternatives
-              # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})"; # insert and select modes
-              # "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-              # "<C-y>" = "cmp.mapping.confirm({ select = true })";
             };
 
             snippets.expand = ''
@@ -142,11 +128,8 @@
               { name = "nvim_lsp_signature_help"; }
               { name = "nvim_lsp"; }
               { name = "luasnip"; }
-              # { name = "emoji"; }
-              # { name = "treesitter"; }
-              # { name = "buffer"; }
-              # { name = "path"; }
-              # { name = "nvim_lua"; }
+              { name = "buffer"; }
+              { name = "emoji"; }
             ];
 
             window = {
@@ -162,11 +145,11 @@
             };
           };
         };
-        # cmp-buffer.enable = true; # text within current buffer
+        cmp-buffer.enable = true; # text within current buffer
         # cmp-cmdline.enable = true;
         # cmp-cmdline-history.enable = true;
         # cmp-dap.enable = true;
-        # cmp-emoji.enable = true;
+        cmp-emoji.enable = true;
         cmp-nvim-lsp.enable = true;
         cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
         # cmp-nvim-lua.enable = true; # neovim Lua API
