@@ -44,9 +44,9 @@
         cursorlineopt = "number,line"; # number, line, both, screenline
 
         # folding
-        # suggested by nvim-ufo
         foldenable = true;
         foldcolumn = "auto:9"; # width
+        # suggested by nvim-ufo
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
 
@@ -77,7 +77,7 @@
         sessionoptions = "blank,buffers,curdir,folds,help,tabpages,terminal,winpos,winsize";
 
         # ...rest
-        colorcolumn = "81";
+        colorcolumn = "81"; # display vertical line
         signcolumn = "yes:1"; # text shifts when column gets toggled, so just leave it on
         termguicolors = true; # enable 24-bit colours
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
