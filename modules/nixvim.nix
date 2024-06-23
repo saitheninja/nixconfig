@@ -138,6 +138,7 @@
                 scrolloff = 5;
                 winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
               };
+
               documentation = {
                 border = "single";
                 winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
@@ -493,7 +494,7 @@
           #   end
           # '';
         };
-        trouble.enable = true; # view problems
+        trouble.enable = true; # window for diagnostics, info provided by lsp, etc.
         which-key.enable = true; # show shortcuts
 
         # ...rest
@@ -840,43 +841,51 @@
 
         # trouble
         {
-          action = "<Cmd>TroubleToggle<CR>";
+          action = "<Cmd>Trouble diagnostics toggle<CR>";
           key = "<leader>xx";
           mode = "n";
           options = {
-            desc = "Trouble: toggle diagnostics window";
+            desc = "Trouble: project diagnostics";
           };
         }
         {
-          action = "<Cmd>TroubleToggle workspace_diagnostics<CR>";
-          key = "<leader>xw";
+          action = "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>";
+          key = "<leader>xX";
           mode = "n";
           options = {
-            desc = "Trouble: toggle workspace diagnostics";
+            desc = "Trouble: buffer diagnostics";
           };
         }
         {
-          action = "<Cmd>TroubleToggle document_diagnostics<CR>";
-          key = "<leader>xd";
+          action = "<Cmd>Trouble symbols toggle focus=false<CR>";
+          key = "<leader>xs";
           mode = "n";
           options = {
-            desc = "Trouble: toggle document diagnostics";
+            desc = "Trouble: LSP symbols";
           };
         }
         {
-          action = "<Cmd>TroubleToggle quickfix<CR>";
-          key = "<leader>xq";
-          mode = "n";
-          options = {
-            desc = "Trouble: toggle quickfix window";
-          };
-        }
-        {
-          action = "<Cmd>TroubleToggle loclist<CR>";
+          action = "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>";
           key = "<leader>xl";
           mode = "n";
           options = {
-            desc = "Trouble: toggle locationlist window";
+            desc = "Trouble: LSP definitions/references/...";
+          };
+        }
+        {
+          action = "<Cmd>Trouble loclist toggle<CR>";
+          key = "<leader>xL";
+          mode = "n";
+          options = {
+            desc = "Trouble: location list";
+          };
+        }
+        {
+          action = "<cmd>Trouble qflist toggle<cr>";
+          key = "<leader>xQ";
+          mode = "n";
+          options = {
+            desc = "Trouble: quickfix list";
           };
         }
       ];
