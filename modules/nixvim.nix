@@ -227,11 +227,11 @@
           keymaps = {
             # Mappings for `vim.lsp.buf.<action>` functions
             lspBuf = {
-              gld = "definition";
-              glD = "references";
-              gli = "implementation";
-              glt = "type_definition";
-              glr = "rename";
+              grn = "rename";
+              grr = "references";
+              grd = "definition";
+              gri = "implementation";
+              grt = "type_definition";
             };
           };
 
