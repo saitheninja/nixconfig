@@ -24,8 +24,8 @@
         nixfmt-rfc-style
         stylua
 
-        # lsp
-        # zls # zig # waiting for 0.13 to hit unstable
+        # LSPs
+        # zls # zig # waiting for 0.13 to hit unstable, to match zig version
 
         # telescope
         fd # better find
@@ -193,8 +193,7 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
-
-            # zig = [ "zig fmt" ];
+            zig = [ "zig fmt" ];
           };
 
           notifyOnError = true;
