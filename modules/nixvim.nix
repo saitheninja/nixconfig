@@ -130,6 +130,7 @@
             sources = [
               { name = "nvim_lsp_signature_help"; }
               { name = "nvim_lsp"; }
+              { name = "nvim_lua"; }
               { name = "luasnip"; }
               { name = "buffer"; }
               { name = "emoji"; }
@@ -156,7 +157,7 @@
         cmp-emoji.enable = true;
         cmp-nvim-lsp.enable = true;
         cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
-        # cmp-nvim-lua.enable = true; # neovim Lua API
+        cmp-nvim-lua.enable = true; # neovim Lua API
         # cmp-path.enable = true; # file system paths
         # cmp-treesitter.enable = true;
         cmp_luasnip.enable = true;
