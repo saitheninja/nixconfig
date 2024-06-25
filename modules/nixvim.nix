@@ -11,11 +11,13 @@
   };
 
   config = lib.mkIf config.configNixvim.enable {
+    # make default editor
     environment.variables.EDITOR = "nvim";
 
     programs.nixvim = {
       enable = true;
 
+      # extra packages to install with nix
       extraPackages = with pkgs; [
         # neovim
         wl-clipboard # wayland clipboard utils
@@ -34,9 +36,11 @@
       ];
       extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
 
+      # config options
       clipboard = {
         register = "unnamedplus"; # use system clipboard as default register
-        providers.wl-copy.enable = true; # use wayland cli clipboard utils
+        providers.wl-copy.enable = true; # use wl-clipboard CLI utils
+      };
       globals = {
         have_nerd_font = true; # Cascadia Code NF
         mapleader = " "; # set leader key to spacebar
@@ -86,6 +90,7 @@
         virtualedit = "block"; # when in visual block mode, the cursor can move freely in columns
       };
 
+      # colours
       colorschemes = {
         cyberdream = {
           enable = true;
@@ -543,8 +548,6 @@
         };
       };
 
-      # keymaps
-      globals.mapleader = " ";
       keymaps = [
         # :h <Cmd>
         # <Cmd> does not change modes
