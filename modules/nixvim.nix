@@ -37,6 +37,9 @@
       clipboard = {
         register = "unnamedplus"; # use system clipboard as default register
         providers.wl-copy.enable = true; # use wayland cli clipboard utils
+      globals = {
+        have_nerd_font = true; # Cascadia Code NF
+        mapleader = " "; # set leader key to spacebar
       };
       opts = {
         # cursor
