@@ -953,6 +953,25 @@
           hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         '';
 
+      autoCmd = [
+        {
+          callback.__raw = # lua
+            ''
+              function()
+                vim.highlight.on_yank()
+              end
+            '';
+          desc = "Highlight when yanking text";
+          event = "TextYankPost";
+          group = "highlight_yank";
+        }
+      ];
+      autoGroups = {
+        highlight_yank = {
+          clear = true;
+        };
+      };
+
       userCommands = {
         # from conform docs 
         ConformFormatBuffer = {
