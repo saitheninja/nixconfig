@@ -19,49 +19,12 @@
 
   hardware.bluetooth.enable = true;
 
-  # prefer programs to environment.systemPackages
-  programs = {
-    # direnv = {
-    #   enable = true;
-    #   loadInNixShell = true;
-    #   nix-direnv.enable = true;
-    # };
-
-    starship.enable = true; # automatically pretty terminal prompt
-    usbtop.enable = true;
-    wavemon.enable = true;
-    wireshark.enable = true;
-  };
-
   virtualisation.docker.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
-  environment.shellAliases = {
-    cat = "bat";
-    ls = "eza --icons=always";
-  };
-
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    # terminal
-    bat # better cat
-    btop # better htop
-    du-dust # better du
-    eza # better ls
-    fastfetch # maintained replacement for neofetch
-    lazygit # git client
-    # hollywood # fun
-    # systeroid # better sysctl
-    whois # DNS lookup
-    zathura # terminal pdf viewer
-    zellij # terminal multiplexer
-
-    # nixos deps
-    curl
-    wget
-    vim
-
     # desktop
     piper # mouse controls
     thunderbird

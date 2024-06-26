@@ -9,10 +9,10 @@
     ./locale-za.nix
     ./nix-config.nix
     ./nixvim.nix
+    ./terminal.nix
     ./selected-fonts.nix
     ./sound.nix
     ./users-sai.nix
-    ./zsh.nix
   ];
 
   configBrowsers.enable = lib.mkDefault true;
@@ -24,7 +24,7 @@
   configNixvim.enable = lib.mkDefault true;
   configSelectedFonts.enable = lib.mkDefault true;
   configSound.enable = lib.mkDefault true;
+  configTerminal.enable = lib.mkDefault true;
   configUsersSai.enable = lib.mkDefault true;
-  configZsh.enable = lib.mkDefault true;
 }
 
