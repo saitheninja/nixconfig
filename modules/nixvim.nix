@@ -307,21 +307,12 @@
           enable = true; # show indent guides
 
           settings = {
-            indent = {
-              char = "⎸";
-            };
-
             scope = {
-              enabled = true; # underline top and bottom of scope
+              enabled = true; # highlight indent and underline top and bottom of scope
 
-              # include.node_type = {
-              #   nix = [ "expression" "binding" ];
-              #   "*"  = ["*"];
-              # };
-
-              show_end = false;
+              show_end = true;
               show_exact_scope = true;
-              show_start = false;
+              show_start = true;
             };
           };
         };
@@ -621,22 +612,6 @@
         }
 
         # auto-session
-        # {
-        #   action = "<Cmd>SessionSave<CR>";
-        #   key = "<leader>sw";
-        #   mode = "n";
-        #   options = {
-        #     desc = "auto-session: write session";
-        #   };
-        # }
-        # {
-        #   action = "<Cmd>SessionRestore<CR>";
-        #   key = "<leader>sr";
-        #   mode = "n";
-        #   options = {
-        #     desc = "auto-session: restore session";
-        #   };
-        # }
         {
           action = "<Cmd>Autosession search<CR>";
           key = "<leader>ss";
@@ -927,8 +902,8 @@
 
           -- from indent-blankline docs
           -- rainbow-delimiters integration
-          -- `:Telescope highlights` to preview colours
-          local highlight = {
+          -- "Setting a list of highlights for scope is currently broken" https://github.com/lukas-reineke/indent-blankline.nvim/issues/893#issuecomment-2167822070
+          require("ibl").setup { scope = { highlight = {
             "RainbowDelimiterRed",
             "RainbowDelimiterYellow",
             "RainbowDelimiterBlue",
@@ -936,20 +911,8 @@
             "RainbowDelimiterGreen",
             "RainbowDelimiterViolet",
             "RainbowDelimiterCyan",
-          }
-          local hooks = require "ibl.hooks"
-          -- create the highlight groups in the highlight setup hook, so that they are reset every time the colorscheme changes
-          hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-            vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
-            vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
-          end)
-          vim.g.rainbow_delimiters = { highlight = highlight }
-          require("ibl").setup { scope = { highlight = highlight } }
+          } } }
+          local hooks = require("ibl.hooks")
           hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         '';
 
