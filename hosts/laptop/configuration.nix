@@ -77,8 +77,7 @@
     # image editors
     inkscape # vectors
     gimp # photoshop
-    #krita # drawing
-    #aseprite # pixel art # licence requires building from source
+    krita # drawing
     #pixelorama # godot pixel art
 
     # music
@@ -86,8 +85,6 @@
     bespokesynth # live daw
     #guitarix
     lmms # daw
-    #surge-XT
-    #vcv-rack
     #cardinal # vcv-rack as a fully open source plugin
     #zrythm
 

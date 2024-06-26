@@ -37,7 +37,6 @@
     # dev
     docker
     docker-compose
-    gh # GitHub CLI
     vscode-fhs
 
     # game engines
