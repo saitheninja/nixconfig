@@ -2,7 +2,7 @@
 
 {
   options = {
-    configNixConfig.enable = lib.mkEnableOption "Enable flakes, store garbage collection, store optimisation.";
+    configNixConfig.enable = lib.mkEnableOption "Enable flakes, store garbage collection, store optimisation, allow unfree packages.";
   };
 
   config = lib.mkIf config.configNixConfig.enable {
@@ -25,6 +25,8 @@
         ];
       };
     };
+
+    nixpkgs.config.allowUnfree = true;
 
     # required for flakes
     programs.git.enable = true;
