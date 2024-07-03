@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   options = {
@@ -7,6 +7,9 @@
 
   config = lib.mkIf config.configKdePlasma6.enable {
     programs.partition-manager.enable = true; # KDE partition manager
+    environment.systemPackages = with pkgs; [
+      wayland-utils # view graphics details in Info Center
+    ];
 
     services = {
       desktopManager.plasma6.enable = true;
