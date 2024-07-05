@@ -271,7 +271,7 @@
               installCargo = false;
               installRustc = false;
             };
-            typos-lsp.enable = true;
+            # typos-lsp.enable = true;
             # yamlls.enable = true;
             # zls.enable = true;
           };
