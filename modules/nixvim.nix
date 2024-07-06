@@ -574,7 +574,7 @@
         # <Cmd> does not change modes
         # command is not echoed so no need for <silent>
 
-        # neovim settings
+        # Neovim settings
         {
           action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
           key = "<leader>nw";
@@ -591,7 +591,7 @@
             desc = "Neovim: toggle lsp inlay hint";
           };
         }
-        # neovim buffers
+        # Neovim buffers
         {
           action = "<Cmd>bnext<CR>";
           key = "<leader>bn";
@@ -638,6 +638,15 @@
           mode = "n";
           options = {
             desc = "Neovim: buffer delete";
+          };
+        }
+        # Neovim terminal
+        {
+          action = "<C-\\><C-n>";
+          key = "<Esc><Esc>";
+          mode = "t";
+          options = {
+            desc = "Neovim: exit Terminal mode";
           };
         }
 
