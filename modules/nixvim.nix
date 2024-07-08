@@ -114,7 +114,6 @@
 
           settings = {
             mapping = {
-              # defaults
               "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
               "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
 
@@ -123,14 +122,39 @@
 
               "<C-Space>" = "cmp.mapping.complete()"; # trigger completions
               "<C-e>" = "cmp.mapping.abort()";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<C-y>" = "cmp.mapping.confirm({ select = true })"; # set `select = false` to only confirm explicitly selected items
+
+              # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item())";
+              # "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item())";
+              # "<CR>" = "cmp.mapping.confirm({ select = true })";
+
+              # from kickstart.nvim
+              # <C-l> move to the right of each of the expansion locations
+              # <C-h> is similar, except moving backwards
+              "<C-l>" = # lua
+                ''
+                  cmp.mapping(function()
+                    if luasnip.expand_or_locally_jumpable() then
+                      luasnip.expand_or_jump()
+                    end
+                  end, { 'i', 's' })
+                '';
+              "<C-h>" = # lua
+                ''
+                  cmp.mapping(function()
+                    if luasnip.locally_jumpable(-1) then
+                      luasnip.jump(-1)
+                    end
+                  end, { 'i', 's' })
+                '';
             };
 
-            snippets.expand = ''
-              function(args)
-                require('luasnip').lsp_expand(args.body)
-              end
-            '';
+            snippets.expand = # lua
+              ''
+                function(args)
+                  require('luasnip').lsp_expand(args.body)
+                end
+              '';
 
             sources = [
               { name = "nvim_lsp_signature_help"; }
@@ -388,12 +412,11 @@
               { name = "searchcount"; }
             ];
             lualine_x = [
-              { 
+              {
                 name.__raw = # lua
                   ''
                     function ()
                       local current_buffer_nr = vim.api.nvim_get_current_buf()
-
                       local buf_clients = vim.lsp.get_clients({bufnr = current_buffer_nr})
 
                       if next(buf_clients) == nil then
@@ -407,7 +430,6 @@
                       end
 
                       local clients_string = table.concat(buf_client_names, ", ")
-
                       return clients_string
                     end
                   '';
