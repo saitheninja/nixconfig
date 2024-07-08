@@ -416,21 +416,17 @@
                 name.__raw = # lua
                   ''
                     function ()
-                      local current_buffer_nr = vim.api.nvim_get_current_buf()
-                      local buf_clients = vim.lsp.get_clients({bufnr = current_buffer_nr})
-
+                      local buf_clients = vim.lsp.get_clients({bufnr = 0}) -- 0 means this buffer
                       if next(buf_clients) == nil then
                         return "No LSPs"
                       end
 
                       local buf_client_names = {}
-
                       for _, client in pairs(buf_clients) do
                         table.insert(buf_client_names, client.name)
                       end
 
-                      local clients_string = table.concat(buf_client_names, ", ")
-                      return clients_string
+                      return table.concat(buf_client_names, ", ")
                     end
                   '';
                 extraConfig = {
