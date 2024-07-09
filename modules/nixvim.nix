@@ -259,12 +259,28 @@
           inlayHints = true;
           keymaps = {
             # Mappings for `vim.lsp.buf.<action>` functions
+            # https://github.com/nix-community/nixvim/issues/1157
             lspBuf = {
-              grn = "rename";
-              grr = "references";
-              grd = "definition";
-              gri = "implementation";
-              grt = "type_definition";
+              grn = {
+                action = "rename";
+                desc = "LSP rename";
+              };
+              grr = {
+                action = "references";
+                desc = "LSP references";
+              };
+              grd = {
+                action = "definition";
+                desc = "LSP definition";
+              };
+              gri = {
+                action = "implementation";
+                desc = "LSP implementation";
+              };
+              grt = {
+                action = "type_definition";
+                desc = "LSP type_definition";
+              };
             };
           };
 
@@ -660,7 +676,7 @@
         }
         # Neovim terminal
         {
-          action = "<C-\\><C-n>";
+          action = "<C-\\><C-n>"; # have to escape backslash
           key = "<Esc><Esc>";
           mode = "t";
           options = {
@@ -732,6 +748,14 @@
         # nvim-ufo
         # built in commands change foldlevel, ufo commands don't
         {
+          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
+          key = "<leader>zr";
+          mode = "n";
+          options = {
+            desc = "UFO: open folds one level";
+          };
+        }
+        {
           action = "<Cmd>Ufo openAllFolds<CR>";
           key = "<leader>zR";
           mode = "n";
@@ -740,27 +764,19 @@
           };
         }
         {
+          action = "<Cmd>Ufo closeFoldsWith<CR>";
+          key = "<leader>zm";
+          mode = "n";
+          options = {
+            desc = "UFO: close one level of folds";
+          };
+        }
+        {
           action = "<Cmd>Ufo closeAllFolds<CR>";
           key = "<leader>zM";
           mode = "n";
           options = {
             desc = "UFO: close all folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
-          key = "<leader>zr";
-          mode = "n";
-          options = {
-            desc = "UFO: open folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo closeFoldsWith<CR>";
-          key = "<leader>zm";
-          mode = "n";
-          options = {
-            desc = "UFO: close folds";
           };
         }
 
