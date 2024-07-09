@@ -226,7 +226,7 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
-            zig = [ "zig fmt" ];
+            zig = [ "zig" ];
           };
 
           notifyOnError = true;
