@@ -14,6 +14,13 @@
     environment.shellAliases = {
       cat = "bat";
       ls = "eza --icons=always";
+
+      # shows diffs of all profiles
+      nix-profiles-diff-closures = "nix profile diff-closures --profile /nix/var/nix/profiles/system";
+      # diff booted and current, so only useful after an update
+      nix-store-diff-closures-booted-current = "nix store diff-closures /run/booted-system /run/current-system";
+      # example of comparing specific profiles
+      nix-store-diff-closures-profiles = "nix store diff-closures /nix/var/nix/profiles/system-655-link /nix/var/nix/profiles/system-658-link";
     };
 
     # prefer programs to environment.systemPackages because it has options configured
