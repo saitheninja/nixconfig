@@ -22,7 +22,7 @@
         "wireshark"
       ];
       # packages = with pkgs; [ ]; # user specific packages
-      shell = pkgs.zsh; # path to user shell
+      shell = pkgs.zsh;
     };
 
   };

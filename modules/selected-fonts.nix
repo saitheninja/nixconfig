@@ -27,7 +27,6 @@
       # specific nerd fonts because the package is huge
       (nerdfonts.override {
         fonts = [
-          # "CascadiaCode"
           "FiraCode"
           "Iosevka"
         ];

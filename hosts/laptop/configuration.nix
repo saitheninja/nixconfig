@@ -79,7 +79,6 @@
     inkscape # vectors
     gimp # photoshop
     krita # drawing
-    #pixelorama # godot pixel art
 
     # music
     ardour # daw
