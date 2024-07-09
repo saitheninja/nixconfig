@@ -26,8 +26,9 @@
   environment.systemPackages = with pkgs; [
     # desktop
     piper # mouse controls
-    thunderbird
-    vlc
+    thunderbird # email
+    vlc # video player
+    zoom-us # ugh
 
     # dev
     docker
