@@ -90,7 +90,7 @@
     #zrythm
 
     # photo
-    #darktable # raw editor
+    darktable # raw editor
     #vkdt-wayland # darktable fork
 
     # video
