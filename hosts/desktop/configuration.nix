@@ -57,6 +57,8 @@
     cardinal # vcv-rack as a fully open source plugin
     carla # plugin host
     dragonfly-reverb # reverb plugins
+    faust # Functional Audio Stream is a functional programming language for sound synthesis and audio processing
+    faustlive # prototyping environment for the Faust language
     guitarix # virtual guitar amp (standalone)
     # helm # unmaintained predecessor to vital synth
     infamousPlugins # LV2 plugins
