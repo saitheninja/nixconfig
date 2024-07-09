@@ -362,18 +362,20 @@
           enable = true; # parse text as Abstract Syntax Tree (AST) for better understanding
 
           folding = true;
-          incrementalSelection = {
-            enable = true;
-
-            # keymaps = {
-            #   initSelection = "gnn";
-            #   nodeDecremental = "grm";
-            #   nodeIncremental = "grn";
-            #   scopeIncremental = "grc";
-            # };
-          };
-          indent = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
+          settings = {
+            incremental_selection = {
+              enable = false;
+
+              # keymaps = {
+              #   initSelection = "gnn";
+              #   nodeDecremental = "grm";
+              #   nodeIncremental = "grn";
+              #   scopeIncremental = "grc";
+              # };
+            };
+            indent.enable = true;
+          };
         };
         treesitter-context = {
           enable = true; # sticky scope
