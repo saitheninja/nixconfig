@@ -364,6 +364,8 @@
 
           folding = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
+          nixGrammars = true; # default true
+          nodejsPackage = null; # required to build grammars if you are not using `nixGrammars`
           settings = {
             incremental_selection = {
               enable = false;
