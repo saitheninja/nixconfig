@@ -58,8 +58,9 @@
         foldlevelstart = 99; # fold depth open when a new buffer is opened
 
         # indents
-        autoindent = true; # copy indent from current line when starting a new line
-        smartindent = true; # smart autoindent when starting a new line
+        #autoindent = true; # default on; copy indent from current line when starting a new line
+        #smartindent = false; # default off; smart autoindent when starting a new line; removes all indents when typing #
+        #cindent = true; # default off; automatic C program indenting
         expandtab = true; # expand tabs to spaces
         shiftwidth = 2; # number of spaces to use for each step of indent
         tabstop = 2; # number of spaces that a tab counts for
