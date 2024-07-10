@@ -367,13 +367,14 @@
           nixGrammars = true; # default true
           nodejsPackage = null; # required to build grammars if you are not using `nixGrammars`
           settings = {
+            highlight.enable = true;
             incremental_selection = {
               enable = false;
 
               # keymaps = {
               #   initSelection = "gnn";
               #   nodeDecremental = "grm";
-              #   nodeIncremental = "grn";
+              #   nodeIncremental = "grn"; # conflicts with LSP rename
               #   scopeIncremental = "grc";
               # };
             };
