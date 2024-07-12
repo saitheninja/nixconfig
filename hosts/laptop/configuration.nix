@@ -94,6 +94,8 @@
 
     # video
     obs-studio # screen capture
+    webcamoid # webcam utils
+    v4l-utils
 
     # 3D
     #blender
