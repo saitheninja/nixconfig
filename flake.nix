@@ -11,7 +11,17 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim-unstable = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        # not using these inputs
+        devshell.follows = "";
+        flake-compat.follows = "";
+        flake-parts.follows = "";
+        git-hooks.follows = "";
+        home-manager.follows = "";
+        nix-darwin.follows = "";
+        treefmt-nix.follows = "";
+      };
     };
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
