@@ -7,14 +7,19 @@
   inputs = {
     nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
+    };
     nixvim-unstable = {
       url = "github:nix-community/nixvim";
       inputs = {
         nixpkgs.follows = "nixpkgs-unstable";
+        flake-parts.follows = "flake-parts";
         # not using these inputs
         devshell.follows = "";
         flake-compat.follows = "";
-        flake-parts.follows = "";
         git-hooks.follows = "";
         home-manager.follows = "";
         nix-darwin.follows = "";
