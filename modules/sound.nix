@@ -6,7 +6,6 @@
   };
 
   config = lib.mkIf config.configSound.enable {
-    sound.enable = false; # ALSA sound
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
