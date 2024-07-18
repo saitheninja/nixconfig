@@ -176,17 +176,17 @@
             };
           };
         };
-        cmp-buffer.enable = true; # text within current buffer
+        # cmp-buffer.enable = true; # text within current buffer
         # cmp-cmdline.enable = true;
         # cmp-cmdline-history.enable = true;
         # cmp-dap.enable = true;
-        cmp-emoji.enable = true;
-        cmp-nvim-lsp.enable = true;
-        cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
-        cmp-nvim-lua.enable = true; # neovim Lua API
+        # cmp-emoji.enable = true;
+        # cmp-nvim-lsp.enable = true;
+        # cmp-nvim-lsp-signature-help.enable = true; # display function signature with the current parameter emphasized
+        # cmp-nvim-lua.enable = true; # neovim Lua API
         # cmp-path.enable = true; # file system paths
         # cmp-treesitter.enable = true;
-        cmp_luasnip.enable = true;
+        # cmp_luasnip.enable = true;
         # snippets
         friendly-snippets.enable = true;
         luasnip.enable = true; # snippet engine - required for completions
