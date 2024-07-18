@@ -36,15 +36,16 @@
       ];
       extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
 
-      # config options
       clipboard = {
         register = "unnamedplus"; # use system clipboard as default register
         providers.wl-copy.enable = true; # use wl-clipboard CLI utils
       };
+
       globals = {
         have_nerd_font = true; # Cascadia Code NF
         mapleader = " "; # set leader key to spacebar
       };
+
       opts = {
         # cursor
         cursorline = true; # highlight cursor line
@@ -156,7 +157,7 @@
             sources = [
               { name = "nvim_lsp_signature_help"; } # display function signature, with current parameter emphasized
               { name = "nvim_lsp"; }
-              { name = "nvim_lua"; } # neovim Lua API
+              { name = "nvim_lua"; } # neovim Lua API, only works in lua bits
               { name = "luasnip"; }
               { name = "buffer"; }
               { name = "emoji"; }
@@ -164,13 +165,13 @@
 
             window = {
               completion = {
-                border = "single";
+                border = "double";
                 scrolloff = 5;
                 winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
               };
 
               documentation = {
-                border = "single";
+                border = "double";
                 winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,Search:None";
               };
             };
@@ -302,7 +303,23 @@
             # zls.enable = true;
           };
         };
-        lspkind.enable = true; # add pictograms for lsp completion items
+        lspkind = {
+          enable = true; # add pictograms for LSP completion items
+          cmp = {
+            enable = true; # format nvim-cmp menu
+
+            menu = {
+              nvim_lsp_signature_help = "[LSP_help]";
+              nvim_lsp = "[LSP]";
+              nvim_lua = "[Lua]";
+              luasnip = "[LuaSnip]";
+              buffer = "[Buffer]";
+              emoji = "[Emoji]";
+            };
+          };
+          mode = "symbol_text"; # "text", "text_symbol", "symbol_text", "symbol"
+          preset = "default"; # "default" requires nerd font, "codicons" requires vscode-codicons font
+        };
         inc-rename.enable = true; # preview rename while typing
 
         # linting
