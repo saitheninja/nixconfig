@@ -114,17 +114,16 @@
             mapping = {
               "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
               "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
+              # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item())";
+              # "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item())";
 
               "<C-b>" = "cmp.mapping.scroll_docs(-4)";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
 
               "<C-Space>" = "cmp.mapping.complete()"; # trigger completions
               "<C-e>" = "cmp.mapping.abort()";
-              "<C-y>" = "cmp.mapping.confirm({ select = true })"; # set `select = false` to only confirm explicitly selected items
-
-              # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item())";
-              # "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item())";
-              # "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<C-y>" = "cmp.mapping.confirm({ select = true })";
+              "<CR>" = "cmp.mapping.confirm({ select = false })"; # set `select = false` to only confirm explicitly selected items
 
               # from kickstart.nvim
               # <C-l> move to the right of each of the expansion locations
