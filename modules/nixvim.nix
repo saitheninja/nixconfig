@@ -213,7 +213,7 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
-            zig = [ "zig" ];
+            # zig = [ "zig" ];
           };
 
           notifyOnError = true;
