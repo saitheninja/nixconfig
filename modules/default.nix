@@ -13,6 +13,7 @@
     ./selected-fonts.nix
     ./sound.nix
     ./users-sai.nix
+    ./virtualisation.nix
   ];
 
   configBrowsers.enable = lib.mkDefault true;
@@ -26,5 +27,6 @@
   configSound.enable = lib.mkDefault true;
   configTerminal.enable = lib.mkDefault true;
   configUsersSai.enable = lib.mkDefault true;
+  configVirtualisation.enable = lib.mkDefault true;
 }
 

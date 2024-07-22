@@ -7,7 +7,7 @@
 
 {
   options = {
-    configUsersSai.enable = lib.mkEnableOption "Enable user sai.";
+    configUsersSai.enable = lib.mkEnableOption "Enable user `sai`.";
   };
 
   config = lib.mkIf config.configUsersSai.enable {
@@ -17,8 +17,9 @@
       description = "sai";
       extraGroups = [
         "docker"
+        "libvirtd" # VMs
         "networkmanager"
-        "wheel" # allow sudo
+        "wheel" # allow `sudo`
         "wireshark"
       ];
       # packages = with pkgs; [ ]; # user specific packages

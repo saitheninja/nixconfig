@@ -19,8 +19,6 @@
 
   hardware.bluetooth.enable = true;
 
-  virtualisation.docker.enable = true;
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
   environment.systemPackages = with pkgs; [
@@ -33,7 +31,7 @@
     # dev
     docker
     docker-compose
-    vscode-fhs
+    vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
     #vscode-with-extensions.override {
     #  vscodeExtensions = with vscode-extensions; [
     # asvetliakov.vscode-neovim
