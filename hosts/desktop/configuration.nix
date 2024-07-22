@@ -61,9 +61,11 @@
     faustlive # prototyping environment for the Faust language
     guitarix # virtual guitar amp (standalone)
     # helm # unmaintained predecessor to vital synth
+    helvum #  GTK patchbay for pipewire
     infamousPlugins # LV2 plugins
     lmms # daw
     odin2 # synth
+    qpwgraph # Qt graph manager for PipeWire, similar to QjackCtl
     sorcer # dubstep synth
     surge-XT # synth
     supercollider # programming language
