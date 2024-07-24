@@ -6,11 +6,10 @@
 }:
 
 {
-  options = {
-    configNixvim.enable = {
-      lib.mkEnableOption = "Add Neovim, configured with NixVim.";
-      lib.mkDefault = true;
-    };
+  options.configNixvim.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add Neovim, configured with NixVim.";
   };
 
   config = lib.mkIf config.configNixvim.enable {
