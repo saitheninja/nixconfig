@@ -1,8 +1,10 @@
 { config, lib, ... }:
 
 {
-  options = {
-    configLocaleZa.enable = lib.mkEnableOption "Set locale to South Africa.";
+  options.configLocaleZa.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Set locale to South Africa.";
   };
 
   config = lib.mkIf config.configLocaleZa.enable {

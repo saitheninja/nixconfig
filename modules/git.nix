@@ -6,8 +6,10 @@
 }:
 
 {
-  options = {
-    configGit.enable = lib.mkEnableOption "Add my git config.";
+  options.configGit.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add my git config.";
   };
 
   config = lib.mkIf config.configGit.enable {

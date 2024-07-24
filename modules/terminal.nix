@@ -6,8 +6,10 @@
 }:
 
 {
-  options = {
-    configTerminal.enable = lib.mkEnableOption "Install zsh, configure aliases, install terminal apps.";
+  options.configTerminal.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add Zsh, configure aliases, add terminal apps.";
   };
 
   config = lib.mkIf config.configTerminal.enable {

@@ -1,8 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    configKdePlasma6.enable = lib.mkEnableOption "Set up KDE Plasma 6 as desktop environment.";
+  options.configKdePlasma6.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Set KDE Plasma 6 as desktop environment.";
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {

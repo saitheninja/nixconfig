@@ -6,8 +6,10 @@
 }:
 
 {
-  options = {
-    configFilesystemDrivers.enable = lib.mkEnableOption "Install extra filesystem drivers.";
+  options.configFilesystemDrivers.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add filesystem drivers for exFAT, NTFS.";
   };
 
   config = lib.mkIf config.configFilesystemDrivers.enable {

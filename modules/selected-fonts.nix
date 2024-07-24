@@ -1,8 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
-  options = {
-    configSelectedFonts.enable = lib.mkEnableOption "Install my hand-selected fonts.";
+  options.configSelectedFonts.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add some hand-selected fonts.";
   };
 
   config = lib.mkIf config.configSelectedFonts.enable {

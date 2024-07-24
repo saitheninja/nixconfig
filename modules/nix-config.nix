@@ -1,8 +1,10 @@
 { config, lib, ... }:
 
 {
-  options = {
-    configNixConfig.enable = lib.mkEnableOption "Enable flakes, store garbage collection, store optimisation, allow unfree packages.";
+  options.configNixConfig.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable flakes, allow unfree packages, set store garbage collection, enable store optimisation.";
   };
 
   config = lib.mkIf config.configNixConfig.enable {

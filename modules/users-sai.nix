@@ -6,8 +6,10 @@
 }:
 
 {
-  options = {
-    configUsersSai.enable = lib.mkEnableOption "Enable user `sai`.";
+  options.configUsersSai.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add user `sai`.";
   };
 
   config = lib.mkIf config.configUsersSai.enable {

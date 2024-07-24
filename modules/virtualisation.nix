@@ -1,8 +1,10 @@
 { config, lib, ... }:
 
 {
-  options = {
-    configVirtualisation.enable = lib.mkEnableOption "Set up docker, VMs.";
+  options.configVirtualisation.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Set up Docker, VMs.";
   };
 
   config = lib.mkIf config.configVirtualisation.enable {

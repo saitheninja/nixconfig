@@ -1,15 +1,17 @@
 { config, lib, ... }:
 
 {
-  options = {
-    configSound.enable = lib.mkEnableOption "Enable sound with pipewire.";
+  options.configSound.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable Pipewire, add some latency optimisations.";
   };
 
   config = lib.mkIf config.configSound.enable {
     boot.kernel.sysctl = {
-      # lower means use ram more, swap to disk less
+      # lower number means use ram more, swap to disk less
       # helps with audio latency
-      # default = 60
+      # min 0, max 200, default 60
       "vm.swappiness" = 10;
     };
 

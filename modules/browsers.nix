@@ -6,8 +6,10 @@
 }:
 
 {
-  options = {
-    configBrowsers.enable = lib.mkEnableOption "Install web browsers.";
+  options.configBrowsers.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Add Chrome, Chromium, Firefox.";
   };
 
   config = lib.mkIf config.configBrowsers.enable {
