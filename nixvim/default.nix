@@ -7,7 +7,9 @@
 
 {
   options = {
-    configNixvim.enable = lib.mkEnableOption "Add Neovim, configured with nixvim.";
+    configNixvim.enable = {
+      lib.mkEnableOption "Add Neovim, configured with nixvim.";
+      lib.mkDefault = true;
   };
 
   config = lib.mkIf config.configNixvim.enable {

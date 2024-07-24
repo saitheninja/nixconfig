@@ -6,9 +6,9 @@
 
   inputs = {
     nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    flake-parts = {
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts-unstable = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
     };
@@ -16,7 +16,7 @@
       url = "github:nix-community/nixvim";
       inputs = {
         nixpkgs.follows = "nixpkgs-unstable";
-        flake-parts.follows = "flake-parts";
+        flake-parts.follows = "flake-parts-unstable";
         # not using these inputs
         devshell.follows = "";
         flake-compat.follows = "";
@@ -26,6 +26,7 @@
         treefmt-nix.follows = "";
       };
     };
+
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
@@ -56,6 +57,7 @@
           modules = [
             ./hosts/laptop/configuration.nix
             ./modules
+            ./nixvim
             nixvim-unstable.nixosModules.nixvim
           ];
         };
@@ -87,7 +89,6 @@
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules
-            #({...}:{options.enableNixvim = false;})
           ];
         };
       };

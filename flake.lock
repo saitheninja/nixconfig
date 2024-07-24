@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "flake-parts": {
+    "flake-parts-unstable": {
       "inputs": {
         "nixpkgs-lib": [
           "nixpkgs-unstable"
@@ -57,7 +57,7 @@
         "devshell": [],
         "flake-compat": [],
         "flake-parts": [
-          "flake-parts"
+          "flake-parts-unstable"
         ],
         "git-hooks": [],
         "home-manager": [],
@@ -83,7 +83,7 @@
     },
     "root": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts-unstable": "flake-parts-unstable",
         "nixpkgs-24-05": "nixpkgs-24-05",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim-unstable": "nixvim-unstable"
