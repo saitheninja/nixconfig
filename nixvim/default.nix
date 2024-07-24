@@ -28,6 +28,9 @@
         nixfmt-rfc-style
         stylua
 
+        # DAP
+        vscode-js-debug # Node debugging
+
         # LSPs
         # zls # zig # waiting for 0.13 to hit unstable, to match zig version
 
@@ -186,6 +189,25 @@
         # debugging
         dap = {
           enable = true; # debugger
+
+          #adapters = {
+          #  servers = {
+          #    pwa-node = {};
+          #  };
+          #}; 
+
+          #configurations = {
+          #  javascript = {
+          #    name = "js-launch";
+          #    request = "launch"; # attach or launch
+          #    type = "pwa-node"; # adapter name
+          #  };
+          #  typescript = {
+          #    name = "ts-launch";
+          #    request = "launch";
+          #    type = "pwa-node";
+          #  };
+          #};
 
           extensions = {
             dap-ui.enable = true;
@@ -987,6 +1009,11 @@
           } } }
           local hooks = require("ibl.hooks")
           hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+          -- dap setup
+          require("dap-vscode-js").setup({ 
+            adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+          })
         '';
 
       autoCmd = [
