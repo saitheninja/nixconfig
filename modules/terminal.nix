@@ -59,7 +59,6 @@
       du-dust # better du
       eza # better ls
       fastfetch # maintained replacement for neofetch
-      lazygit # git client
       # hollywood # fun
       # systeroid # better sysctl
       whois # DNS lookup

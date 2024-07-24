@@ -26,6 +26,7 @@
 
     environment.systemPackages = with pkgs; [
       gh # GitHub CLI
+      lazygit # git client
     ];
   };
 }
