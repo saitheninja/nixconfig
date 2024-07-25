@@ -13,9 +13,12 @@
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {
-    programs.partition-manager.enable = true; # KDE partition manager
+    # programs.partition-manager.enable = true; # KDE partition manager from `libsForQt5`
+
     environment.systemPackages = with pkgs; [
       wayland-utils # view graphics details in Info Center
+
+      kdePackages.partitionmanager
     ];
 
     services = {
