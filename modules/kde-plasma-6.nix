@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options.configKdePlasma6.enable = lib.mkOption {
@@ -17,27 +22,38 @@
       desktopManager.plasma6.enable = true;
 
       displayManager = {
-        sddm.enable = true;
-        sddm.wayland.enable = true;
+        defaultSession = "plasma"; # wayland: "plasma", X11: "plasmax11"
+        sddm = {
+          enable = true;
+          wayland.enable = true;
+        };
       };
 
-      # Enable CUPS to print documents
+      # Enable CUPS
       printing.enable = true;
 
       xserver = {
-        # Enable the X11 windowing system
+        # Enable X11 windowing system
         enable = true;
 
-        # Enable touchpad support (enabled default by in most desktopManager)
+        # Enable touchpad support (enabled by default in most desktopManagers)
         # libinput.enable = true;
 
-        # Configure keymap in X11
+        # Configure keymaps
         xkb = {
           layout = "us";
           variant = "";
           options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
         };
       };
+    };
+
+    xdg.portal = {
+      enable = true;
+      # Sets environment variable `NIXOS_XDG_OPEN_USE_PORTAL` to `1`.
+      # This will make `xdg-open` use the portal to open programs, which resolves bugs 
+      # involving programs opening inside FHS envs or with unexpected env vars set from wrappers.
+      xdgOpenUsePortal = true;
     };
   };
 }
