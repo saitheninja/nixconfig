@@ -13,12 +13,17 @@
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {
-    # programs.partition-manager.enable = true; # KDE partition manager from `libsForQt5`
-
     environment.systemPackages = with pkgs; [
       wayland-utils # view graphics details in Info Center
 
-      kdePackages.partitionmanager
+      kdePackages.filelight # visualise disk space usage
+      kdePackages.kdeconnect-kde # multi-platform app to allow devices to communicate
+      #kdePackages.kdenlive # video editor
+      kdePackages.kdialog # show nice dialog boxes from shell scripts
+      kdePackages.kjournald # provide API and `kjournaldbrowser` for interacting with systemd-journald
+      kdePackages.kontrast # contrast checker
+      kdePackages.partitionmanager # manage disk devices, partitions and file systems
+      kdePackages.plasma-disks # monitor S.M.A.R.T. capable devices
     ];
 
     services = {
