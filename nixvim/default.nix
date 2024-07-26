@@ -74,6 +74,21 @@
         number = true;
         relativenumber = true;
 
+        # list mode 
+        # (whitespace characters; see :h listchars)
+        # default listchars: "tab:> ,trail:-,nbsp:+"
+        # end of line (eol): ⏎ return symbol U+23CE
+        # tab: 
+        #   start (second displayed character): <
+        #   middle (fills remaining space): -
+        #   end (first displayed character): >
+        # trailing space: ␣ open box U+2423
+        # extends: ⪼ double succeeds U+2ABC
+        # precedes: ⪻ double precedes U+2ABB
+        # non-breaking space: ⍽ shouldered open box U+237D
+        list = true;
+        listchars = "tab:<->,trail:␣,extends:⪼,precedes:⪻,nbsp:⍽";
+
         # scroll
         scrolloff = 999; # minimum number of screen lines to keep visible around the cursor
         sidescrolloff = 10; # minimum number of screen columns to keep visible around the cursor
