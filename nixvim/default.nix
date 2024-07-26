@@ -360,13 +360,13 @@
         };
 
         # testing
-        neotest = {
-          enable = true;
+        #neotest = {
+        #  enable = true;
 
-          adapters = {
-            vitest.enable = true;
-          };
-        };
+        #  adapters = {
+        #    vitest.enable = true;
+        #  };
+        #};
 
         # treesitter
         comment.enable = true; # "gc{object/motion}" and "gb{object}" to comment
