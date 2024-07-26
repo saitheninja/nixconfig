@@ -58,7 +58,7 @@
 
         # folding
         foldenable = true;
-        foldcolumn = "auto:9"; # width
+        foldcolumn = "auto:9"; # auto width, max 9
         # suggested by nvim-ufo
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
@@ -322,7 +322,6 @@
               installCargo = false;
               installRustc = false;
             };
-            # typos-lsp.enable = true;
             # yamlls.enable = true;
             # zls.enable = true;
           };
