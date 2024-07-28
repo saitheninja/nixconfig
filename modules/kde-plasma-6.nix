@@ -12,7 +12,7 @@ let
 
   pkgs2 = with pkgs.kdePackages; [
     filelight # visualise disk space usage
-    kamoso # webcam
+    #kamoso # webcam # currently marked as broken in nixpkgs
     #kdeconnect-kde # multi-platform app to allow devices to communicate
     #kdenlive # video editor
     kdialog # show nice dialog boxes from shell scripts
