@@ -5,6 +5,24 @@
   ...
 }:
 
+let
+  pkgs1 = with pkgs; [
+    wayland-utils # view graphics details in Info Center
+  ];
+
+  pkgs2 = with pkgs.kdePackages; [
+    filelight # visualise disk space usage
+    kamoso # webcam
+    #kdeconnect-kde # multi-platform app to allow devices to communicate
+    #kdenlive # video editor
+    kdialog # show nice dialog boxes from shell scripts
+    kjournald # provide API and `kjournaldbrowser` for interacting with systemd-journald
+    kontrast # contrast checker
+    partitionmanager # manage disk devices, partitions and file systems
+    plasma-disks # monitor S.M.A.R.T. capable devices
+  ];
+in
+
 {
   options.configKdePlasma6.enable = lib.mkOption {
     type = lib.types.bool;
@@ -13,18 +31,7 @@
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {
-    environment.systemPackages = with pkgs; [
-      wayland-utils # view graphics details in Info Center
-
-      kdePackages.filelight # visualise disk space usage
-      kdePackages.kdeconnect-kde # multi-platform app to allow devices to communicate
-      #kdePackages.kdenlive # video editor
-      kdePackages.kdialog # show nice dialog boxes from shell scripts
-      kdePackages.kjournald # provide API and `kjournaldbrowser` for interacting with systemd-journald
-      kdePackages.kontrast # contrast checker
-      kdePackages.partitionmanager # manage disk devices, partitions and file systems
-      kdePackages.plasma-disks # monitor S.M.A.R.T. capable devices
-    ];
+    environment.systemPackages = pkgs1 ++ pkgs2;
 
     services = {
       desktopManager.plasma6.enable = true;
