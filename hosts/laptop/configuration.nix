@@ -26,7 +26,6 @@
     piper # mouse controls
     thunderbird # email
     vlc # video player
-    zoom-us # ugh
 
     # dev
     docker
@@ -92,8 +91,13 @@
 
     # video
     obs-studio # screen capture
-    webcamoid # webcam utils
-    v4l-utils
+
+    # webcam
+    guvcview # GTK+ UVC (USB Video device Class) Viewer
+    webcamoid # Qt webcam manager
+    v4l-utils # video for linux utils
+    zoom-us # ugh
+    linuxKernel.packages.linux_6_10.v4l2loopback # kernel module to create virtual V4L2 loopback devices
 
     # 3D
     #blender
