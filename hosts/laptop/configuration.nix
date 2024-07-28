@@ -97,7 +97,7 @@
     webcamoid # Qt webcam manager
     v4l-utils # video for linux utils
     zoom-us # ugh
-    linuxKernel.packages.linux_6_10.v4l2loopback # kernel module to create virtual V4L2 loopback devices
+    #linuxKernel.packages.linux_6_10.v4l2loopback # kernel module to create virtual V4L2 loopback devices
 
     # 3D
     #blender
