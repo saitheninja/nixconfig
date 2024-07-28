@@ -28,8 +28,6 @@
     vlc # video player
 
     # dev
-    docker
-    docker-compose
     vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
     #vscode-with-extensions.override {
     #  vscodeExtensions = with vscode-extensions; [

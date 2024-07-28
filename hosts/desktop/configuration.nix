@@ -17,7 +17,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enables wireless support via wpa_supplicant.
-  # networking.wireless.enable = true;  
+  # networking.wireless.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -33,8 +33,6 @@
     vlc
 
     # dev
-    docker
-    docker-compose
     vscode-fhs
 
     # game engines
@@ -59,7 +57,7 @@
     faustlive # prototyping environment for the Faust language
     guitarix # virtual guitar amp (standalone)
     # helm # unmaintained predecessor to vital synth
-    helvum #  GTK patchbay for pipewire
+    helvum # GTK patchbay for pipewire
     infamousPlugins # LV2 plugins
     lmms # daw
     odin2 # synth
