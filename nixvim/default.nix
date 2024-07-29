@@ -212,31 +212,31 @@
 
         # debugging
         #dap = {
-          #enable = true; # debugger
+        #enable = true; # debugger
 
-          #adapters = {
-          #  servers = {
-          #    pwa-node = {};
-          #  };
-          #}; 
+        #adapters = {
+        #  servers = {
+        #    pwa-node = {};
+        #  };
+        #}; 
 
-          #configurations = {
-          #  javascript = {
-          #    name = "js-launch";
-          #    request = "launch"; # attach or launch
-          #    type = "pwa-node"; # adapter name
-          #  };
-          #  typescript = {
-          #    name = "ts-launch";
-          #    request = "launch";
-          #    type = "pwa-node";
-          #  };
-          #};
+        #configurations = {
+        #  javascript = {
+        #    name = "js-launch";
+        #    request = "launch"; # attach or launch
+        #    type = "pwa-node"; # adapter name
+        #  };
+        #  typescript = {
+        #    name = "ts-launch";
+        #    request = "launch";
+        #    type = "pwa-node";
+        #  };
+        #};
 
-          #extensions = {
-          #  dap-ui.enable = true;
-          #  dap-virtual-text.enable = true;
-          #};
+        #extensions = {
+        #  dap-ui.enable = true;
+        #  dap-virtual-text.enable = true;
+        #};
         #};
 
         # formatting
