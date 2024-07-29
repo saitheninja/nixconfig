@@ -39,7 +39,9 @@
         fzf # fuzzy find
         ripgrep # faster grep
       ];
-      extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
+      extraPlugins = with pkgs.vimPlugins; [
+        package-info-nvim # npm package info
+      ];
       withNodeJs = false; # install Node and Node plugin provider npm package "neovim"
       withRuby = false; # install Ruby and Ruby plugin provider gem "neovim-ruby"
 
@@ -1070,6 +1072,9 @@
           -- require("dap-vscode-js").setup({ 
           --   adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
           -- })
+
+          -- package-info.nvim setup
+          require('package-info').setup();
         '';
 
       autoCmd = [
