@@ -29,7 +29,7 @@
         stylua
 
         # DAP
-        #vscode-js-debug # Node debugging
+        vscode-js-debug # Node debugging
 
         # LSPs
         # zls # zig # waiting for 0.13 to hit unstable, to match zig version
@@ -221,33 +221,58 @@
         luasnip.enable = true; # snippet engine - required for completions
 
         # debugging
-        #dap = {
-        #enable = true; # debugger
+        dap = {
+          enable = true; # debugger
 
-        #adapters = {
-        #  servers = {
-        #    pwa-node = {};
-        #  };
-        #}; 
+          adapters = {
+            servers = {
+              pwa-node = {
+                host = "localhost";
+                port = ''''${port}'';
+                executable = {
+                  command = "node";
+                  args = [
+                    "${pkgs.vscode-js-debug}/dapDebugServer.js"
+                    ''''${port}''
+                  ];
+                };
+              };
+            };
+          };
 
-        #configurations = {
-        #  javascript = {
-        #    name = "js-launch";
-        #    request = "launch"; # attach or launch
-        #    type = "pwa-node"; # adapter name
-        #  };
-        #  typescript = {
-        #    name = "ts-launch";
-        #    request = "launch";
-        #    type = "pwa-node";
-        #  };
-        #};
+          configurations = {
+            javascript = [
+              {
+                type = "pwa-node"; # adapter name
+                request = "launch"; # attach or launch
+                name = "Node launch file";
+                program = ''''${file}'';
+                cwd = ''''${workspaceFolder}'';
+              }
+            ];
+            #{
+            #  name = "Node attach";
+            #  request = "attach";
+            #  type = "pwa-node";
+            #  processId = # lua
+            #    ''
+            #      require'dap.utils'.pick_process
+            #    '';
+            #  cwd = "${workspaceFolder}";
+            #};
 
-        #extensions = {
-        #  dap-ui.enable = true;
-        #  dap-virtual-text.enable = true;
-        #};
-        #};
+            # typescript = {
+            #   name = "ts-launch";
+            #   request = "launch";
+            #   type = "pwa-node";
+            # };
+          };
+
+          extensions = {
+            dap-ui.enable = true;
+            dap-virtual-text.enable = true;
+          };
+        };
 
         # formatting
         conform-nvim = {
