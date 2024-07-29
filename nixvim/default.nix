@@ -126,6 +126,15 @@
         };
       };
 
+      filetype = {
+        extension = {
+          "postcss" = "scss";
+        };
+        pattern = {
+          "flake.lock" = "json";
+        };
+      };
+
       plugins = {
         # completions
         cmp = {
