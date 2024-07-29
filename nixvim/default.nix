@@ -40,6 +40,8 @@
         ripgrep # faster grep
       ];
       extraPlugins = with pkgs.vimPlugins; [ package-info-nvim ];
+      withNodeJs = false; # install Node and Node plugin provider npm package "neovim"
+      withRuby = false; # install Ruby and Ruby plugin provider gem "neovim-ruby"
 
       clipboard = {
         register = "unnamedplus"; # use system clipboard as default register
@@ -49,6 +51,12 @@
       globals = {
         have_nerd_font = true; # Cascadia Code NF
         mapleader = " "; # set leader key to spacebar
+
+        # disable plugin providers
+        loaded_node_provider = 0; # requires npm package "neovim"
+        loaded_perl_provider = 0; # requires cpan package "Neovim::Ext"
+        loaded_python3_provider = 0; # requires pip package "pynvim"
+        loaded_ruby_provider = 0; # requires gem "neovim-ruby"
       };
 
       opts = {
@@ -1112,9 +1120,6 @@
           # register = false; # first argument to the command can be an optional register
         };
       };
-
-      withNodeJs = false;
-      withRuby = false; # why is this default true?
     };
   };
 }
