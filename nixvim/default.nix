@@ -696,6 +696,14 @@
           };
         }
         {
+          action = "<Cmd>b#<CR>";
+          key = "<leader>b#";
+          mode = "n";
+          options = {
+            desc = "Neovim: buffer alternate";
+          };
+        }
+        {
           action = "<Cmd>bfirst<CR>";
           key = "<leader>bf";
           mode = "n";
@@ -734,6 +742,23 @@
           mode = "t";
           options = {
             desc = "Neovim: exit Terminal mode";
+          };
+        }
+        # Neovim move
+        {
+          action = "<Cmd>move -2<CR>"; # :[range]m[ove] {address}
+          key = "<M-k>"; # M = alt (meta) key
+          mode = "n";
+          options = {
+            desc = "Neovim: move line up";
+          };
+        }
+        {
+          action = "<Cmd>move +<CR>";
+          key = "<M-j>"; # M = alt (meta) key
+          mode = "n";
+          options = {
+            desc = "Neovim: move line down";
           };
         }
 
@@ -999,7 +1024,7 @@
 
       extraConfigLua = # lua
         ''
-          -- from conform docs 
+          -- from conform docs
           -- make format command
           vim.api.nvim_create_user_command("ConformFormat", function(opts)
             -- for k, v in pairs(opts) do
@@ -1069,7 +1094,7 @@
 
       userCommands = {
         # from conform docs 
-        ConformFormatBuffer = {
+        ConformFormatBufferRange = {
           # addr = lines; # special characters refer to range of: lines (default), arguments, buffers, loaded_buffers, windows, tabs, quickfix, other
           # bang = false; # take force/override
           # bar = false; # pipe/chain commands
