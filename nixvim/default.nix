@@ -772,20 +772,67 @@
           };
         }
         # Neovim move
+        # M = alt (meta) key
+        # https://vim.fandom.com/wiki/Moving_lines_up_or_down
+        # :[range]m[ove] {address}
+        # . = current line
+        # .+1 = current line + 1 (1 line down)
+        # .-2 = current line - 2 (1 line up)
+        # == = re-indent line
         {
-          action = "<Cmd>move -2<CR>"; # :[range]m[ove] {address}
-          key = "<M-k>"; # M = alt (meta) key
+          action = "<Cmd>move .-2<CR>==";
+          key = "<M-k>";
           mode = "n";
           options = {
-            desc = "Neovim: move line up";
+            desc = "Neovim: move current line one line up";
           };
         }
         {
-          action = "<Cmd>move +<CR>";
-          key = "<M-j>"; # M = alt (meta) key
+          action = "<Cmd>move .+<CR>==";
+          key = "<M-j>";
           mode = "n";
           options = {
-            desc = "Neovim: move line down";
+            desc = "Neovim: move current line one line down";
+          };
+        }
+        # gi = go to last insert
+        {
+          action = "<Esc><Cmd>move .-2<CR>==gi";
+          key = "<M-k>";
+          mode = "i";
+          options = {
+            desc = "Neovim: move current line one line up";
+          };
+        }
+        {
+          action = "<Esc><Cmd>move .+<CR>==gi";
+          key = "<M-j>";
+          mode = "i";
+          options = {
+            desc = "Neovim: move current line one line down";
+          };
+        }
+        # '> = mark for selection end
+        # '< = mark for selection start
+        # '>+1 = one line after the last selected line (1 line down)
+        # '>-2 = one line after the first selected line (1 line up)
+        # gv = reselect the last visual block
+        # = = re-indent selection
+        # have to use : instead of <Cmd> or there is a "mark not set" error
+        {
+          action = ":move '<-2<CR>gv=gv";
+          key = "<M-k>";
+          mode = "v";
+          options = {
+            desc = "Neovim: move selected lines one line up";
+          };
+        }
+        {
+          action = ":move '>+1<CR>gv=gv";
+          key = "<M-j>";
+          mode = "v";
+          options = {
+            desc = "Neovim: move selected lines one line down";
           };
         }
 
