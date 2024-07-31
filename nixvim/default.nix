@@ -224,29 +224,39 @@
         dap = {
           enable = true; # debugger
 
-          adapters = {
-            servers = {
-              pwa-node = {
-                host = "localhost";
-                port = ''''${port}'';
-                executable = {
-                  command = "node";
-                  args = [
-                    "${pkgs.vscode-js-debug}/dapDebugServer.js"
-                    ''''${port}''
-                  ];
-                };
-              };
-            };
-          };
+          #adapters = {
+          #  servers = {
+          #    pwa-node = {
+          #      host = "localhost";
+          #      port = ''''${port}'';
+          #      executable = {
+          #        command = "node";
+          #        args = [
+          #          "${pkgs.vscode-js-debug}/bin/js-debug"
+          #          ''''${port}''
+          #        ];
+          #      };
+          #    };
+          #  };
+          #};
 
           configurations = {
-            javascript = [
+            svelte = [
               {
                 type = "pwa-node"; # adapter name
                 request = "launch"; # attach or launch
                 name = "Node launch file";
                 program = ''''${file}'';
+                cwd = ''''${workspaceFolder}'';
+              }
+              {
+                type = "pwa-node";
+                request = "attach";
+                name = "Attach";
+                processId = # lua
+                  ''
+                    require("dap.utils").pick_process;
+                  '';
                 cwd = ''''${workspaceFolder}'';
               }
             ];
@@ -1140,13 +1150,19 @@
           local hooks = require("ibl.hooks")
           hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
-          -- dap setup
-          -- require("dap-vscode-js").setup({ 
-          --   adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-          -- })
-
           -- package-info.nvim setup
-          require('package-info').setup();
+          require("package-info").setup();
+
+          -- dap setup
+          require("dap").adapters["pwa-node"] = {
+            type = "server",
+            host = "localhost",
+            port = "8123",
+            executable = {
+              command = "node",
+              args = {"${pkgs.vscode-js-debug}/bin/js-debug", "8123"},
+            }
+          }
         '';
 
       autoCmd = [
