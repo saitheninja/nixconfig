@@ -7,8 +7,7 @@
 
 {
   imports = [
-    ./lualine.nix
-    ./telescope.nix
+    ./plugins
   ];
 
   options.configNixvim.enable = lib.mkOption {
