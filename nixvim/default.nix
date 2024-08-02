@@ -32,7 +32,7 @@
         vscode-js-debug # Node debugging
 
         # LSPs
-        # zls # zig # waiting for 0.13 to hit unstable, to match zig version
+        zls # zig
 
         # telescope
         fd # better find
@@ -306,7 +306,7 @@
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
             rust = [ "rustfmt" ];
-            # zig = [ "zig" ];
+            zig = [ "zigfmt" ];
           };
 
           notifyOnError = true;
@@ -392,7 +392,7 @@
               installRustc = false;
             };
             # yamlls.enable = true;
-            # zls.enable = true;
+            zls.enable = true;
           };
         };
         lspkind = {
