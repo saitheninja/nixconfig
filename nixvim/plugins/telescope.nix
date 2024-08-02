@@ -15,7 +15,7 @@
       extensions = {
         fzf-native.enable = true; # fzf sorter written in C
         media-files.enable = true; # preview media files
-        ui-select.enable = true; # set vim.ui.select to telescope
+        ui-select.enable = true; # set vim.ui.select to telescope (used by dressing.nvim)
         undo.enable = true; # view and search undo tree
       };
 

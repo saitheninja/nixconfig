@@ -446,7 +446,7 @@
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
 
         # ui
-        dressing.enable = true;
+        dressing.enable = true; # use telescope for `vim.ui.input` & `vim.ui.select`
         fidget.enable = true; # notifications & lsp progress
         nvim-ufo = {
           enable = true; # better folding
@@ -521,7 +521,7 @@
           key = "<leader>nh";
           mode = "n";
           options = {
-            desc = "Neovim: toggle lsp inlay hint";
+            desc = "Neovim: toggle LSP inlay hint";
           };
         }
         # Neovim buffers
