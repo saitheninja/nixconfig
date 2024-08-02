@@ -29,9 +29,6 @@
         # LSPs
         zls # zig
       ];
-      extraPlugins = with pkgs.vimPlugins; [
-        package-info-nvim # npm package info
-      ];
       withNodeJs = false; # install Node and Node plugin provider npm package "neovim"
       withRuby = false; # install Ruby and Ruby plugin provider gem "neovim-ruby"
 
@@ -681,24 +678,6 @@
           };
         }
 
-        # package-info
-        {
-          action = "<Cmd>lua require('package-info').show({ force = true })<CR>"; # force refetch every time
-          key = "<leader>ns";
-          mode = "n";
-          options = {
-            desc = "Package Info: run `npm outdated --json`";
-          };
-        }
-        {
-          action = "<Cmd>lua require('package-info').change_version()<CR>"; # force refetch every time
-          key = "<leader>nv";
-          mode = "n";
-          options = {
-            desc = "Package Info: change version";
-          };
-        }
-
         # treesitter
         {
           action = "<Cmd>TSContextToggle<CR>";
@@ -776,9 +755,6 @@
           } } }
           local hooks = require("ibl.hooks")
           hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-
-          -- package-info.nvim setup
-          require("package-info").setup();
         '';
 
       autoCmd = [
