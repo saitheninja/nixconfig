@@ -26,9 +26,6 @@
         # neovim
         wl-clipboard # wayland clipboard utils
 
-        # DAP
-        vscode-js-debug # Node debugging
-
         # LSPs
         zls # zig
       ];
@@ -212,70 +209,6 @@
         # snippets
         friendly-snippets.enable = true;
         luasnip.enable = true; # snippet engine - required for completions
-
-        # debugging
-        dap = {
-          enable = true; # debugger
-
-          #adapters = {
-          #  servers = {
-          #    pwa-node = {
-          #      host = "localhost";
-          #      port = ''''${port}'';
-          #      executable = {
-          #        command = "node";
-          #        args = [
-          #          "${pkgs.vscode-js-debug}/bin/js-debug"
-          #          ''''${port}''
-          #        ];
-          #      };
-          #    };
-          #  };
-          #};
-
-          configurations = {
-            svelte = [
-              {
-                type = "pwa-node"; # adapter name
-                request = "launch"; # attach or launch
-                name = "Node launch file";
-                program = ''''${file}'';
-                cwd = ''''${workspaceFolder}'';
-              }
-              {
-                type = "pwa-node";
-                request = "attach";
-                name = "Attach";
-                processId = # lua
-                  ''
-                    require("dap.utils").pick_process;
-                  '';
-                cwd = ''''${workspaceFolder}'';
-              }
-            ];
-            #{
-            #  name = "Node attach";
-            #  request = "attach";
-            #  type = "pwa-node";
-            #  processId = # lua
-            #    ''
-            #      require'dap.utils'.pick_process
-            #    '';
-            #  cwd = "${workspaceFolder}";
-            #};
-
-            # typescript = {
-            #   name = "ts-launch";
-            #   request = "launch";
-            #   type = "pwa-node";
-            # };
-          };
-
-          extensions = {
-            dap-ui.enable = true;
-            dap-virtual-text.enable = true;
-          };
-        };
 
         # git
         diffview.enable = true; # diffview tabpage, merge tool, file history
@@ -846,17 +779,6 @@
 
           -- package-info.nvim setup
           require("package-info").setup();
-
-          -- dap setup
-          require("dap").adapters["pwa-node"] = {
-            type = "server",
-            host = "localhost",
-            port = "8123",
-            executable = {
-              command = "node",
-              args = {"${pkgs.vscode-js-debug}/bin/js-debug", "8123"},
-            }
-          }
         '';
 
       autoCmd = [
