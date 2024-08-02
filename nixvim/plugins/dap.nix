@@ -5,9 +5,9 @@
       vscode-js-debug # Node debugging
     ];
 
-    # debugging
+    # debug adapter protocol
     plugins.dap = {
-      enable = true; # debugger
+      enable = true;
 
       #adapters = {
       #  servers = {
