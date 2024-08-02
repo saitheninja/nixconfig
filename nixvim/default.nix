@@ -560,62 +560,62 @@
           };
         }
         # Neovim buffers
-        {
-          action = "<Cmd>bnext<CR>";
-          key = "<leader>bn";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer next";
-          };
-        }
-        {
-          action = "<Cmd>bprevious<CR>";
-          key = "<leader>bp";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer previous";
-          };
-        }
-        {
-          action = "<Cmd>b#<CR>";
-          key = "<leader>b#";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer alternate";
-          };
-        }
-        {
-          action = "<Cmd>bfirst<CR>";
-          key = "<leader>bf";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer first";
-          };
-        }
-        {
-          action = "<Cmd>blast<CR>";
-          key = "<leader>bl";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer last";
-          };
-        }
-        {
-          action = "<Cmd>ball<CR>"; # see also :unh[ide]
-          key = "<leader>ba";
-          mode = "n";
-          options = {
-            desc = "Neovim: one window for each buffer";
-          };
-        }
-        {
-          action = "<Cmd>bdelete<CR>";
-          key = "<leader>bd";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer delete";
-          };
-        }
+        #{
+        #  action = "<Cmd>bnext<CR>";
+        #  key = "<leader>bn";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer next";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>bprevious<CR>";
+        #  key = "<leader>bp";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer previous";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>b#<CR>";
+        #  key = "<leader>b#";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer alternate";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>bfirst<CR>";
+        #  key = "<leader>bf";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer first";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>blast<CR>";
+        #  key = "<leader>bl";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer last";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>ball<CR>"; # see also :unh[ide]
+        #  key = "<leader>ba";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: one window for each buffer";
+        #  };
+        #}
+        #{
+        #  action = "<Cmd>bdelete<CR>";
+        #  key = "<leader>bd";
+        #  mode = "n";
+        #  options = {
+        #    desc = "Neovim: buffer delete";
+        #  };
+        #}
         # Neovim terminal
         {
           action = "<C-\\><C-n>"; # have to escape backslash
