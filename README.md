@@ -4,7 +4,8 @@ Arch broke my bootloader. Guess it's time to switch to NixOS.
 
 ## Hosts
 
-Laptop, desktop.
+Laptop: for work.
+Desktop: for music production & gaming.
 
 ## Modules
 
