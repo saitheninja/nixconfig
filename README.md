@@ -15,4 +15,4 @@ KDE Plasma 6.
 ### Neovim
 
 Configured with [NixVim](https://github.com/nix-community/nixvim).
-I have spent way too long messing Neovim and NixVim.
+I have spent way too long messing with Neovim and NixVim.
