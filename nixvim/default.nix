@@ -71,11 +71,11 @@
         number = true;
         relativenumber = true;
 
-        # list mode 
+        # list mode
         # (whitespace characters; see :h listchars)
         # default listchars: "tab:> ,trail:-,nbsp:+"
         # end of line (eol): ⏎ return symbol U+23CE
-        # tab: 
+        # tab:
         #   start (second displayed character): <
         #   middle (fills remaining space): -
         #   end (first displayed character): >
