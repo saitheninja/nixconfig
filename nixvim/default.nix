@@ -233,9 +233,26 @@
 
           inlayHints = true;
           keymaps = {
-            # Mappings for `vim.lsp.buf.<action>` functions
+            # mappings for `vim.lsp.buf.<action>()` functions
+            # can't define modes from here
             # https://github.com/nix-community/nixvim/issues/1157
             lspBuf = {
+              gra = {
+                action = "code_action";
+                desc = "LSP code_action";
+              };
+              grd = {
+                action = "definition";
+                desc = "LSP definition";
+              };
+              grf = {
+                action = "format";
+                desc = "LSP format";
+              };
+              gri = {
+                action = "implementation";
+                desc = "LSP implementation";
+              };
               grn = {
                 action = "rename";
                 desc = "LSP rename";
@@ -244,17 +261,13 @@
                 action = "references";
                 desc = "LSP references";
               };
-              grd = {
-                action = "definition";
-                desc = "LSP definition";
-              };
-              gri = {
-                action = "implementation";
-                desc = "LSP implementation";
-              };
               grt = {
                 action = "type_definition";
                 desc = "LSP type_definition";
+              };
+              "<C-s>" = {
+                action = "signature_help";
+                desc = "LSP signature_help";
               };
             };
           };
