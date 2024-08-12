@@ -55,11 +55,11 @@ in
         # libinput.enable = true;
 
         # Configure keymaps
-        xkb = {
-          layout = "us";
-          variant = "";
-          options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
-        };
+        # xkb = {
+        #   layout = "us";
+        #   variant = "";
+        #   options = "caps:ctrl_modifier"; # make Caps Lock an additional Ctrl
+        # };
       };
     };
 

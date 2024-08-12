@@ -19,6 +19,68 @@
 
   hardware.bluetooth.enable = true;
 
+  # try fancy keyboard mappings
+  # to force exit kanata, press and hold: Left Control + Space + Escape
+  # works on the key input before any remappings done by kanata
+  services.kanata = {
+    enable = true;
+
+    keyboards.laptop-kbd = {
+      devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+
+      config = # lisp
+        ''
+          (defsrc
+            caps
+            lsft rsft
+          )
+
+          (defvar
+            tap-timeout 100
+            hold-timeout 100
+            tt $tap-timeout
+            ht $hold-timeout
+          )
+
+          (deflayermap (default-layer)
+            ;; tap caps lock for escape, hold caps lock for left control
+            caps (tap-hold-press $tt $ht esc lctl)
+            ;; space cadet shifts: tap left/right shift for open/close bracket, hold for left/right shift
+            lsft (tap-hold-press $tt $ht S-9 lsft)
+            rsft (tap-hold-press $tt $ht S-0 rsft)
+          )
+        '';
+
+      # Without this, tap-hold-release and tap-hold-press will not activate for keys that are not in defsrc
+      extraDefCfg = "process-unmapped-keys yes";
+    };
+  };
+  # services.keyd = {
+  #   enable = true;
+  #   keyboards = {
+  #     default = {
+  #       ids = [ "*" ];
+  #       settings = {
+  #         main = {
+  #           capslock = "overload(control, esc)";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+  # services.interception-tools = {
+  #   enable = true;
+  #   plugins = with pkgs.interception-tools-plugins; [ dual-function-keys ];
+  #   udevmonConfig =
+  #   ''
+  #     - JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
+  #       DEVICE:
+  #         EVENTS:
+  #           EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+  #   '';
+  # };
+  # kmonad not integrated into NixOS, but it has a flake module that can be imported
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
   environment.systemPackages = with pkgs; [
