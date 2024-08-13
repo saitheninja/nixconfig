@@ -19,9 +19,33 @@
 
   hardware.bluetooth.enable = true;
 
-  # try fancy keyboard mappings
-  # to force exit kanata, press and hold: Left Control + Space + Escape
+  # fancy keyboard mappings
+  #
+  # to force exit kanata, press and hold `Left Control + Space + Escape`
   # works on the key input before any remappings done by kanata
+  #
+  # kanata directly communicates with the system kernel, so it is independent of windowing systems
+  # meaning it works across X11, Wayland and Virtual Terminals
+  #
+  # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/kanata.nix
+  # https://0pointer.net/blog/dynamic-users-with-systemd.html
+  # enables `uinput` kernel module, which allows emulating input devices from userspace
+  # creates a systemd service for each keyboard
+  # creates a DynamicUser named `kanata-${keyboard-name}`
+  # adds DynamicUser to groups `input`, `uinput`
+  # when service is started, creates dir `/run/kanata-${keyboard-name}`, owned by DynamicUser (dir is removed when service is terminated)
+  #
+  #
+  # About Virtual Terminals
+  # `TTY` is short for TeleTYpewriter
+  # switch ttys with `Ctrl + Alt + F{1-...}`
+  # list all ttys with `ls -l /dev/tty*`: tty, tty0-63, ttyS0-S3 (serial)
+  # it is possible to have multiple independent user sessions by using multiple ttys
+  # currently it works like this on NixOS (but these are not hard rules):
+  # `/dev/tty` represents the terminal for the current process
+  # tty1-6 run login session services
+  # display manager (SDDM) starts in tty7
+  # display manager login spawns desktop environment (Plasma) in tty8
   services.kanata = {
     enable = true;
 
