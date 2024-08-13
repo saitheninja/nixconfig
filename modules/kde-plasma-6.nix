@@ -6,11 +6,11 @@
 }:
 
 let
-  pkgs1 = with pkgs; [
+  pkgsMain = with pkgs; [
     wayland-utils # view graphics details in Info Center
   ];
 
-  pkgs2 = with pkgs.kdePackages; [
+  pkgsKde = with pkgs.kdePackages; [
     filelight # visualise disk space usage
     #kamoso # webcam # currently marked as broken in nixpkgs
     #kdeconnect-kde # multi-platform app to allow devices to communicate
@@ -31,7 +31,7 @@ in
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {
-    environment.systemPackages = pkgs1 ++ pkgs2;
+    environment.systemPackages = pkgsMain ++ pkgsKde;
 
     services = {
       desktopManager.plasma6.enable = true;
