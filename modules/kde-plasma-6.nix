@@ -49,7 +49,7 @@ in
 
       xserver = {
         # Enable X11 windowing system
-        enable = true;
+        enable = false;
 
         # Enable touchpad support (enabled by default in most desktopManagers)
         # libinput.enable = true;
