@@ -19,33 +19,53 @@
 
   hardware.bluetooth.enable = true;
 
-  # fancy keyboard mappings
+  ### fancy keyboard mappings
+  #
+  # https://github.com/jtroo/kanata
+  # communicates directly with the system kernel
+  # so it is independent of windowing systems
+  # meaning it works in X11, Wayland and Virtual Terminals
+  # also works across Linux, macOS and Windows
   #
   # to force exit kanata, press and hold `Left Control + Space + Escape`
   # works on the key input before any remappings done by kanata
   #
-  # kanata directly communicates with the system kernel, so it is independent of windowing systems
-  # meaning it works across X11, Wayland and Virtual Terminals
-  #
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/kanata.nix
-  # https://0pointer.net/blog/dynamic-users-with-systemd.html
+  # https://github.com/NixOS/nixpkgs/blob/c3aa7b8938b17aebd2deecf7be0636000d62a2b9/nixos/modules/services/hardware/kanata.nix#L194
   # enables `uinput` kernel module, which allows emulating input devices from userspace
-  # creates a systemd service for each keyboard
-  # creates a DynamicUser named `kanata-${keyboard-name}`
-  # adds DynamicUser to groups `input`, `uinput`
-  # when service is started, creates dir `/run/kanata-${keyboard-name}`, owned by DynamicUser (dir is removed when service is terminated)
   #
+  # https://github.com/NixOS/nixpkgs/blob/c3aa7b8938b17aebd2deecf7be0636000d62a2b9/nixos/modules/services/hardware/kanata.nix#L112
+  # creates a systemd service for each keyboard, named `kanata-${keyboard-name}.service`
+  # creates a DynamicUser for each keyboard, named `kanata-${keyboard-name}`
+  # `SupplementaryGroups=input,uinput` so DynamicUser can read physical inputs and send emulated inputs
+  # `RuntimeDirectory=kanata-${keyboard-name}` to create temp dir `kanata-${keyboard-name}` in `/run/`
+  # dir `/run/kanata-${keyboard-name}` owned by DynamicUser, created when service is started, removed when service is stopped
+ 
+  ### About systemd
   #
-  # About Virtual Terminals
+  # https://0pointer.net/blog/dynamic-users-with-systemd.html
+  # https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#DynamicUser=
+  # `DynamicUser=`
+  # Takes a boolean parameter.
+  # If set, a UNIX user and group pair is allocated dynamically when the unit is started, and released as soon as it is stopped.
+  # The user and group will not be added to `/etc/passwd` or `/etc/group`, but are managed transiently during runtime.
+  # Do not leave files or directories owned by these users/groups around, as a different unit might get the same UID/GID assigned later on, and thus gain access to these files or directories.
+  # Use `RuntimeDirectory=` in order to assign a writable runtime directory to a service, owned by the dynamic user/group and removed automatically when the unit is terminated.
+  # Use `StateDirectory=`, `CacheDirectory=` and `LogsDirectory=` in order to assign a set of writable directories for specific purposes to the service in a way that they are protected from vulnerabilities due to UID reuse.
+  
+  ### About Virtual Terminals
+  #
   # `TTY` is short for TeleTYpewriter
+  # it is possible to have multiple independent user sessions by using multiple ttys
+  #
   # switch ttys with `Ctrl + Alt + F{1-...}`
   # list all ttys with `ls -l /dev/tty*`: tty, tty0-63, ttyS0-S3 (serial)
-  # it is possible to have multiple independent user sessions by using multiple ttys
+  #
   # currently it works like this on NixOS (but these are not hard rules):
-  # `/dev/tty` represents the terminal for the current process
-  # tty1-6 run login session services
-  # display manager (SDDM) starts in tty7
-  # display manager login spawns desktop environment (Plasma) in tty8
+  # - `/dev/tty` represents the terminal for the current process
+  # - tty1-tty6 run login session services
+  # - display manager (SDDM) starts in tty7
+  # - display manager login spawns desktop environment (Plasma) in tty8
   services.kanata = {
     enable = true;
 
@@ -67,9 +87,9 @@
           )
 
           (deflayermap (default-layer)
-            ;; tap caps lock for escape, hold caps lock for left control
+            ;; caps lock key: tap for escape, hold for left control
             caps (tap-hold-press $tt $ht esc lctl)
-            ;; space cadet shifts: tap left/right shift for open/close bracket, hold for left/right shift
+            ;; left/right shift: tap for open/close round bracket (shift+9/0), hold for left/right shift
             lsft (tap-hold-press $tt $ht S-9 lsft)
             rsft (tap-hold-press $tt $ht S-0 rsft)
           )
@@ -79,31 +99,6 @@
       extraDefCfg = "process-unmapped-keys yes";
     };
   };
-  # services.keyd = {
-  #   enable = true;
-  #   keyboards = {
-  #     default = {
-  #       ids = [ "*" ];
-  #       settings = {
-  #         main = {
-  #           capslock = "overload(control, esc)";
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
-  # services.interception-tools = {
-  #   enable = true;
-  #   plugins = with pkgs.interception-tools-plugins; [ dual-function-keys ];
-  #   udevmonConfig =
-  #   ''
-  #     - JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
-  #       DEVICE:
-  #         EVENTS:
-  #           EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-  #   '';
-  # };
-  # kmonad not integrated into NixOS, but it has a flake module that can be imported
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
 
