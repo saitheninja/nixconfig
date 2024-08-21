@@ -27,7 +27,7 @@ in
   options.configKdePlasma6.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = "Set KDE Plasma 6 as desktop environment.";
+    description = "Add Simple Desktop Display Manager (SDDM) and KDE Plasma 6 desktop environment.";
   };
 
   config = lib.mkIf config.configKdePlasma6.enable {
