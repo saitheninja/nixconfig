@@ -100,8 +100,6 @@
     };
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Wayland hinting for electron apps
-
   environment.systemPackages = with pkgs; [
     # desktop
     piper # mouse controls

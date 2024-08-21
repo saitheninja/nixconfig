@@ -33,6 +33,9 @@ in
   config = lib.mkIf config.configKdePlasma6.enable {
     environment.systemPackages = pkgsMain ++ pkgsKde;
 
+    # hint electron apps to use Wayland
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     services = {
       desktopManager.plasma6.enable = true;
 
