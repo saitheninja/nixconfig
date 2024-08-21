@@ -4,6 +4,7 @@
     ./filesystem-drivers.nix
     ./git.nix
     ./kde-plasma-6.nix
+    ./hyprland.nix
     ./locale-za.nix
     ./nix-config.nix
     ./terminal.nix

@@ -81,6 +81,12 @@
             ./modules
             ./nixvim
             nixvim-unstable.nixosModules.nixvim
+            (
+              { ... }:
+              {
+                config.configHyprland.enable = true;
+              }
+            )
           ];
         };
 
