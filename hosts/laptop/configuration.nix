@@ -107,6 +107,7 @@
     vlc # video player
 
     # dev
+    ventoy # create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files
     vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
     #vscode-with-extensions.override {
     #  vscodeExtensions = with vscode-extensions; [
