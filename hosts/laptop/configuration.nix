@@ -40,7 +40,7 @@
   # `SupplementaryGroups=input,uinput` so DynamicUser can read physical inputs and send emulated inputs
   # `RuntimeDirectory=kanata-${keyboard-name}` to create temp dir `kanata-${keyboard-name}` in `/run/`
   # dir `/run/kanata-${keyboard-name}` owned by DynamicUser, created when service is started, removed when service is stopped
- 
+
   ### About systemd
   #
   # https://0pointer.net/blog/dynamic-users-with-systemd.html
@@ -52,7 +52,7 @@
   # Do not leave files or directories owned by these users/groups around, as a different unit might get the same UID/GID assigned later on, and thus gain access to these files or directories.
   # Use `RuntimeDirectory=` in order to assign a writable runtime directory to a service, owned by the dynamic user/group and removed automatically when the unit is terminated.
   # Use `StateDirectory=`, `CacheDirectory=` and `LogsDirectory=` in order to assign a set of writable directories for specific purposes to the service in a way that they are protected from vulnerabilities due to UID reuse.
-  
+
   ### About Virtual Terminals
   #
   # `TTY` is short for TeleTYpewriter
@@ -72,8 +72,67 @@
     keyboards.laptop-kbd = {
       devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
 
+      # TODO check codes with evtest from tty, because it is being captured by something in desktop environment
+      # still figuring out some input mappings because laptop has a bunch of inputs and special function keys
+      # from `sudo evtest`:
+      # Available devices:
+      # /dev/input/event0:      AT Translated Set 2 keyboard
+      # /dev/input/event1:      Lid Switch
+      # /dev/input/event2:      Sleep Button
+      # /dev/input/event3:      Power Button
+      # /dev/input/event4:      Power Button
+      # /dev/input/event5:      MSI WMI hotkeys
+      # /dev/input/event6:      SynPS/2 Synaptics TouchPad
+      # /dev/input/event7:      Video Bus
+      # /dev/input/event8:      Video Bus
+      # /dev/input/event9:      HDA Intel PCH Mic
+      # /dev/input/event10:     HDA Intel PCH Headphone
+      # /dev/input/event11:     HDA Intel PCH HDMI/DP,pcm=3
+      # /dev/input/event12:     HDA Intel PCH HDMI/DP,pcm=7
+      # /dev/input/event13:     HDA Intel PCH HDMI/DP,pcm=8
+      #
+      # https://www.toptal.com/developers/keycode
+      # https://www.w3.org/TR/uievents-code/
+      # https://github.com/jtroo/kanata/blob/3c27ce1aeb327694e26ef939ce8ac96e49ea25af/parser/src/keys/mod.rs#L297
       config = # lisp
         ''
+          ;; Only one defsrc is allowed.
+          ;; defsrc defines the keys that will be intercepted by kanata.
+          ;; The order of the keys matches with deflayer declarations, and all deflayer declarations must have the same number of keys as defsrc.
+          ;; Any keys not listed in defsrc will be passed straight to the operating system.
+
+          ;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
+          ;;
+          ;; prnt = PrintScreen
+          ;;
+          ;; grv = Backquote (backtick/grave)
+          ;; min = Minus
+          ;; eql = Equal
+          ;; bspc = Backspace
+          ;;
+          ;; lbrc = BracketLeft ("[")
+          ;; rbrc = BracketRight ("]")
+          ;; bksl = Backslash
+          ;;
+          ;; scln = Semicolon
+          ;; apo = Quote (apostrophe/single quote)
+          ;;
+          ;; comm = Comma
+          ;; 102d = IntlBackslash (international backslash)
+          ;; fn = function key to shift to hardware function shortcut keys
+          ;;
+          ;; TODO fn key is not defined for linux?
+          ;; https://github.com/jtroo/kanata/blob/b1e828b4cda220eda3bc4e0aef2f9afba5fc9b4f/parser/src/keys/mod.rs#L283
+          ;; https://github.com/jtroo/kanata/issues/975
+          ;; https://github.com/jtroo/kanata/issues/1141
+          ;; (defsrc
+          ;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt del
+          ;;   grv  1    2    3    4    5    6    7    8    9    0    min  eql  bspc home
+          ;;   tab  q    w    e    r    t    y    u    i    o    p    lbrc rbrc bksl pgup
+          ;;   caps a    s    d    f    g    h    j    k    l    scln apo  ret       pgdn
+          ;;   lsft z    x    c    v    b    n    m    comm .    /    rsft      up   end
+          ;;   lctl lmet lalt           spc            102d ralt fn   rctl lft  down rght
+          ;; )
           (defsrc
             caps
             lsft rsft
@@ -86,16 +145,54 @@
             ht $hold-timeout
           )
 
+
           (deflayermap (default-layer)
+            ;; input_key output_action
+
+            ;; `tap-hold`
+            ;; One action for a "tap" and a different action for a "hold"
+            ;; ((tap timeout in milliseconds) (hold timeout in milliseconds) (tap action) (hold action))
+            ;; tap timeout is the number of milliseconds within which a rapid press+release+press of a key will result in the tap action being held instead of the hold action activating
+            ;;
+            ;; `tap-hold-press`
+            ;; If there is a press of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
+            ;;
+            ;; `tap-hold-release`
+            ;; If there is a press+release of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
+
             ;; caps lock key: tap for escape, hold for left control
             caps (tap-hold-press $tt $ht esc lctl)
-            ;; left/right shift: tap for open/close round bracket (shift+9/0), hold for left/right shift
+            ;; left/right shift: tap for round bracket open/close (parenthesis open/close) (shift+9/0), hold for left/right shift
             lsft (tap-hold-press $tt $ht S-9 lsft)
             rsft (tap-hold-press $tt $ht S-0 rsft)
           )
+
+          ;; mute = volume mute
+          ;; volu = volume up
+          ;; voldwn = volume down
+          ;; brup = brightness up
+          ;; brdown = brightness down
+          ;; blup = backlight up
+          ;; bldn = backlight down
+          ;;
+          ;; when fn held
+          ;; (deflayermap (fn-hardware-controls)
+          ;;   f2 (screen-output)
+          ;;   f3 (touchpad-toggle)
+          ;;   f6 (webcam-toggle)
+          ;;   f10 (airplane-mode)
+          ;;   f12 (sleep)
+          ;;   pgup (backlight-up)
+          ;;   pgdn (backlight-down)
+          ;;   end (volume-mute)
+          ;;   lft (volume-down)
+          ;;   rght (volume-up)
+          ;;   up (brightness-up)
+          ;;   down (brightness-down)
+          ;; )
         '';
 
-      # Without this, tap-hold-release and tap-hold-press will not activate for keys that are not in defsrc
+      # Without this, tap-hold actions will not activate for keys that are not in defsrc
       extraDefCfg = "process-unmapped-keys yes";
     };
   };
@@ -107,6 +204,8 @@
     vlc # video player
 
     # dev
+    evtest # input event debugging
+    evtest-qt # Qt based GUI that provides a list of attached input devices, and displays which axis and buttons are pressed
     ventoy # create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files
     vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
     #vscode-with-extensions.override {
