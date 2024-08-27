@@ -11,28 +11,30 @@
     plugins.conform-nvim = {
       enable = true;
 
-      formattersByFt = {
-        html = [ "prettier" ];
+      settings = {
+        formatters_by_ft = {
+          html = [ "prettier" ];
 
-        css = [ "prettier" ];
+          css = [ "prettier" ];
 
-        javascript = [ "prettier" ];
-        typescript = [ "prettier" ];
+          javascript = [ "prettier" ];
+          typescript = [ "prettier" ];
 
-        svelte = [ "prettier" ];
+          svelte = [ "prettier" ];
 
-        json = [ "prettier" ];
-        yaml = [ "prettier" ];
+          json = [ "prettier" ];
+          yaml = [ "prettier" ];
 
-        markdown = [ "prettier" ];
+          markdown = [ "prettier" ];
 
-        lua = [ "stylua" ];
-        nix = [ "nixfmt" ];
-        rust = [ "rustfmt" ];
-        zig = [ "zigfmt" ];
+          lua = [ "stylua" ];
+          nix = [ "nixfmt" ];
+          rust = [ "rustfmt" ];
+          zig = [ "zigfmt" ];
+        };
+
+        notify_on_error = true;
       };
-
-      notifyOnError = true;
     };
 
     keymaps = [
