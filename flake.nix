@@ -8,6 +8,7 @@
     nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     flake-parts-unstable = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
@@ -28,6 +29,11 @@
       };
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
@@ -44,13 +50,14 @@
       nixpkgs-24-05,
       nixpkgs-unstable,
       nixvim-unstable,
+      nixos-cosmic,
       ...
     }@inputs:
     {
       nixosConfigurations = {
         # By default, NixOS will try the nixosConfiguration with its hostname:
         #   sudo nixos-rebuild switch
-        # The configuration name can also be specified using:
+        # The configuration name can be specified using:
         #   sudo nixos-rebuild switch --flake /path/to/flakes/directory#<name>
         #   sudo nixos-rebuild switch --flake .#nixos-laptop
 
@@ -79,12 +86,31 @@
           modules = [
             ./hosts/laptop/configuration.nix
             ./modules
+
             ./nixvim
             nixvim-unstable.nixosModules.nixvim
+
+            # Hyprland dynamic tiling Wayland compositor
             (
               { ... }:
               {
                 config.configHyprland.enable = true;
+              }
+            )
+
+            # COSMIC Desktop Environment from Pop!_OS
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
+            (
+              { ... }:
+              {
+                services.desktopManager.cosmic.enable = true;
+                services.displayManager.cosmic-greeter.enable = true;
               }
             )
           ];
