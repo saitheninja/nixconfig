@@ -3,135 +3,131 @@
   programs.nixvim.plugins.lualine = {
     enable = true;
 
-    extensions = [
-      "nvim-dap-ui"
-      "oil"
-      "trouble"
-    ];
-
-    componentSeparators = {
-      left = "";
-      right = "";
-    };
-
-    sectionSeparators = {
-      left = "";
-      right = "";
-    };
-
-    sections = {
-      lualine_a = [ { name = "mode"; } ];
-
-      lualine_b = [
-        { name = "branch"; }
-        { name = "diff"; }
-        { name = "diagnostics"; }
+    settings = {
+      extensions = [
+        "nvim-dap-ui"
+        "oil"
+        "trouble"
       ];
 
-      lualine_c = [
-        {
-          name = "filename";
-          extraConfig = {
+      options = {
+        component_separators = {
+          left = "";
+          right = "";
+        };
+
+        section_separators = {
+          left = "";
+          right = "";
+        };
+      };
+
+      sections = {
+        lualine_a = [
+          "mode"
+        ];
+
+        lualine_b = [
+          "branch"
+          "diff"
+          "diagnostics"
+        ];
+
+        lualine_c = [
+          {
+            __unkeyed-1 = "filename";
             path = 1; # relative path
-          };
-        }
-        { name = "searchcount"; }
-      ];
+          }
+          "searchcount"
+        ];
 
-      lualine_x = [
-        # list active LSPs
-        {
-          name.__raw = # lua
-            ''
-              function ()
-                local buf_clients = vim.lsp.get_clients({bufnr = 0}) -- 0 means this buffer
-                if next(buf_clients) == nil then
-                  return "No LSPs"
-                end
+        lualine_x = [
+          # list active LSPs
+          {
+            __unkeyed-1 = {
+              __raw = # lua
+                ''
+                  function ()
+                    local buf_clients = vim.lsp.get_clients({bufnr = 0}) -- 0 means this buffer
+                    if next(buf_clients) == nil then
+                      return "No LSPs"
+                    end
 
-                local buf_client_names = {}
-                for _, client in pairs(buf_clients) do
-                  table.insert(buf_client_names, client.name)
-                end
+                    local buf_client_names = {}
+                    for _, client in pairs(buf_clients) do
+                      table.insert(buf_client_names, client.name)
+                    end
 
-                return table.concat(buf_client_names, ", ")
-              end
-            '';
-          extraConfig = {
+                    return table.concat(buf_client_names, ", ")
+                  end
+                '';
+            };
             color = "Conceal";
-          };
-        }
-        { name = "filetype"; }
-      ];
+          }
+          "filetype"
+        ];
 
-      lualine_y = [
-        { name = "progress"; }
-        { name = "selectioncount"; }
-      ];
+        lualine_y = [
+          "progress"
+          "selectioncount"
+        ];
 
-      lualine_z = [ { name = "location"; } ];
-    };
+        lualine_z = [
+          "location"
+        ];
+      };
 
-    inactiveSections = {
-      lualine_b = [
-        {
-          name = "diff";
-          extraConfig = {
-            color = "Conceal";
-            colored = false;
-          };
-        }
-        {
-          name = "diagnostics";
-          extraConfig = {
+      inactive_sections = {
+        lualine_b = [
+          {
+            __unkeyed-1 = "diff";
             color = "Conceal";
             colored = false;
-          };
-        }
-      ];
+          }
+          {
+            __unkeyed-1 = "diagnostics";
+            color = "Conceal";
+            colored = false;
+          }
+        ];
 
-      lualine_c = [
-        {
-          name = "filename";
-          extraConfig = {
+        lualine_c = [
+          {
+            __unkeyed-1 = "filename";
             color = "Conceal";
             colored = false;
             path = 1;
-          };
-        }
-      ];
+          }
+        ];
 
-      lualine_x = [
-        {
-          name = "progress";
-          extraConfig = {
+        lualine_x = [
+          {
+            __unkeyed-1 = "progress";
             color = "Conceal";
             colored = false;
-          };
-        }
-        {
-          name = "location";
-          extraConfig = {
+          }
+          {
+            __unkeyed-1 = "location";
             color = "Conceal";
             colored = false;
-          };
-        }
-      ];
-    };
+          }
+        ];
+      };
 
-    tabline = {
-      lualine_a = [
-        {
-          name = "buffers";
-          extraConfig = {
+      tabline = {
+        lualine_a = [
+          {
+            __unkeyed-1 = "buffers";
             # mode = 2; # buffer name + buffer index
             mode = 4; # buffer name + buffer number
             show_filename_only = false; # show shortened relative path
-          };
-        }
-      ];
+          }
+        ];
 
-      lualine_z = [ { name = "tabs"; } ];
+        lualine_z = [
+          "tabs"
+        ];
+      };
     };
   };
 }
