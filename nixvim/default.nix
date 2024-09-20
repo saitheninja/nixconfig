@@ -286,7 +286,7 @@
 
             svelte.enable = true;
             tailwindcss.enable = true;
-            tsserver.enable = true; # typescript
+            ts-ls.enable = true; # typescript language server
 
             # gdscript.enable = true;
             lua-ls = {
