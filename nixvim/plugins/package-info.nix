@@ -1,14 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [
-      package-info-nvim # npm package info
-    ];
+    plugins.package-info = {
+      enable = true;
 
-    extraConfigLua = # lua
-      ''
-        require("package-info").setup();
-      '';
+      enableTelescope = true;
+    };
 
     keymaps = [
       {
