@@ -432,6 +432,7 @@
           # '';
         };
         trouble.enable = true; # window for diagnostics, info provided by lsp, etc.
+        web-devicons.enable = true; # file type icons
         which-key.enable = true; # show shortcuts
 
         # ...rest
