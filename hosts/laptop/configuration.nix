@@ -274,7 +274,7 @@
     webcamoid # Qt webcam manager
     v4l-utils # video for linux utils
     #zoom-us # ugh
-    teams-for-linux # unofficial Electron client
+    #teams-for-linux # unofficial Electron client
     #linuxKernel.packages.linux_6_6.v4l2loopback # kernel module to create virtual V4L2 loopback devices
 
     # 3D
