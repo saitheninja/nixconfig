@@ -286,15 +286,15 @@
 
             svelte.enable = true;
             tailwindcss.enable = true;
-            ts-ls.enable = true; # typescript language server
+            ts_ls.enable = true; # typescript language server
 
             # gdscript.enable = true;
-            lua-ls = {
+            lua_ls = {
               enable = true;
               settings.telemetry.enable = false;
             };
             nixd.enable = true;
-            rust-analyzer = {
+            rust_analyzer = {
               enable = true;
               installCargo = false;
               installRustc = false;
