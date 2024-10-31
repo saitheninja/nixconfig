@@ -776,17 +776,17 @@
           callback.__raw = # lua
             ''
               function()
-                vim.highlight.on_yank()
+                vim.highlight.on_yank({ timeout = 200 })
               end
             '';
-          desc = "Highlight when yanking text";
+          desc = "Highlight yanked text";
           event = "TextYankPost";
-          group = "highlight_yank";
+          group = "highlight_yanked";
         }
       ];
 
       autoGroups = {
-        highlight_yank = {
+        highlight_yanked = {
           clear = true;
         };
       };
