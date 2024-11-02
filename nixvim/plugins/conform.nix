@@ -40,7 +40,7 @@
                 return
               end
 
-              return { timeout_ms = 500, lsp_fallback = true }
+              return { timeout_ms = 5000, lsp_fallback = true }
              end
           '';
 
