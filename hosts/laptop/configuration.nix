@@ -133,16 +133,26 @@
           ;;   lsft z    x    c    v    b    n    m    comm .    /    rsft      up   end
           ;;   lctl lmet lalt           spc            102d ralt fn   rctl lft  down rght
           ;; )
+
           (defsrc
-            caps
+            caps a    s    d    h    f    j    k    l
             lsft rsft
           )
 
           (defvar
             tap-timeout 150
             hold-timeout 150
-            tt $tap-timeout
-            ht $hold-timeout
+
+            left-hand-keys (
+              q w e r t
+              a s d f g
+              z x c v b
+            )
+            right-hand-keys (
+              y u i o p
+              h j k l scln
+              n m , . /
+            )
           )
 
 
@@ -153,18 +163,29 @@
             ;; One action for a "tap" and a different action for a "hold"
             ;; ((tap timeout in milliseconds) (hold timeout in milliseconds) (tap action) (hold action))
             ;; tap timeout is the number of milliseconds within which a rapid press+release+press of a key will result in the tap action being held instead of the hold action activating
-            ;;
+
             ;; `tap-hold-press`
             ;; If there is a press of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
-            ;;
+
             ;; `tap-hold-release`
             ;; If there is a press+release of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
 
             ;; caps lock key: tap for escape, hold for left control
-            caps (tap-hold-press $tt $ht esc lctl)
-            ;; left/right shift: tap for round bracket open/close (parenthesis open/close) (shift+9/0), hold for left/right shift
-            lsft (tap-hold-press $tt $ht S-9 lsft)
-            rsft (tap-hold-press $tt $ht S-0 rsft)
+            caps (tap-hold-press $tap-timeout $hold-timeout esc lctl)
+
+            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
+            lsft (tap-hold-press $tap-timeout $hold-timeout S-9 lsft)
+            rsft (tap-hold-press $tap-timeout $hold-timeout S-0 rsft)
+
+            ;; home-row mods
+            a @a
+            s @s
+            d @d
+            f @f
+            h @h
+            j @j
+            k @k
+            l @l
           )
 
           ;; mute = volume mute
@@ -190,6 +211,46 @@
           ;;   up (brightness-up)
           ;;   down (brightness-down)
           ;; )
+
+          (deflayermap (no-mods)
+            a a
+            s s
+            d d
+            f f
+            h h
+            j j
+            k k
+            l l
+          )
+
+          (defvirtualkeys
+            to-base (layer-switch default-layer)
+          )
+
+          (defalias
+            same-side (multi
+              (layer-switch no-mods)
+              (on-idle 20 tap-vkey to-base)
+            )
+
+            ;; `tap-hold-release-keys`
+            ;; takes a list of keys that trigger an early tap when they are pressed while the tap-hold-release-keys action is waiting
+
+            ;; pressing another key on the same half of the keyboard as the home row mod will activate an early tap action
+            ;; when a home row mod activates @same-side, the home row mods are disabled while continuing to type rapidly
+
+            ;; switch to no-mods layer if pressing a key on the same side
+            ;; switch back to default-layer after 20ms timeout
+
+            a (tap-hold-release-keys $tap-timeout $hold-timeout (multi a @same-side) lmet $left-hand-keys)
+            s (tap-hold-release-keys $tap-timeout $hold-timeout (multi s @same-side) lalt $left-hand-keys)
+            d (tap-hold-release-keys $tap-timeout $hold-timeout (multi d @same-side) lctl $left-hand-keys)
+            f (tap-hold-release-keys $tap-timeout $hold-timeout (multi f @same-side) lsft $left-hand-keys)
+            h (tap-hold-release-keys $tap-timeout $hold-timeout (multi h @same-side) rsft $right-hand-keys)
+            j (tap-hold-release-keys $tap-timeout $hold-timeout (multi j @same-side) rctl $right-hand-keys)
+            k (tap-hold-release-keys $tap-timeout $hold-timeout (multi k @same-side) ralt $right-hand-keys)
+            l (tap-hold-release-keys $tap-timeout $hold-timeout (multi l @same-side) rmet $right-hand-keys)
+          )
         '';
 
       # Without this, tap-hold actions will not activate for keys that are not in defsrc
