@@ -391,6 +391,7 @@
         # ui
         dressing.enable = true; # use telescope for `vim.ui.input` & `vim.ui.select`
         fidget.enable = true; # notifications & lsp progress
+        scrollview.enable = true; # scrollbar with indicators for diagnostics
         nvim-ufo = {
           enable = true; # better folding
 
