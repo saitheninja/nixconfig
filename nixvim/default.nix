@@ -33,7 +33,7 @@
       withRuby = false; # install Ruby and Ruby plugin provider gem "neovim-ruby"
 
       clipboard = {
-        register = "unnamedplus"; # use system clipboard as default register
+        #register = "unnamedplus"; # use system clipboard as default register
         providers.wl-copy.enable = true; # use wl-clipboard CLI utils
       };
 
