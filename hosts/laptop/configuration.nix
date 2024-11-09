@@ -143,13 +143,14 @@
             tap-timeout 150
             hold-timeout 150
 
-            mods-timeout 250
+            mods-timeout 200
 
             left-hand-keys (
               q w e r t
               a s d f g
               z x c v b
             )
+
             right-hand-keys (
               y u i o p
               h j k l scln
@@ -184,6 +185,7 @@
             s @s
             d @d
             f @f
+
             j @j
             k @k
             l @l
@@ -219,6 +221,7 @@
             s s
             d d
             f f
+
             h h
             j j
             k k
