@@ -142,6 +142,7 @@
           (defvar
             tap-timeout 150
             hold-timeout 150
+
             mods-timeout 250
 
             left-hand-keys (
@@ -183,10 +184,10 @@
             s @s
             d @d
             f @f
-            h @h
             j @j
             k @k
             l @l
+            scln @scln
           )
 
           ;; mute = volume mute
@@ -247,10 +248,11 @@
             s (tap-hold-release-keys $mods-timeout $mods-timeout (multi s @same-side) lalt $left-hand-keys)
             d (tap-hold-release-keys $mods-timeout $mods-timeout (multi d @same-side) lctl $left-hand-keys)
             f (tap-hold-release-keys $mods-timeout $mods-timeout (multi f @same-side) lsft $left-hand-keys)
-            h (tap-hold-release-keys $mods-timeout $mods-timeout (multi h @same-side) rsft $right-hand-keys)
-            j (tap-hold-release-keys $mods-timeout $mods-timeout (multi j @same-side) rctl $right-hand-keys)
-            k (tap-hold-release-keys $mods-timeout $mods-timeout (multi k @same-side) ralt $right-hand-keys)
-            l (tap-hold-release-keys $mods-timeout $mods-timeout (multi l @same-side) rmet $right-hand-keys)
+
+            j (tap-hold-release-keys $mods-timeout $mods-timeout (multi j @same-side) rsft $right-hand-keys)
+            k (tap-hold-release-keys $mods-timeout $mods-timeout (multi k @same-side) rctl $right-hand-keys)
+            l (tap-hold-release-keys $mods-timeout $mods-timeout (multi l @same-side) ralt $right-hand-keys)
+            scln (tap-hold-release-keys $mods-timeout $mods-timeout (multi scln @same-side) rmet $right-hand-keys)
           )
         '';
 
