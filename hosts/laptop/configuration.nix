@@ -256,11 +256,11 @@
 
             a (tap-hold-release-keys $mods-timeout $mods-timeout (multi a @same-side) lalt $left-hand-keys)
             s (tap-hold-release-keys $mods-timeout $mods-timeout (multi s @same-side) lmet $left-hand-keys)
-            d (tap-hold-release-keys $mods-timeout $mods-timeout (multi d @same-side) lctl $left-hand-keys)
-            f (tap-hold-release-keys $mods-timeout $mods-timeout (multi f @same-side) lsft $left-hand-keys)
+            d (tap-hold-release-keys $mods-timeout $mods-timeout (multi d @same-side) lsft $left-hand-keys)
+            f (tap-hold-release-keys $mods-timeout $mods-timeout (multi f @same-side) lctl $left-hand-keys)
 
-            j (tap-hold-release-keys $mods-timeout $mods-timeout (multi j @same-side) rsft $right-hand-keys)
-            k (tap-hold-release-keys $mods-timeout $mods-timeout (multi k @same-side) rctl $right-hand-keys)
+            j (tap-hold-release-keys $mods-timeout $mods-timeout (multi j @same-side) rctl $right-hand-keys)
+            k (tap-hold-release-keys $mods-timeout $mods-timeout (multi k @same-side) rsft $right-hand-keys)
             l (tap-hold-release-keys $mods-timeout $mods-timeout (multi l @same-side) rmet $right-hand-keys)
             scln (tap-hold-release-keys $mods-timeout $mods-timeout (multi scln @same-side) ralt $right-hand-keys)
           )
