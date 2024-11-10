@@ -135,6 +135,9 @@
           ;; )
 
           (defsrc
+            esc
+            ;;
+            ;;
             caps a    s    d    h    f    j    k    l
             lsft rsft
           )
@@ -174,7 +177,11 @@
             ;; If there is a press+release of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
 
             ;; caps lock key: tap for escape, hold for left control
-            caps (tap-hold-press $tap-timeout $hold-timeout esc lctl)
+            ;; caps (tap-hold-press $tap-timeout $hold-timeout esc lctl)
+
+            ;; swap caps lock and escape
+            caps esc
+            esc  caps
 
             ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
             lsft (tap-hold-press $tap-timeout $hold-timeout S-9 lsft)
