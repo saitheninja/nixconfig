@@ -452,6 +452,15 @@
         # <Cmd> does not change modes
         # command is not echoed so no need for <silent>
 
+        # Neovim
+        {
+          action = "<Cmd>write<CR>";
+          key = "<leader>w";
+          mode = "n";
+          options = {
+            desc = "Neovim: write";
+          };
+        }
         # Neovim settings
         {
           action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
