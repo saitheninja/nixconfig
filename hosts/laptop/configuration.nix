@@ -142,63 +142,6 @@
             lsft rsft
           )
 
-          (defvar
-            tap-timeout 150
-            hold-timeout 150
-
-            mods-timeout 200
-
-            left-hand-keys (
-              q w e r t
-              a s d f g
-              z x c v b
-            )
-
-            right-hand-keys (
-              y u i o p
-              h j k l scln
-              n m , . /
-            )
-          )
-
-
-          (deflayermap (default-layer)
-            ;; input_key output_action
-
-            ;; `tap-hold`
-            ;; One action for a "tap" and a different action for a "hold"
-            ;; ((tap timeout in milliseconds) (hold timeout in milliseconds) (tap action) (hold action))
-            ;; tap timeout is the number of milliseconds within which a rapid press+release+press of a key will result in the tap action being held instead of the hold action activating
-
-            ;; `tap-hold-press`
-            ;; If there is a press of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
-
-            ;; `tap-hold-release`
-            ;; If there is a press+release of a different key, the hold action is activated even if the hold timeout hasn’t expired yet
-
-            ;; caps lock key: tap for escape, hold for left control
-            ;; caps (tap-hold-press $tap-timeout $hold-timeout esc lctl)
-
-            ;; swap caps lock and escape
-            caps esc
-            esc  caps
-
-            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
-            lsft (tap-hold-press $tap-timeout $hold-timeout S-9 lsft)
-            rsft (tap-hold-press $tap-timeout $hold-timeout S-0 rsft)
-
-            ;; home-row mods
-            a @a
-            s @s
-            d @d
-            f @f
-
-            j @j
-            k @k
-            l @l
-            scln @scln
-          )
-
           ;; mute = volume mute
           ;; volu = volume up
           ;; voldwn = volume down
@@ -223,52 +166,110 @@
           ;;   down (brightness-down)
           ;; )
 
-          (deflayermap (no-home-row-mods)
+          (deflayermap (default)
+            ;; input_key output_action
+
+            ;; esc: caps lock
             esc caps
-            caps esc
 
-            lsft (tap-hold-press $tap-timeout $hold-timeout S-9 lsft)
-            rsft (tap-hold-press $tap-timeout $hold-timeout S-0 rsft)
+            ;; caps lock: tap for esc, hold for left ctrl
+            caps @caps
 
+            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
+            lsft @lsft
+            rsft @rsft
+
+            ;; home-row mods
+            a @a
+            s @s
+            d @d
+            f @f
+
+            j @j
+            k @k
+            l @l
+            scln @scln
+          )
+
+          (deflayermap (home-row-mods-off)
+            ;; home row mods off
             a a
             s s
             d d
             f f
-
-            h h
             j j
             k k
             l l
+            scln scln
+
+            ;; other remaps on
+            esc caps
+            caps @caps
+            lsft @lsft
+            rsft @rsft
+          )
+
+          (defvar
+            left-hand-keys (
+              q w e r t
+              a s d f g
+              z x c v b
+            )
+
+            right-hand-keys (
+              y u i o p
+              h j k l scln
+              n m , . /
+            )
           )
 
           (defvirtualkeys
-            to-base (layer-switch default-layer)
+            to-base (layer-switch default)
           )
 
           (defalias
-            same-side (multi
-              (layer-switch no-home-row-mods)
-              (on-idle 20 tap-vkey to-base)
-            )
+            ;; `tap-hold`
+            ;; ((tap timeout in milliseconds) (hold timeout in milliseconds) (tap action) (hold action))
+            ;; Action for a "tap", action for a "hold".
+            ;; tap timeout: number of milliseconds within which press+release+press of a key will result in the tap action being held instead of the hold action.
+            ;; hold timeout: number of milliseconds after which the hold action will activate.
+
+            ;; `tap-hold-press`
+            ;; While key is pressed, if there is a press of a different key, the hold action is activated.
+
+            ;; `tap-hold-release`
+            ;; While key is pressed, if there is a press+release of a different key, the hold action is activated.
 
             ;; `tap-hold-release-keys`
-            ;; takes a list of keys that trigger an early tap when they are pressed while the tap-hold-release-keys action is waiting
+            ;; ((tap timeout in milliseconds) (hold timeout in milliseconds) (tap action) (hold action) (list of keys))
+            ;; Takes a list of keys that trigger an early tap when they are pressed while the tap-hold-release-keys action is waiting. Otherwise behaves as tap-hold-release.
 
+            ;; caps lock key: tap for escape, hold for left control
+            caps (tap-hold-press 150 150 esc lctl)
+
+            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
+            lsft (tap-hold-press 150 150 S-9 lsft)
+            rsft (tap-hold-press 150 150 S-0 rsft)
+
+            ;; home row mods
             ;; pressing another key on the same half of the keyboard as the home row mod will activate an early tap action
             ;; when a home row mod activates @same-side, the home row mods are disabled while continuing to type rapidly
-
             ;; switch to no-mods layer if pressing a key on the same side
             ;; switch back to default-layer after 20ms timeout
-
-            a (tap-hold-release-keys $mods-timeout $mods-timeout (multi a @same-side) lalt $left-hand-keys)
-            s (tap-hold-release-keys $mods-timeout $mods-timeout (multi s @same-side) lmet $left-hand-keys)
-            d (tap-hold-release-keys $mods-timeout $mods-timeout (multi d @same-side) lctl $left-hand-keys)
-            f (tap-hold-release-keys $mods-timeout $mods-timeout (multi f @same-side) lsft $left-hand-keys)
-
-            j (tap-hold-release-keys $mods-timeout $mods-timeout (multi j @same-side) rsft $right-hand-keys)
-            k (tap-hold-release-keys $mods-timeout $mods-timeout (multi k @same-side) rctl $right-hand-keys)
-            l (tap-hold-release-keys $mods-timeout $mods-timeout (multi l @same-side) rmet $right-hand-keys)
-            scln (tap-hold-release-keys $mods-timeout $mods-timeout (multi scln @same-side) ralt $right-hand-keys)
+            same-side (multi
+              (layer-switch home-row-mods-off)
+              (on-idle 20 tap-vkey to-base)
+            )
+            ;; left
+            a (tap-hold-release-keys 150 150 (multi a @same-side) lalt $left-hand-keys)
+            s (tap-hold-release-keys 150 150 (multi s @same-side) lmet $left-hand-keys)
+            d (tap-hold-release-keys 150 150 (multi d @same-side) lctl $left-hand-keys)
+            f (tap-hold-release-keys 150 150 (multi f @same-side) lsft $left-hand-keys)
+            ;; right
+            j (tap-hold-release-keys 150 150 (multi j @same-side) rsft $right-hand-keys)
+            k (tap-hold-release-keys 150 150 (multi k @same-side) rctl $right-hand-keys)
+            l (tap-hold-release-keys 150 150 (multi l @same-side) rmet $right-hand-keys)
+            scln (tap-hold-release-keys 150 150 (multi scln @same-side) ralt $right-hand-keys)
           )
         '';
 
