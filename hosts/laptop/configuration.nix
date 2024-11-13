@@ -223,7 +223,13 @@
           ;;   down (brightness-down)
           ;; )
 
-          (deflayermap (no-mods)
+          (deflayermap (no-home-row-mods)
+            esc caps
+            caps esc
+
+            lsft (tap-hold-press $tap-timeout $hold-timeout S-9 lsft)
+            rsft (tap-hold-press $tap-timeout $hold-timeout S-0 rsft)
+
             a a
             s s
             d d
@@ -241,7 +247,7 @@
 
           (defalias
             same-side (multi
-              (layer-switch no-mods)
+              (layer-switch no-home-row-mods)
               (on-idle 20 tap-vkey to-base)
             )
 
