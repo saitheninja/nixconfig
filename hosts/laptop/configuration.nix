@@ -261,15 +261,15 @@
               (on-idle 20 tap-vkey to-base)
             )
             ;; left
-            a (tap-hold-release-keys 150 150 (multi a @same-side) lalt $left-hand-keys)
-            s (tap-hold-release-keys 150 150 (multi s @same-side) lmet $left-hand-keys)
-            d (tap-hold-release-keys 150 150 (multi d @same-side) lctl $left-hand-keys)
-            f (tap-hold-release-keys 150 150 (multi f @same-side) lsft $left-hand-keys)
+            a (tap-hold-release-keys 200 200 (multi a @same-side) lalt $left-hand-keys)
+            s (tap-hold-release-keys 200 200 (multi s @same-side) lmet $left-hand-keys)
+            d (tap-hold-release-keys 200 200 (multi d @same-side) lctl $left-hand-keys)
+            f (tap-hold-release-keys 200 200 (multi f @same-side) lsft $left-hand-keys)
             ;; right
-            j (tap-hold-release-keys 150 150 (multi j @same-side) rsft $right-hand-keys)
-            k (tap-hold-release-keys 150 150 (multi k @same-side) rctl $right-hand-keys)
-            l (tap-hold-release-keys 150 150 (multi l @same-side) rmet $right-hand-keys)
-            scln (tap-hold-release-keys 150 150 (multi scln @same-side) ralt $right-hand-keys)
+            j (tap-hold-release-keys 200 200 (multi j @same-side) rsft $right-hand-keys)
+            k (tap-hold-release-keys 200 200 (multi k @same-side) rctl $right-hand-keys)
+            l (tap-hold-release-keys 200 200 (multi l @same-side) rmet $right-hand-keys)
+            scln (tap-hold-release-keys 200 200 (multi scln @same-side) ralt $right-hand-keys)
           )
         '';
 
