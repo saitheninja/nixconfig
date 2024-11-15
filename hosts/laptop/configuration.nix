@@ -136,8 +136,8 @@
 
           (defsrc
             esc
-            ;;
-            ;;
+            bspc
+            bksl
             caps a    s    d    h    f    j    k    l
             lsft rsft
           )
@@ -172,6 +172,10 @@
             ;; esc: caps lock
             esc caps
 
+            ;; swap backslash & backspace
+            bspc bksl
+            bksl bspc
+
             ;; caps lock: tap for esc, hold for left ctrl
             caps @caps
 
@@ -204,6 +208,8 @@
 
             ;; other remaps on
             esc caps
+            bspc bksl
+            bksl bspc
             caps @caps
             lsft @lsft
             rsft @rsft
