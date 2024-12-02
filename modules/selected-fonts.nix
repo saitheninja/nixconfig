@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options.configSelectedFonts.enable = lib.mkOption {
@@ -25,14 +30,11 @@
       # monospace
       cascadia-code # built in support for Nerd Font (NF) and Powerline (PL) symbols
       hack-font
-
       # specific nerd fonts because the package is huge
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Iosevka"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      nerd-fonts.iosevka-term # slimmer
+      nerd-fonts.iosevka-term-slab # with serifs
     ];
   };
 }
