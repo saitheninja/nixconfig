@@ -8,6 +8,7 @@
 let
   pkgsMain = with pkgs; [
     wayland-utils # view graphics details in Info Center
+    application-title-bar # widget to see application name in title bar
   ];
 
   pkgsKde = with pkgs.kdePackages; [
