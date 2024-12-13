@@ -55,7 +55,7 @@
 
         # folding
         foldenable = true;
-        foldcolumn = "auto:9"; # auto width, max 9
+        foldcolumn = "auto:4"; # auto width, max 4
         # suggested by nvim-ufo
         foldlevel = 99; # minimum depth that will be folded by default
         foldlevelstart = 99; # fold depth open when a new buffer is opened
@@ -400,7 +400,7 @@
           # foldVirtTextHandler = ''
           #   function(virtText, lnum, endLnum, width, truncate)
           #     local newVirtText = {}
-          #     local suffix = (' … ↴ %d '):format(endLnum - lnum) 
+          #     local suffix = (' … ↴ %d '):format(endLnum - lnum)
           #     local sufWidth = vim.fn.strdisplaywidth(suffix)
           #     local targetWidth = width - sufWidth
           #     local curWidth = 0
