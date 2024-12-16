@@ -454,11 +454,11 @@
 
         # Neovim
         {
-          action = "<Cmd>write<CR>";
+          action = "<Cmd>wa<CR>";
           key = "<leader>w";
           mode = "n";
           options = {
-            desc = "Neovim: write";
+            desc = "Neovim: write all";
           };
         }
         # Neovim settings
