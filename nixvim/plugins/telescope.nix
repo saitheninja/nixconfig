@@ -44,9 +44,12 @@
 
     keymaps = [
       {
+        action = "+find with Telescope";
         key = "<leader>f";
         mode = "n";
-        action = "+find with Telescope";
+        options = {
+          desc = "+find with Telescope";
+        };
       }
 
       # file pickers
@@ -117,6 +120,14 @@
         };
       }
       {
+        action = "<Cmd>Telescope resume<CR>";
+        key = "<leader>fr";
+        mode = "n";
+        options = {
+          desc = "Telescope: resume previous picker";
+        };
+      }
+      {
         action = "<Cmd>Telescope vim_options<CR>";
         key = "<leader>fv";
         mode = "n";
@@ -125,6 +136,15 @@
         };
       }
 
+      # list pickers
+      {
+        action = "<Cmd>Telescope builtin<CR>";
+        key = "<leader>fp";
+        mode = "n";
+        options = {
+          desc = "Telescope: built-in pickers";
+        };
+      }
     ];
   };
 }

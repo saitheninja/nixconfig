@@ -463,6 +463,14 @@
         }
         # Neovim settings
         {
+          action = "+Neovim settings";
+          key = "<leader>n";
+          mode = "n";
+          options = {
+            desc = "+Neovim settings";
+          };
+        }
+        {
           action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
           key = "<leader>nw";
           mode = "n";
@@ -479,6 +487,14 @@
           };
         }
         # Neovim buffers
+        {
+          action = "+Neovim buffers";
+          key = "<leader>b";
+          mode = "n";
+          options = {
+            desc = "+Neovim buffers";
+          };
+        }
         {
           action = "<Cmd>bnext<CR>"; # bn[ext]
           key = "<leader>bn";
@@ -557,7 +573,7 @@
           key = "<M-k>";
           mode = "n";
           options = {
-            desc = "Neovim: move current line one line up";
+            desc = "Neovim: move current line up";
           };
         }
         {
@@ -565,7 +581,7 @@
           key = "<M-j>";
           mode = "n";
           options = {
-            desc = "Neovim: move current line one line down";
+            desc = "Neovim: move current line down";
           };
         }
         # gi = go to last insert
@@ -574,7 +590,7 @@
           key = "<M-k>";
           mode = "i";
           options = {
-            desc = "Neovim: move current line one line up";
+            desc = "Neovim: move current line up";
           };
         }
         {
@@ -582,7 +598,7 @@
           key = "<M-j>";
           mode = "i";
           options = {
-            desc = "Neovim: move current line one line down";
+            desc = "Neovim: move current line down";
           };
         }
         # '> = mark for selection end
@@ -597,7 +613,7 @@
           key = "<M-k>";
           mode = "v";
           options = {
-            desc = "Neovim: move selected lines one line up";
+            desc = "Neovim: move selected lines up";
           };
         }
         {
@@ -605,11 +621,19 @@
           key = "<M-j>";
           mode = "v";
           options = {
-            desc = "Neovim: move selected lines one line down";
+            desc = "Neovim: move selected lines down";
           };
         }
 
         # auto-session
+        {
+          action = "+browse Neovim sessions with auto-session";
+          key = "<leader>s";
+          mode = "n";
+          options = {
+            desc = "+auto-session";
+          };
+        }
         {
           action = "<Cmd>Autosession search<CR>";
           key = "<leader>ss";
@@ -621,14 +645,31 @@
 
         # inc-rename
         {
+          action = "+rename selection instances in file with inc-rename";
+          key = "<leader>r";
+          mode = "n";
+          options = {
+            desc = "+inc-rename";
+          };
+        }
+        {
           action = ":IncRename ";
           key = "<leader>rn";
           mode = "n";
           options = {
-            desc = "Inc-rename: start rename";
+            desc = "inc-rename: start rename";
           };
         }
 
+        # git
+        {
+          action = "+git actions";
+          key = "<leader>g";
+          mode = "n";
+          options = {
+            desc = "+git";
+          };
+        }
         # gitsigns
         {
           action = "<Cmd>Gitsigns toggle_current_line_blame<CR>";
@@ -646,7 +687,6 @@
             desc = "Gitsigns: toggle deleted";
           };
         }
-
         # neogit
         {
           action = "<Cmd>Neogit<CR>";
@@ -657,42 +697,15 @@
           };
         }
 
-        # nvim-ufo
-        # built in commands change foldlevel, ufo commands don't
-        {
-          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
-          key = "<leader>zr";
-          mode = "n";
-          options = {
-            desc = "UFO: open folds one level";
-          };
-        }
-        {
-          action = "<Cmd>Ufo openAllFolds<CR>";
-          key = "<leader>zR";
-          mode = "n";
-          options = {
-            desc = "UFO: open all folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo closeFoldsWith<CR>";
-          key = "<leader>zm";
-          mode = "n";
-          options = {
-            desc = "UFO: close one level of folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo closeAllFolds<CR>";
-          key = "<leader>zM";
-          mode = "n";
-          options = {
-            desc = "UFO: close all folds";
-          };
-        }
-
         # oil
+        {
+          action = "+browse files with oil";
+          key = "<leader>o";
+          mode = "n";
+          options = {
+            desc = "+oil";
+          };
+        }
         {
           action = "<Cmd>Oil<CR>";
           key = "<leader>oe";
@@ -704,6 +717,14 @@
 
         # treesitter
         {
+          action = "+treesitter features";
+          key = "<leader>t";
+          mode = "n";
+          options = {
+            desc = "+treesitter";
+          };
+        }
+        {
           action = "<Cmd>TSContextToggle<CR>";
           key = "<leader>tc";
           mode = "n";
@@ -713,6 +734,14 @@
         }
 
         # trouble
+        {
+          action = "+view LSP diagnostics with Trouble";
+          key = "<leader>x";
+          mode = "n";
+          options = {
+            desc = "+Trouble";
+          };
+        }
         {
           action = "<Cmd>Trouble diagnostics toggle<CR>";
           key = "<leader>xx";
@@ -761,6 +790,50 @@
             desc = "Trouble: quickfix list";
           };
         }
+
+        # nvim-ufo
+        # built in commands change foldlevel, ufo commands don't
+        {
+          action = "+fold area with ufo";
+          key = "<leader>z";
+          mode = "n";
+          options = {
+            desc = "+ufo";
+          };
+        }
+        {
+          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
+          key = "<leader>zr";
+          mode = "n";
+          options = {
+            desc = "UFO: open folds one level";
+          };
+        }
+        {
+          action = "<Cmd>Ufo openAllFolds<CR>";
+          key = "<leader>zR";
+          mode = "n";
+          options = {
+            desc = "UFO: open all folds";
+          };
+        }
+        {
+          action = "<Cmd>Ufo closeFoldsWith<CR>";
+          key = "<leader>zm";
+          mode = "n";
+          options = {
+            desc = "UFO: close one level of folds";
+          };
+        }
+        {
+          action = "<Cmd>Ufo closeAllFolds<CR>";
+          key = "<leader>zM";
+          mode = "n";
+          options = {
+            desc = "UFO: close all folds";
+          };
+        }
+
       ];
 
       extraConfigLua = # lua

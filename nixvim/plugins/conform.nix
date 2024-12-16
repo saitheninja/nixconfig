@@ -51,6 +51,19 @@
 
     keymaps = [
       {
+        action = "+format with Conform";
+        key = "<leader>c";
+        mode = [
+          "n"
+          "v"
+        ];
+        options = {
+          desc = "+format with Conform";
+        };
+      }
+
+      # format
+      {
         action = "<Cmd>ConformFormat<CR>";
         key = "<leader>cf";
         mode = [
@@ -72,6 +85,8 @@
           desc = "Conform: format selected text/buffer";
         };
       }
+
+      # format on save setting
       {
         action = "<Cmd>ConformFormatOnSaveDisable!<CR>";
         key = "<leader>cd";
