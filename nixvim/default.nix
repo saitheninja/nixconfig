@@ -397,6 +397,17 @@
           enable = true; # file explorer as a buffer
 
           settings = {
+            columns = [
+              "type"
+              "icon"
+              "size"
+              # "permissions"
+              # "ctime" # change timestamp
+              # "mtime" # last modified time
+              # "atime" # last access time
+              # "birthtime" # created time
+            ];
+
             delete_to_trash = true;
           };
         };
