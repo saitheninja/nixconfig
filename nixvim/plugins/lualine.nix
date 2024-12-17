@@ -114,20 +114,20 @@
         ];
       };
 
-      tabline = {
-        lualine_a = [
-          {
-            __unkeyed-1 = "buffers";
-            # mode = 2; # buffer name + buffer index
-            mode = 4; # buffer name + buffer number
-            show_filename_only = false; # show shortened relative path
-          }
-        ];
-
-        lualine_z = [
-          "tabs"
-        ];
-      };
+      # tabline = {
+      #   lualine_a = [
+      #     {
+      #       __unkeyed-1 = "buffers";
+      #       # mode = 2; # buffer name + buffer index
+      #       mode = 4; # buffer name + buffer number
+      #       show_filename_only = false; # show shortened relative path
+      #     }
+      #   ];
+      #
+      #   lualine_z = [
+      #     "tabs"
+      #   ];
+      # };
     };
   };
 }
