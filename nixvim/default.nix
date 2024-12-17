@@ -11,7 +11,7 @@
   options.configNixvim.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = "Add Neovim, configured with NixVim.";
+    description = "Neovim, configured with NixVim.";
   };
 
   config = lib.mkIf config.configNixvim.enable {
@@ -23,7 +23,7 @@
 
       # extra packages to install with nix
       extraPackages = with pkgs; [
-        # neovim
+        # Neovim
         wl-clipboard # wayland clipboard utils
 
         # LSPs
@@ -141,8 +141,6 @@
             mapping = {
               "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item())";
               "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item())";
-              # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item())";
-              # "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item())";
 
               "<C-b>" = "cmp.mapping.scroll_docs(-4)";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
@@ -207,19 +205,19 @@
         friendly-snippets.enable = true;
         luasnip.enable = true; # snippet engine - required for completions
 
-        # git
-        diffview.enable = true; # diffview tabpage, merge tool, file history
-        gitsigns = {
-          enable = true; # show git diffs as coloured symbols in signcolumn
+        # git diffview tabpage, merge tool, file history
+        diffview.enable = true;
 
-          settings = {
-            current_line_blame_opts = {
-              delay = 0;
-            };
-          };
+        # git diffs as coloured symbols in signcolumn
+        gitsigns = {
+          enable = true;
+
+          settings.current_line_blame_opts.delay = 0;
         };
+
+        # fancy git interface
         neogit = {
-          enable = true; # git interface
+          enable = true;
 
           settings.integrations = {
             diffview = true;
@@ -286,7 +284,7 @@
 
             svelte.enable = true;
             tailwindcss.enable = true;
-            ts_ls.enable = true; # typescript language server
+            ts_ls.enable = true; # typescript
 
             # gdscript.enable = true;
             lua_ls = {
@@ -376,9 +374,7 @@
         treesitter-context = {
           enable = true; # sticky scope
 
-          settings = {
-            enable = false; # toggle with :TSContextToggle
-          };
+          settings.enable = false; # toggle with :TSContextToggle
         };
         treesitter-textobjects = {
           enable = true;
@@ -392,47 +388,6 @@
         dressing.enable = true; # use telescope for `vim.ui.input` & `vim.ui.select`
         fidget.enable = true; # notifications & lsp progress
         scrollview.enable = true; # scrollbar with indicators for diagnostics
-        nvim-ufo = {
-          enable = true; # better folding
-
-          #enableGetFoldVirtText = true;
-          # from nvim-ufo docs: display no. of folded lines
-          # foldVirtTextHandler = ''
-          #   function(virtText, lnum, endLnum, width, truncate)
-          #     local newVirtText = {}
-          #     local suffix = (' … ↴ %d '):format(endLnum - lnum)
-          #     local sufWidth = vim.fn.strdisplaywidth(suffix)
-          #     local targetWidth = width - sufWidth
-          #     local curWidth = 0
-          #
-          #     for _, chunk in ipairs(virtText) do
-          #       local chunkText = chunk[1]
-          #       local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-          #
-          #       if targetWidth > curWidth + chunkWidth then
-          #         table.insert(newVirtText, chunk)
-          #       else
-          #         chunkText = truncate(chunkText, targetWidth - curWidth)
-          #         local hlGroup = chunk[2]
-          #         table.insert(newVirtText, {chunkText, hlGroup})
-          #         chunkWidth = vim.fn.strdisplaywidth(chunkText)
-          #
-          #         -- str width returned from truncate() may less than 2nd argument, need padding
-          #         if curWidth + chunkWidth < targetWidth then
-          #           suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
-          #         end
-          #         break
-          #       end
-          #
-          #       curWidth = curWidth + chunkWidth
-          #     end
-          #
-          #     table.insert(newVirtText, {suffix, 'MoreMsg'})
-          #     return newVirtText
-          #   end
-          # '';
-        };
-        trouble.enable = true; # window for diagnostics, info provided by lsp, etc.
         web-devicons.enable = true; # file type icons
         which-key.enable = true; # show shortcuts
 
@@ -447,394 +402,321 @@
         };
       };
 
-      keymaps = [
+      keymaps =
         # :h <Cmd>
         # <Cmd> does not change modes
         # command is not echoed so no need for <silent>
 
         # Neovim
-        {
-          action = "<Cmd>wa<CR>";
-          key = "<leader>w";
-          mode = "n";
-          options = {
-            desc = "Neovim: write all";
-          };
-        }
-        # Neovim settings
-        {
-          action = "+Neovim settings";
-          key = "<leader>n";
-          mode = "n";
-          options = {
-            desc = "+Neovim settings";
-          };
-        }
-        {
-          action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
-          key = "<leader>nw";
-          mode = "n";
-          options = {
-            desc = "Neovim: toggle line wrap";
-          };
-        }
-        {
-          action = "<Cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
-          key = "<leader>nh";
-          mode = "n";
-          options = {
-            desc = "Neovim: toggle LSP inlay hint";
-          };
-        }
-        # Neovim buffers
-        {
-          action = "+Neovim buffers";
-          key = "<leader>b";
-          mode = "n";
-          options = {
-            desc = "+Neovim buffers";
-          };
-        }
-        {
-          action = "<Cmd>bnext<CR>"; # bn[ext]
-          key = "<leader>bn";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer next";
-          };
-        }
-        {
-          action = "<Cmd>bprevious<CR>"; # bp[revious]
-          key = "<leader>bp";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer previous";
-          };
-        }
-        {
-          action = "<Cmd>b#<CR>";
-          key = "<leader>b#";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer alternate";
-          };
-        }
-        {
-          action = "<Cmd>bfirst<CR>";
-          key = "<leader>bf";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer first";
-          };
-        }
-        {
-          action = "<Cmd>blast<CR>";
-          key = "<leader>bl";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer last";
-          };
-        }
-        {
-          action = "<Cmd>ball<CR>"; # see also :unh[ide]
-          key = "<leader>ba";
-          mode = "n";
-          options = {
-            desc = "Neovim: one window for each buffer";
-          };
-        }
-        {
-          action = "<Cmd>bdelete<CR>";
-          key = "<leader>bd";
-          mode = "n";
-          options = {
-            desc = "Neovim: buffer delete";
-          };
-        }
-        # Neovim terminal
-        {
-          action = "<C-\\><C-n>"; # have to escape backslash
-          key = "<Esc><Esc>";
-          mode = "t";
-          options = {
-            desc = "Neovim: exit Terminal mode";
-          };
-        }
+        [
+          {
+            action = "<Cmd>wa<CR>";
+            key = "<leader>w";
+            mode = "n";
+            options = {
+              desc = "Neovim: write all";
+            };
+          }
+        ]
         # Neovim move
-        # M = alt (meta) key
-        # https://vim.fandom.com/wiki/Moving_lines_up_or_down
-        # :[range]m[ove] {address}
-        # . = current line
-        # .+1 = current line + 1 (1 line down)
-        # .-2 = current line - 2 (1 line up)
-        # == = re-indent line
-        {
-          action = "<Cmd>move .-2<CR>==";
-          key = "<M-k>";
-          mode = "n";
-          options = {
-            desc = "Neovim: move current line up";
-          };
-        }
-        {
-          action = "<Cmd>move .+<CR>==";
-          key = "<M-j>";
-          mode = "n";
-          options = {
-            desc = "Neovim: move current line down";
-          };
-        }
-        # gi = go to last insert
-        {
-          action = "<Esc><Cmd>move .-2<CR>==gi";
-          key = "<M-k>";
-          mode = "i";
-          options = {
-            desc = "Neovim: move current line up";
-          };
-        }
-        {
-          action = "<Esc><Cmd>move .+<CR>==gi";
-          key = "<M-j>";
-          mode = "i";
-          options = {
-            desc = "Neovim: move current line down";
-          };
-        }
-        # '> = mark for selection end
-        # '< = mark for selection start
-        # '>+1 = one line after the last selected line (1 line down)
-        # '>-2 = one line after the first selected line (1 line up)
-        # gv = reselect the last visual block
-        # = = re-indent selection
-        # have to use : instead of <Cmd> or there is a "mark not set" error
-        {
-          action = ":move '<-2<CR>gv=gv";
-          key = "<M-k>";
-          mode = "v";
-          options = {
-            desc = "Neovim: move selected lines up";
-          };
-        }
-        {
-          action = ":move '>+1<CR>gv=gv";
-          key = "<M-j>";
-          mode = "v";
-          options = {
-            desc = "Neovim: move selected lines down";
-          };
-        }
+        ++ [
+          # M = alt (meta) key
+
+          # https://vim.fandom.com/wiki/Moving_lines_up_or_down
+          # :[range]m[ove] {address}
+          # . = current line
+          # .+1 = current line + 1 (1 line down)
+          # .-2 = current line - 2 (1 line up)
+          # == = re-indent line
+          {
+            action = "<Cmd>move .-2<CR>==";
+            key = "<M-k>";
+            mode = "n";
+            options = {
+              desc = "Neovim: move current line up";
+            };
+          }
+          {
+            action = "<Cmd>move .+<CR>==";
+            key = "<M-j>";
+            mode = "n";
+            options = {
+              desc = "Neovim: move current line down";
+            };
+          }
+
+          # gi = go to last insert
+          {
+            action = "<Esc><Cmd>move .-2<CR>==gi";
+            key = "<M-k>";
+            mode = "i";
+            options = {
+              desc = "Neovim: move current line up";
+            };
+          }
+          {
+            action = "<Esc><Cmd>move .+<CR>==gi";
+            key = "<M-j>";
+            mode = "i";
+            options = {
+              desc = "Neovim: move current line down";
+            };
+          }
+
+          # '> = mark for selection end
+          # '< = mark for selection start
+          # '>+1 = one line after the last selected line (1 line down)
+          # '>-2 = one line after the first selected line (1 line up)
+          # gv = reselect the last visual block
+          # = = re-indent selection
+          # have to use : instead of <Cmd> or there is a "mark not set" error
+          {
+            action = ":move '<-2<CR>gv=gv";
+            key = "<M-k>";
+            mode = "v";
+            options = {
+              desc = "Neovim: move selected lines up";
+            };
+          }
+          {
+            action = ":move '>+1<CR>gv=gv";
+            key = "<M-j>";
+            mode = "v";
+            options = {
+              desc = "Neovim: move selected lines down";
+            };
+          }
+        ]
+        # Neovim terminal
+        ++ [
+          {
+            action = "<C-\\><C-n>"; # have to escape backslash
+            key = "<Esc><Esc>";
+            mode = "t";
+            options = {
+              desc = "Neovim: exit Terminal mode";
+            };
+          }
+        ]
+
+        # Neovim settings
+        ++ [
+          {
+            action = "+Neovim settings";
+            key = "<leader>n";
+            mode = "n";
+            options = {
+              desc = "+Neovim settings";
+            };
+          }
+
+          {
+            action = "<Cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>";
+            key = "<leader>nw";
+            mode = "n";
+            options = {
+              desc = "Neovim: toggle line wrap";
+            };
+          }
+          {
+            action = "<Cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>";
+            key = "<leader>nh";
+            mode = "n";
+            options = {
+              desc = "Neovim: toggle LSP inlay hint";
+            };
+          }
+        ]
+
+        # Neovim buffers
+        ++ [
+          {
+            action = "+Neovim buffers";
+            key = "<leader>b";
+            mode = "n";
+            options = {
+              desc = "+Neovim buffers";
+            };
+          }
+
+          {
+            action = "<Cmd>bnext<CR>"; # bn[ext]
+            key = "<leader>bn";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer next";
+            };
+          }
+          {
+            action = "<Cmd>bprevious<CR>"; # bp[revious]
+            key = "<leader>bp";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer previous";
+            };
+          }
+          {
+            action = "<Cmd>b#<CR>";
+            key = "<leader>b#";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer alternate";
+            };
+          }
+          {
+            action = "<Cmd>bfirst<CR>";
+            key = "<leader>bf";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer first";
+            };
+          }
+          {
+            action = "<Cmd>blast<CR>";
+            key = "<leader>bl";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer last";
+            };
+          }
+          {
+            action = "<Cmd>ball<CR>"; # see also :unh[ide]
+            key = "<leader>ba";
+            mode = "n";
+            options = {
+              desc = "Neovim: one window for each buffer";
+            };
+          }
+          {
+            action = "<Cmd>bdelete<CR>";
+            key = "<leader>bd";
+            mode = "n";
+            options = {
+              desc = "Neovim: buffer delete";
+            };
+          }
+        ]
 
         # auto-session
-        {
-          action = "+browse Neovim sessions with auto-session";
-          key = "<leader>s";
-          mode = "n";
-          options = {
-            desc = "+auto-session";
-          };
-        }
-        {
-          action = "<Cmd>Autosession search<CR>";
-          key = "<leader>ss";
-          mode = "n";
-          options = {
-            desc = "auto-session: search sessions (<C-s> restore, <C-d> delete)";
-          };
-        }
+        ++ [
+          {
+            action = "+browse Neovim sessions with auto-session";
+            key = "<leader>s";
+            mode = "n";
+            options = {
+              desc = "+browse Neovim sessions with auto-session";
+            };
+          }
+
+          {
+            action = "<Cmd>Autosession search<CR>";
+            key = "<leader>ss";
+            mode = "n";
+            options = {
+              desc = "auto-session: search sessions (<C-s> restore, <C-d> delete)";
+            };
+          }
+        ]
 
         # inc-rename
-        {
-          action = "+rename selection instances in file with inc-rename";
-          key = "<leader>r";
-          mode = "n";
-          options = {
-            desc = "+inc-rename";
-          };
-        }
-        {
-          action = ":IncRename ";
-          key = "<leader>rn";
-          mode = "n";
-          options = {
-            desc = "inc-rename: start rename";
-          };
-        }
+        ++ [
+          {
+            action = "+rename selection instances in file with inc-rename";
+            key = "<leader>r";
+            mode = "n";
+            options = {
+              desc = "+rename selection instances in file with inc-rename";
+            };
+          }
+          {
+            action = ":IncRename ";
+            key = "<leader>rn";
+            mode = "n";
+            options = {
+              desc = "inc-rename: start rename";
+            };
+          }
+        ]
 
         # git
-        {
-          action = "+git actions";
-          key = "<leader>g";
-          mode = "n";
-          options = {
-            desc = "+git";
-          };
-        }
-        # gitsigns
-        {
-          action = "<Cmd>Gitsigns toggle_current_line_blame<CR>";
-          key = "<leader>gb";
-          mode = "n";
-          options = {
-            desc = "Gitsigns: toggle line blame";
-          };
-        }
-        {
-          action = "<Cmd>Gitsigns toggle_deleted<CR>";
-          key = "<leader>gd";
-          mode = "n";
-          options = {
-            desc = "Gitsigns: toggle deleted";
-          };
-        }
-        # neogit
-        {
-          action = "<Cmd>Neogit<CR>";
-          key = "<leader>gs";
-          mode = "n";
-          options = {
-            desc = "Neogit: open status buffer in new tab";
-          };
-        }
+        ++ [
+          {
+            action = "+git actions";
+            key = "<leader>g";
+            mode = "n";
+            options = {
+              desc = "+git actions";
+            };
+          }
+
+          # gitsigns
+          {
+            action = "<Cmd>Gitsigns toggle_current_line_blame<CR>";
+            key = "<leader>gb";
+            mode = "n";
+            options = {
+              desc = "Gitsigns: toggle line blame";
+            };
+          }
+          {
+            action = "<Cmd>Gitsigns toggle_deleted<CR>";
+            key = "<leader>gd";
+            mode = "n";
+            options = {
+              desc = "Gitsigns: toggle deleted";
+            };
+          }
+
+          # neogit
+          {
+            action = "<Cmd>Neogit<CR>";
+            key = "<leader>gs";
+            mode = "n";
+            options = {
+              desc = "Neogit: open status buffer in new tab";
+            };
+          }
+        ]
 
         # oil
-        {
-          action = "+browse files with oil";
-          key = "<leader>o";
-          mode = "n";
-          options = {
-            desc = "+oil";
-          };
-        }
-        {
-          action = "<Cmd>Oil<CR>";
-          key = "<leader>oe";
-          mode = "n";
-          options = {
-            desc = "Oil: open parent directory";
-          };
-        }
+        ++ [
+          {
+            action = "+browse files with oil";
+            key = "<leader>o";
+            mode = "n";
+            options = {
+              desc = "+browse files with oil";
+            };
+          }
+          {
+            action = "<Cmd>Oil<CR>";
+            key = "<leader>oe";
+            mode = "n";
+            options = {
+              desc = "Oil: open parent directory";
+            };
+          }
+        ]
 
         # treesitter
-        {
-          action = "+treesitter features";
-          key = "<leader>t";
-          mode = "n";
-          options = {
-            desc = "+treesitter";
-          };
-        }
-        {
-          action = "<Cmd>TSContextToggle<CR>";
-          key = "<leader>tc";
-          mode = "n";
-          options = {
-            desc = "Treesitter: toggle sticky context";
-          };
-        }
-
-        # trouble
-        {
-          action = "+view LSP diagnostics with Trouble";
-          key = "<leader>x";
-          mode = "n";
-          options = {
-            desc = "+Trouble";
-          };
-        }
-        {
-          action = "<Cmd>Trouble diagnostics toggle<CR>";
-          key = "<leader>xx";
-          mode = "n";
-          options = {
-            desc = "Trouble: project diagnostics";
-          };
-        }
-        {
-          action = "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>";
-          key = "<leader>xX";
-          mode = "n";
-          options = {
-            desc = "Trouble: buffer diagnostics";
-          };
-        }
-        {
-          action = "<Cmd>Trouble symbols toggle focus=false<CR>";
-          key = "<leader>xs";
-          mode = "n";
-          options = {
-            desc = "Trouble: LSP symbols";
-          };
-        }
-        {
-          action = "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>";
-          key = "<leader>xl";
-          mode = "n";
-          options = {
-            desc = "Trouble: LSP definitions/references/...";
-          };
-        }
-        {
-          action = "<Cmd>Trouble loclist toggle<CR>";
-          key = "<leader>xL";
-          mode = "n";
-          options = {
-            desc = "Trouble: location list";
-          };
-        }
-        {
-          action = "<cmd>Trouble qflist toggle<cr>";
-          key = "<leader>xQ";
-          mode = "n";
-          options = {
-            desc = "Trouble: quickfix list";
-          };
-        }
-
-        # nvim-ufo
-        # built in commands change foldlevel, ufo commands don't
-        {
-          action = "+fold area with ufo";
-          key = "<leader>z";
-          mode = "n";
-          options = {
-            desc = "+ufo";
-          };
-        }
-        {
-          action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
-          key = "<leader>zr";
-          mode = "n";
-          options = {
-            desc = "UFO: open folds one level";
-          };
-        }
-        {
-          action = "<Cmd>Ufo openAllFolds<CR>";
-          key = "<leader>zR";
-          mode = "n";
-          options = {
-            desc = "UFO: open all folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo closeFoldsWith<CR>";
-          key = "<leader>zm";
-          mode = "n";
-          options = {
-            desc = "UFO: close one level of folds";
-          };
-        }
-        {
-          action = "<Cmd>Ufo closeAllFolds<CR>";
-          key = "<leader>zM";
-          mode = "n";
-          options = {
-            desc = "UFO: close all folds";
-          };
-        }
-
-      ];
+        ++ [
+          {
+            action = "+treesitter features";
+            key = "<leader>t";
+            mode = "n";
+            options = {
+              desc = "+treesitter";
+            };
+          }
+          {
+            action = "<Cmd>TSContextToggle<CR>";
+            key = "<leader>tc";
+            mode = "n";
+            options = {
+              desc = "Treesitter: toggle sticky context";
+            };
+          }
+        ];
 
       extraConfigLua = # lua
         ''
@@ -859,7 +741,7 @@
           callback.__raw = # lua
             ''
               function()
-                vim.highlight.on_yank({ timeout = 200 })
+                vim.highlight.on_yank({ timeout = 250 })
               end
             '';
           desc = "Highlight yanked text";

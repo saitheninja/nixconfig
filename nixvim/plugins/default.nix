@@ -5,5 +5,7 @@
     ./lualine.nix
     ./package-info.nix
     ./telescope.nix
+    ./trouble.nix
+    ./ufo.nix
   ];
 }
