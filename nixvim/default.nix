@@ -336,7 +336,7 @@
         # testing
         #neotest = {
         #  enable = true;
-
+        #
         #  adapters = {
         #    vitest.enable = true;
         #  };
@@ -368,18 +368,181 @@
           nodejsPackage = null; # required to build grammars if you are not using `nixGrammars`
           settings = {
             highlight.enable = true;
+            incremental_selection = {
+              enable = true;
+
+              keymaps = {
+                init_selection = "gnn"; # set to `false` to disable mapping
+                node_incremental = "grn";
+                scope_incremental = "grc";
+                node_decremental = "grm";
+              };
+            };
             indent.enable = true;
           };
         };
         treesitter-context = {
           enable = true; # sticky scope
 
-          settings.enable = false; # toggle with :TSContextToggle
+          settings.enable = true; # toggle with :TSContextToggle
+          settings.max_lines = 4;
         };
         treesitter-textobjects = {
           enable = true;
 
-          lspInterop.enable = true;
+          lspInterop = {
+            enable = true;
+
+            border = "shadow";
+
+            peekDefinitionCode = {
+              "<leader>df" = {
+                query = "@function.outer";
+              };
+              "<leader>dF" = {
+                query = "@class.outer";
+              };
+            };
+          };
+
+          move = {
+            enable = true;
+
+            gotoNextStart = {
+              "]m" = {
+                query = "@function.outer";
+                # desc = "Next function start";
+              };
+              "]]" = {
+                query = "@class.outer";
+                desc = "Next class start";
+              };
+              "]a" = {
+                query = "@parameter.inner";
+              };
+
+              # You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
+              # "]o" = { query = { "@loop.inner", "@loop.outer" }; };
+              "]o" = {
+                query = "@loop.*";
+              };
+
+              # You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
+              # highlights.scm, locals.scm, textobjects.scm, folds.scm, injections.scm
+              "]s" = {
+                query = "@local.scope";
+                queryGroup = "locals";
+                desc = "Next scope";
+              };
+              "]z" = {
+                query = "@fold";
+                queryGroup = "folds";
+                desc = "Next fold";
+              };
+            };
+            gotoNextEnd = {
+              "]M" = {
+                query = "@function.outer";
+              };
+              "][" = {
+                query = "@class.outer";
+              };
+              "]A" = {
+                query = "@parameter.inner";
+              };
+            };
+
+            gotoPreviousStart = {
+              "[m" = {
+                query = "@function.outer";
+              };
+              "[[" = {
+                query = "@class.outer";
+              };
+              "[a" = {
+                query = "@parameter.inner";
+              };
+            };
+            gotoPreviousEnd = {
+              "[M" = {
+                query = "@function.outer";
+              };
+              "[]" = {
+                query = "@class.outer";
+              };
+              "[A" = {
+                query = "@parameter.inner";
+              };
+            };
+
+            # go to either the start or the end, whichever is closer.
+            gotoNext = {
+              "]n" = {
+                query = "@conditional.outer";
+              };
+            };
+            gotoPrevious = {
+              "[n" = {
+                query = "@conditional.outer";
+              };
+            };
+          };
+
+          select = {
+            enable = true;
+
+            includeSurroundingWhitespace = true;
+            lookahead = true;
+
+            keymaps = {
+              # You can use the capture groups defined in textobjects.scm
+              "af" = {
+                query = "@function.outer";
+              };
+              "if" = {
+                query = "@function.inner";
+              };
+
+              # You can optionally set descriptions to the mappings (used in the desc parameter of
+              # nvim_buf_set_keymap) which plugins like which-key display
+              "ac" = {
+                query = "@class.outer";
+                desc = "Select outer part of a class region";
+              };
+              "ic" = {
+                query = "@class.inner";
+                desc = "Select inner part of a class region";
+              };
+
+              # You can also use captures from other query groups like `locals.scm`
+              "as" = {
+                query = "@local.scope";
+                queryGroup = "locals";
+                desc = "Select language scope";
+              };
+            };
+
+            # selectionModes = {
+            #   "v" = [ "@parameter.outer" ]; # charwise (default)
+            #   "V" = [ "@function.outer" ]; # linewise
+            #   "<c-v>" = [ "@class.outer" ]; # blockwise
+            # };
+          };
+
+          swap = {
+            enable = true;
+
+            swapNext = {
+              "<leader>a" = {
+                query = "@parameter.inner";
+              };
+            };
+            swapPrevious = {
+              "<leader>A" = {
+                query = "@parameter.inner";
+              };
+            };
+          };
         };
         ts-autotag.enable = true; # autoclose and autorename html tags using treesitter
         ts-context-commentstring.enable = true; # automatically use correct comment syntax
