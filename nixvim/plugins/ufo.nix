@@ -4,7 +4,7 @@
   programs.nixvim = {
     # better folding
     plugins.nvim-ufo = {
-      enable = true;
+      enable = false;
 
       #enableGetFoldVirtText = true;
       # from nvim-ufo docs: display no. of folded lines
