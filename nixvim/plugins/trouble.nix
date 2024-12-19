@@ -9,7 +9,7 @@
 
     keymaps = [
       {
-        action = "+view LSP diagnostics with Trouble";
+        action = "";
         key = "<leader>x";
         mode = "n";
         options = {

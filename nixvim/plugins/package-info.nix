@@ -8,7 +8,7 @@
 
     keymaps = [
       {
-        action = "+package-info";
+        action = "";
         key = "<leader>p";
         mode = "n";
         options = {

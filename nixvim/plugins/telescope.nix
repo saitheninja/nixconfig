@@ -44,12 +44,10 @@
 
     keymaps = [
       {
-        action = "+find with Telescope";
+        action = "";
         key = "<leader>f";
         mode = "n";
-        options = {
-          desc = "+find with Telescope";
-        };
+        options.desc = "+find with Telescope";
       }
 
       # file pickers
@@ -57,17 +55,13 @@
         action = "<Cmd>Telescope find_files<CR>";
         key = "<leader>ff";
         mode = "n";
-        options = {
-          desc = "Telescope: find files";
-        };
+        options.desc = "Telescope: find files";
       }
       {
         action = "<Cmd>Telescope live_grep<CR>";
         key = "<leader>fg";
         mode = "n";
-        options = {
-          desc = "Telescope: live grep";
-        };
+        options.desc = "Telescope: live grep";
       }
 
       # vim pickers
@@ -75,65 +69,49 @@
         action = "<Cmd>Telescope autocommands<CR>";
         key = "<leader>fa";
         mode = "n";
-        options = {
-          desc = "Telescope: autocommands";
-        };
+        options.desc = "Telescope: autocommands";
       }
       {
         action = "<Cmd>Telescope buffers<CR>";
         key = "<leader>fb";
         mode = "n";
-        options = {
-          desc = "Telescope: buffers";
-        };
+        options.desc = "Telescope: buffers";
       }
       {
         action = "<Cmd>Telescope commands<CR>";
         key = "<leader>fc";
         mode = "n";
-        options = {
-          desc = "Telescope: plugin/user commands";
-        };
+        options.desc = "Telescope: plugin/user commands";
       }
       {
         action = "<Cmd>Telescope help_tags<CR>";
         key = "<leader>fh";
         mode = "n";
-        options = {
-          desc = "Telescope: help tags";
-        };
+        options.desc = "Telescope: help tags";
       }
       {
         action = "<Cmd>Telescope marks<CR>";
         key = "<leader>fm";
         mode = "n";
-        options = {
-          desc = "Telescope: marks";
-        };
+        options.desc = "Telescope: marks";
       }
       {
         action = "<Cmd>Telescope oldfiles<CR>";
         key = "<leader>fo";
         mode = "n";
-        options = {
-          desc = "Telescope: previously opened files";
-        };
+        options.desc = "Telescope: previously opened files";
       }
       {
         action = "<Cmd>Telescope resume<CR>";
         key = "<leader>fr";
         mode = "n";
-        options = {
-          desc = "Telescope: resume previous picker";
-        };
+        options.desc = "Telescope: resume previous picker";
       }
       {
         action = "<Cmd>Telescope vim_options<CR>";
         key = "<leader>fv";
         mode = "n";
-        options = {
-          desc = "Telescope: vim options";
-        };
+        options.desc = "Telescope: vim options";
       }
 
       # list pickers
@@ -141,9 +119,7 @@
         action = "<Cmd>Telescope builtin<CR>";
         key = "<leader>fp";
         mode = "n";
-        options = {
-          desc = "Telescope: built-in pickers";
-        };
+        options.desc = "Telescope: built-in pickers";
       }
     ];
   };

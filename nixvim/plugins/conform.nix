@@ -51,7 +51,7 @@
 
     keymaps = [
       {
-        action = "+format with Conform";
+        action = "";
         key = "<leader>c";
         mode = [
           "n"

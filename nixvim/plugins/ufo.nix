@@ -47,11 +47,11 @@
     keymaps = [
       # built in commands change foldlevel, ufo commands don't
       {
-        action = "+fold with ufo";
+        action = "";
         key = "<leader>z";
         mode = "n";
         options = {
-          desc = "+fold with ufo";
+          desc = "+fold with UFO";
         };
       }
       {

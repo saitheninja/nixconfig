@@ -396,11 +396,17 @@
             border = "shadow";
 
             peekDefinitionCode = {
+              "<leader>d" = {
+                query = "";
+                desc = "Treesitter textobjects";
+              };
               "<leader>df" = {
                 query = "@function.outer";
+                desc = "Peek function definition";
               };
               "<leader>dF" = {
                 query = "@class.outer";
+                desc = "Peek class definition";
               };
             };
           };
@@ -409,22 +415,24 @@
             enable = true;
 
             gotoNextStart = {
-              "]m" = {
+              "]f" = {
                 query = "@function.outer";
-                # desc = "Next function start";
+                desc = "Next start function outer";
               };
               "]]" = {
                 query = "@class.outer";
-                desc = "Next class start";
+                desc = "Next start class outer";
               };
               "]a" = {
                 query = "@parameter.inner";
+                desc = "Next start parameter inner";
               };
 
               # You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
               # "]o" = { query = { "@loop.inner", "@loop.outer" }; };
               "]o" = {
                 query = "@loop.*";
+                desc = "Next start loop inner/outer";
               };
 
               # You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
@@ -432,46 +440,55 @@
               "]s" = {
                 query = "@local.scope";
                 queryGroup = "locals";
-                desc = "Next scope";
+                desc = "Next start scope";
               };
               "]z" = {
                 query = "@fold";
                 queryGroup = "folds";
-                desc = "Next fold";
+                desc = "Next start fold";
               };
             };
             gotoNextEnd = {
-              "]M" = {
+              "]F" = {
                 query = "@function.outer";
+                desc = "Next end function outer";
               };
               "][" = {
                 query = "@class.outer";
+                desc = "Next end class outer";
               };
               "]A" = {
                 query = "@parameter.inner";
+                desc = "Next end parameter inner";
               };
             };
 
             gotoPreviousStart = {
-              "[m" = {
+              "[f" = {
                 query = "@function.outer";
+                desc = "Previous start function outer";
               };
               "[[" = {
                 query = "@class.outer";
+                desc = "Previous start class outer";
               };
               "[a" = {
                 query = "@parameter.inner";
+                desc = "Previous start parameter inner";
               };
             };
             gotoPreviousEnd = {
-              "[M" = {
+              "[F" = {
                 query = "@function.outer";
+                desc = "Previous end funtion outer";
               };
               "[]" = {
                 query = "@class.outer";
+                desc = "Previous end class outer";
               };
               "[A" = {
                 query = "@parameter.inner";
+                desc = "Previous end parameter inner";
               };
             };
 
@@ -479,11 +496,13 @@
             gotoNext = {
               "]n" = {
                 query = "@conditional.outer";
+                desc = "Next conditional outer";
               };
             };
             gotoPrevious = {
               "[n" = {
                 query = "@conditional.outer";
+                desc = "Previous conditional outer";
               };
             };
           };
@@ -676,7 +695,7 @@
         # Neovim settings
         ++ [
           {
-            action = "+Neovim settings";
+            action = "";
             key = "<leader>n";
             mode = "n";
             options = {
@@ -705,7 +724,7 @@
         # Neovim buffers
         ++ [
           {
-            action = "+Neovim buffers";
+            action = "";
             key = "<leader>b";
             mode = "n";
             options = {
@@ -774,7 +793,7 @@
         # auto-session
         ++ [
           {
-            action = "+browse Neovim sessions with auto-session";
+            action = "";
             key = "<leader>s";
             mode = "n";
             options = {
@@ -795,11 +814,11 @@
         # inc-rename
         ++ [
           {
-            action = "+rename selection instances in file with inc-rename";
+            action = "";
             key = "<leader>r";
             mode = "n";
             options = {
-              desc = "+rename selection instances in file with inc-rename";
+              desc = "+rename instances with inc-rename";
             };
           }
           {
@@ -815,7 +834,7 @@
         # git
         ++ [
           {
-            action = "+git actions";
+            action = "";
             key = "<leader>g";
             mode = "n";
             options = {
@@ -855,11 +874,11 @@
         # oil
         ++ [
           {
-            action = "+browse files with oil";
+            action = "";
             key = "<leader>o";
             mode = "n";
             options = {
-              desc = "+browse files with oil";
+              desc = "+browse files with Oil";
             };
           }
           {
@@ -875,11 +894,11 @@
         # treesitter
         ++ [
           {
-            action = "+treesitter features";
+            action = "";
             key = "<leader>t";
             mode = "n";
             options = {
-              desc = "+treesitter";
+              desc = "+Treesitter features";
             };
           }
           {
