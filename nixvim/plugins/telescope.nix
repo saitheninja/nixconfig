@@ -21,6 +21,8 @@
 
       # provided to the require('telescope').setup function
       settings = {
+        defaults.theme = "ivy";
+
         pickers = {
           buffers = {
             mappings = {
