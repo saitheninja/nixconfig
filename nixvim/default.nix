@@ -235,31 +235,31 @@
             # can't define modes from here
             # https://github.com/nix-community/nixvim/issues/1157
             lspBuf = {
-              gra = {
+              "gra" = {
                 action = "code_action";
                 desc = "LSP code_action";
               };
-              grd = {
+              "grd" = {
                 action = "definition";
                 desc = "LSP definition";
               };
-              grf = {
+              "grf" = {
                 action = "format";
                 desc = "LSP format";
               };
-              gri = {
+              "gri" = {
                 action = "implementation";
                 desc = "LSP implementation";
               };
-              grn = {
+              "grn" = {
                 action = "rename";
                 desc = "LSP rename";
               };
-              grr = {
+              "grr" = {
                 action = "references";
                 desc = "LSP references";
               };
-              grt = {
+              "grt" = {
                 action = "type_definition";
                 desc = "LSP type_definition";
               };
@@ -361,24 +361,22 @@
         rainbow-delimiters.enable = true; # matching brackets get matching colours
         treesitter = {
           enable = true; # parse text as Abstract Syntax Tree (AST) for better understanding
-
           folding = true;
           nixvimInjections = true; # enable nixvim specific injections, like lua highlighting in extraConfigLua
           nixGrammars = true; # default true
           nodejsPackage = null; # required to build grammars if you are not using `nixGrammars`
           settings = {
             highlight.enable = true;
-            incremental_selection = {
-              enable = true;
-
-              keymaps = {
-                init_selection = "gnn"; # set to `false` to disable mapping
-                node_incremental = "grn";
-                scope_incremental = "grc";
-                node_decremental = "grm";
-              };
-            };
             indent.enable = true;
+            # incremental_selection = {
+            #   enable = true;
+            #   keymaps = {
+            #     init_selection = "gnn"; # set to `false` to disable mapping
+            #     node_incremental = "grn";
+            #     scope_incremental = "grc";
+            #     node_decremental = "grm";
+            #   };
+            # };
           };
         };
         treesitter-context = {
@@ -392,13 +390,11 @@
 
           lspInterop = {
             enable = true;
-
-            border = "shadow";
-
+            border = "double";
             peekDefinitionCode = {
               "<leader>d" = {
                 query = "";
-                desc = "Treesitter textobjects";
+                desc = "+Treesitter textobjects";
               };
               "<leader>df" = {
                 query = "@function.outer";
@@ -413,19 +409,18 @@
 
           move = {
             enable = true;
-
             gotoNextStart = {
+              "]c" = {
+                query = "@class.outer";
+                desc = "Next start class outer";
+              };
               "]f" = {
                 query = "@function.outer";
                 desc = "Next start function outer";
               };
-              "]]" = {
-                query = "@class.outer";
-                desc = "Next start class outer";
-              };
-              "]a" = {
-                query = "@parameter.inner";
-                desc = "Next start parameter inner";
+              "]p" = {
+                query = "@parameter.outer";
+                desc = "Next start parameter outer";
               };
 
               # You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
@@ -449,46 +444,46 @@
               };
             };
             gotoNextEnd = {
+              "]C" = {
+                query = "@class.outer";
+                desc = "Next end class outer";
+              };
               "]F" = {
                 query = "@function.outer";
                 desc = "Next end function outer";
               };
-              "][" = {
-                query = "@class.outer";
-                desc = "Next end class outer";
-              };
-              "]A" = {
-                query = "@parameter.inner";
-                desc = "Next end parameter inner";
+              "]P" = {
+                query = "@parameter.outer";
+                desc = "Next end parameter outer";
               };
             };
 
             gotoPreviousStart = {
+              "[c" = {
+                query = "@class.outer";
+                desc = "Previous start class outer";
+              };
               "[f" = {
                 query = "@function.outer";
                 desc = "Previous start function outer";
               };
-              "[[" = {
-                query = "@class.outer";
-                desc = "Previous start class outer";
-              };
-              "[a" = {
-                query = "@parameter.inner";
-                desc = "Previous start parameter inner";
+              "[p" = {
+                query = "@parameter.outer";
+                desc = "Previous start parameter outer";
               };
             };
             gotoPreviousEnd = {
+              "[C" = {
+                query = "@class.outer";
+                desc = "Previous end class outer";
+              };
               "[F" = {
                 query = "@function.outer";
                 desc = "Previous end funtion outer";
               };
-              "[]" = {
-                query = "@class.outer";
-                desc = "Previous end class outer";
-              };
-              "[A" = {
-                query = "@parameter.inner";
-                desc = "Previous end parameter inner";
+              "[P" = {
+                query = "@parameter.outer";
+                desc = "Previous end parameter outer";
               };
             };
 
@@ -509,21 +504,11 @@
 
           select = {
             enable = true;
-
             includeSurroundingWhitespace = true;
             lookahead = true;
 
             keymaps = {
               # You can use the capture groups defined in textobjects.scm
-              "af" = {
-                query = "@function.outer";
-              };
-              "if" = {
-                query = "@function.inner";
-              };
-
-              # You can optionally set descriptions to the mappings (used in the desc parameter of
-              # nvim_buf_set_keymap) which plugins like which-key display
               "ac" = {
                 query = "@class.outer";
                 desc = "Select outer part of a class region";
@@ -531,6 +516,22 @@
               "ic" = {
                 query = "@class.inner";
                 desc = "Select inner part of a class region";
+              };
+              "af" = {
+                query = "@function.outer";
+                desc = "Select outer part of a function region";
+              };
+              "if" = {
+                query = "@function.inner";
+                desc = "Select inner part of a function region";
+              };
+              "ap" = {
+                query = "@parameter.outer";
+                desc = "Select outer part of a parameter region";
+              };
+              "ip" = {
+                query = "@parameter.inner";
+                desc = "Select inner part of a parameter region";
               };
 
               # You can also use captures from other query groups like `locals.scm`
@@ -544,21 +545,22 @@
             # selectionModes = {
             #   "v" = [ "@parameter.outer" ]; # charwise (default)
             #   "V" = [ "@function.outer" ]; # linewise
-            #   "<c-v>" = [ "@class.outer" ]; # blockwise
+            #   "<C-v>" = [ "@class.outer" ]; # blockwise
             # };
           };
 
           swap = {
             enable = true;
-
             swapNext = {
-              "<leader>a" = {
+              "]]" = {
                 query = "@parameter.inner";
+                desc = "Swap next parameter inner";
               };
             };
             swapPrevious = {
-              "<leader>A" = {
+              "[[" = {
                 query = "@parameter.inner";
+                desc = "Swap previous parameter inner";
               };
             };
           };
@@ -611,6 +613,7 @@
             };
           }
         ]
+
         # Neovim move
         ++ [
           # M = alt (meta) key
@@ -680,6 +683,7 @@
             };
           }
         ]
+
         # Neovim terminal
         ++ [
           {
@@ -881,6 +885,7 @@
               desc = "+browse files with Oil";
             };
           }
+
           {
             action = "<Cmd>Oil<CR>";
             key = "<leader>oe";
@@ -901,6 +906,7 @@
               desc = "+Treesitter features";
             };
           }
+
           {
             action = "<Cmd>TSContextToggle<CR>";
             key = "<leader>tc";
