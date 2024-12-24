@@ -56,9 +56,6 @@
         # folding
         foldenable = true;
         foldcolumn = "auto:4"; # auto width, max 4
-        # suggested by nvim-ufo
-        #foldlevel = 99; # minimum depth that will be folded by default
-        #foldlevelstart = 99; # fold depth open when a new buffer is opened
 
         # indents
         expandtab = true; # expand tabs to spaces
@@ -582,9 +579,9 @@
 
           settings = {
             columns = [
-              "type"
+              # "type"
               "icon"
-              "size"
+              # "size"
               # "permissions"
               # "ctime" # change timestamp
               # "mtime" # last modified time

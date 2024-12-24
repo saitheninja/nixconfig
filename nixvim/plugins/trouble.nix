@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   programs.nixvim = {
     # LSP diagnoistics, symbols, etc.

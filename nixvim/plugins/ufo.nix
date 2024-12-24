@@ -1,8 +1,12 @@
-{ ... }:
-
 {
   programs.nixvim = {
-    # better folding
+    # suggested by nvim-ufo
+    opts = {
+      #foldlevel = 99; # minimum depth that will be folded by default
+      #foldlevelstart = 99; # fold depth open when a new buffer is opened
+    };
+
+    # better folding by using LSP features
     plugins.nvim-ufo = {
       enable = false;
 
@@ -46,46 +50,46 @@
 
     keymaps = [
       # built in commands change foldlevel, ufo commands don't
-      {
-        action = "";
-        key = "<leader>z";
-        mode = "n";
-        options = {
-          desc = "+fold with UFO";
-        };
-      }
-      {
-        action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
-        key = "<leader>zr";
-        mode = "n";
-        options = {
-          desc = "UFO: open folds one level";
-        };
-      }
-      {
-        action = "<Cmd>Ufo openAllFolds<CR>";
-        key = "<leader>zR";
-        mode = "n";
-        options = {
-          desc = "UFO: open all folds";
-        };
-      }
-      {
-        action = "<Cmd>Ufo closeFoldsWith<CR>";
-        key = "<leader>zm";
-        mode = "n";
-        options = {
-          desc = "UFO: close one level of folds";
-        };
-      }
-      {
-        action = "<Cmd>Ufo closeAllFolds<CR>";
-        key = "<leader>zM";
-        mode = "n";
-        options = {
-          desc = "UFO: close all folds";
-        };
-      }
+      # {
+      #   action = "";
+      #   key = "<leader>z";
+      #   mode = "n";
+      #   options = {
+      #     desc = "+fold with UFO";
+      #   };
+      # }
+      # {
+      #   action = "<Cmd>Ufo openFoldsExceptKinds<CR>";
+      #   key = "<leader>zr";
+      #   mode = "n";
+      #   options = {
+      #     desc = "UFO: open folds one level";
+      #   };
+      # }
+      # {
+      #   action = "<Cmd>Ufo openAllFolds<CR>";
+      #   key = "<leader>zR";
+      #   mode = "n";
+      #   options = {
+      #     desc = "UFO: open all folds";
+      #   };
+      # }
+      # {
+      #   action = "<Cmd>Ufo closeFoldsWith<CR>";
+      #   key = "<leader>zm";
+      #   mode = "n";
+      #   options = {
+      #     desc = "UFO: close one level of folds";
+      #   };
+      # }
+      # {
+      #   action = "<Cmd>Ufo closeAllFolds<CR>";
+      #   key = "<leader>zM";
+      #   mode = "n";
+      #   options = {
+      #     desc = "UFO: close all folds";
+      #   };
+      # }
     ];
   };
 }
