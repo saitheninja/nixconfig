@@ -1,26 +1,8 @@
 {
   "nodes": {
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1717312683,
-        "narHash": "sha256-FrlieJH50AuvagamEvWMIE6D2OAnERuDboFDYAED/dE=",
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "rev": "38fd3954cf65ce6faf3d0d45cd26059e059f07ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-parts-unstable": {
+    "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": [
-          "nixpkgs-unstable"
-        ]
+        "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
         "lastModified": 1733312601,
@@ -36,26 +18,19 @@
         "type": "github"
       }
     },
-    "nixos-cosmic": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ],
-        "nixpkgs-stable": "nixpkgs-stable",
-        "rust-overlay": "rust-overlay"
-      },
+    "nixpkgs": {
       "locked": {
-        "lastModified": 1735004289,
-        "narHash": "sha256-cJmBhr59xQXwkvF+EZPhKTebgHyqXoei8u2Qq2QJYzE=",
-        "owner": "lilyinstarlight",
-        "repo": "nixos-cosmic",
-        "rev": "b9bfb93c7632a0e007a3a05fe77c0475d05e045a",
+        "lastModified": 1734649271,
+        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
         "type": "github"
       },
       "original": {
-        "owner": "lilyinstarlight",
-        "repo": "nixos-cosmic",
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -75,20 +50,16 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
+    "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1734875076,
-        "narHash": "sha256-Pzyb+YNG5u3zP79zoi8HXYMs15Q5dfjDgwCdUI5B0nY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1807c2b91223227ad5599d7067a61665c52d1295",
-        "type": "github"
+        "lastModified": 1733096140,
+        "narHash": "sha256-1qRH7uAUsyQI7R1Uwl4T+XvdNv778H0Nb5njNrqvylY=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
       }
     },
     "nixpkgs-unstable": {
@@ -107,21 +78,37 @@
         "type": "github"
       }
     },
-    "nixvim-unstable": {
+    "nixvim": {
       "inputs": {
-        "devshell": [],
-        "flake-compat": [],
+        "devshell": [
+          "nixvim-config"
+        ],
+        "flake-compat": [
+          "nixvim-config"
+        ],
         "flake-parts": [
-          "flake-parts-unstable"
+          "nixvim-config",
+          "flake-parts"
         ],
-        "git-hooks": [],
-        "home-manager": [],
-        "nix-darwin": [],
+        "git-hooks": [
+          "nixvim-config"
+        ],
+        "home-manager": [
+          "nixvim-config"
+        ],
+        "nix-darwin": [
+          "nixvim-config"
+        ],
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixvim-config",
+          "nixpkgs"
         ],
-        "nuschtosSearch": [],
-        "treefmt-nix": []
+        "nuschtosSearch": [
+          "nixvim-config"
+        ],
+        "treefmt-nix": [
+          "nixvim-config"
+        ]
       },
       "locked": {
         "lastModified": 1734956286,
@@ -137,34 +124,31 @@
         "type": "github"
       }
     },
-    "root": {
+    "nixvim-config": {
       "inputs": {
-        "flake-parts-unstable": "flake-parts-unstable",
-        "nixos-cosmic": "nixos-cosmic",
-        "nixpkgs-24-05": "nixpkgs-24-05",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "nixvim-unstable": "nixvim-unstable"
-      }
-    },
-    "rust-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "nixos-cosmic",
-          "nixpkgs"
-        ]
+        "flake-parts": "flake-parts",
+        "nixpkgs": "nixpkgs",
+        "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1734834660,
-        "narHash": "sha256-bm8V+Cu8rWJA+vKQnc94mXTpSDgvedyoDKxTVi/uJfw=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "b070e6030118680977bc2388868c4b3963872134",
+        "lastModified": 1735062014,
+        "narHash": "sha256-LEUtpW+7BJMehfNlY1GNZWwWGLgQWGBmchb0j4QXsgY=",
+        "owner": "saitheninja",
+        "repo": "nixvim-config",
+        "rev": "6595f6163b9d06490dbdc0783aef645a7729ce29",
         "type": "github"
       },
       "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
+        "owner": "saitheninja",
+        "repo": "nixvim-config",
         "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs-24-05": "nixpkgs-24-05",
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixvim-config": "nixvim-config"
       }
     }
   },
