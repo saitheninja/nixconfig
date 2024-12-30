@@ -5,7 +5,8 @@
   # `outputs` function will return all the build results of the flake.
 
   inputs = {
-    nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05";
+    # nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05"; # deprecated
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixvim-config.url = "github:saitheninja/nixvim-config";
@@ -27,7 +28,7 @@
     {
       # self,
       # nixos-cosmic,
-      nixpkgs-24-05,
+      nixpkgs-stable,
       nixpkgs-unstable,
       nixvim-config,
       ...
@@ -92,7 +93,7 @@
           ];
         };
 
-        "nixos-desktop" = nixpkgs-24-05.lib.nixosSystem {
+        "nixos-desktop" = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/desktop/configuration.nix
