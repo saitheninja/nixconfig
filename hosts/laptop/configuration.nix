@@ -285,6 +285,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # terminal
+    ghostty # terminal emulator written in Zig
+
     # desktop
     piper # mouse controls
     thunderbird # email
@@ -295,43 +298,6 @@
     evtest-qt # Qt based GUI that provides a list of attached input devices, and displays which axis and buttons are pressed
     ventoy # create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files
     vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
-    #vscode-with-extensions.override {
-    #  vscodeExtensions = with vscode-extensions; [
-    # asvetliakov.vscode-neovim
-    # bbenoist.nix
-    # bierner.emojisense
-    # bungcip.better-toml
-    # cweijan.vscode-database-client2
-    # davidanson.vscode-markdownlint
-    # dbaeumer.vscode-eslint
-    # dotenv.dotenv-vscode
-    # eamodio.gitlens
-    # esbenp.prettier-vscode
-    # firefox-devtools.vscode-firefox-debug
-    # github.github-vscode-theme
-    # github.vscode-pull-request-github
-    # github.vscode-github-actions
-    # jock.svg
-    # ms-azuretools.vscode-docker
-    # ms-vscode-remote.remote-ssh
-    # ms-vscode-remote.remote-containers
-    # mkhl.direnv
-    # mikestead.dotenv
-    # mechatroner.rainbow-csv
-    # matthewpi.caddyfile-support
-    # redhat.vscode-yaml
-    # stylelint.vscode-stylelint
-    # svelte.svelte-vscode
-    # tamasfe.even-better-toml
-    # tomoki1207.pdf
-    # usernamehw.errorlens
-    # vscode-icons-team.vscode-icons
-    # vincaslt.highlight-matching-tag
-    # viktorqvarfordt.vscode-pitch-black-theme
-    # wix.vscode-import-cost
-    # waderyan.gitblame
-    #  ]
-    #}
 
     # game engines
     godot_4
