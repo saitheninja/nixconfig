@@ -308,7 +308,7 @@
     krita # drawing
 
     # music
-    ardour # daw
+    #ardour # daw
     bespokesynth # live daw
     #guitarix
     lmms # daw
