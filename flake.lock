@@ -20,11 +20,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1734649271,
-        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
+        "lastModified": 1735471104,
+        "narHash": "sha256-0q9NGQySwDQc7RhAV2ukfnu7Gxa5/ybJ2ANT8DQrQrs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+        "rev": "88195a94f390381c6afcdaa933c2f6ff93959cb4",
         "type": "github"
       },
       "original": {
@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734956286,
-        "narHash": "sha256-8h7Fs6S+Ftg3NNmwT/KkYWI9epUNPCMPn56QFXOfmTM=",
+        "lastModified": 1735734686,
+        "narHash": "sha256-VQ/fyItyoffCXR81TXMWzmRDxaeQsSNtg+sp5WsQf+o=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "8938e09db14d510dcc2f266e8b2e738ee527d386",
+        "rev": "3399ebfedd741456f45de6148fc36e7fcc74fcfa",
         "type": "github"
       },
       "original": {
@@ -131,11 +131,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1735062014,
-        "narHash": "sha256-LEUtpW+7BJMehfNlY1GNZWwWGLgQWGBmchb0j4QXsgY=",
+        "lastModified": 1735742639,
+        "narHash": "sha256-MrU6jqPbs7uR+jLr82/jHwh8LO26ubxQ0xdUh68M8yE=",
         "owner": "saitheninja",
         "repo": "nixvim-config",
-        "rev": "6595f6163b9d06490dbdc0783aef645a7729ce29",
+        "rev": "32646e6c7daaed77de0ef89d785e33b8422c7ee3",
         "type": "github"
       },
       "original": {
