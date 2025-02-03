@@ -15,8 +15,8 @@
       "vm.swappiness" = 10;
     };
 
-    hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
+
     services.pipewire = {
       enable = true;
 
@@ -29,5 +29,6 @@
       # no need to redefine it in your config for now)
       #media-session.enable = true;
     };
+    services.pulseaudio.enable = false;
   };
 }
