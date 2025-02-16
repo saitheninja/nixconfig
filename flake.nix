@@ -15,10 +15,10 @@
     # };
 
     # Rocket League + mods
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # nix-gaming = {
+    #   url = "github:fufexan/nix-gaming";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
 
     # NeoVim configured with Nix
     nixvim-config.url = "github:saitheninja/nixvim-config";
@@ -38,7 +38,7 @@
       # nixpkgs-stable,
       nixpkgs-unstable,
       nixvim-config,
-      nix-gaming,
+      # nix-gaming,
       ...
     }@inputs:
     let
@@ -114,19 +114,17 @@
             }
 
             # nix-gaming
+            # {
             # cache, mostly for wine
-            {
-
-              nix.settings = {
-                substituters = [ "https://nix-gaming.cachix.org" ];
-                trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
-              };
-              # Rocket League
-              environment.systemPackages = [ nix-gaming.packages.${system}.rocket-league ];
-              # Rocket League mods
-              # nix-gaming.rocket-league.enableBakkesmod = true;
-            }
-
+            # nix.settings = {
+            #   substituters = [ "https://nix-gaming.cachix.org" ];
+            #   trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+            # };
+            # Rocket League
+            # environment.systemPackages = [ nix-gaming.packages.${system}.rocket-league ];
+            # Rocket League mods
+            # nix-gaming.rocket-league.enableBakkesmod = true;
+            # }
           ];
         };
       };

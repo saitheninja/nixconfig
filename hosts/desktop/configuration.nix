@@ -33,6 +33,9 @@
     # dev
     vscode-fhs
 
+    # games
+    heroic # launcher for Epic Games
+
     # game engines
     godot_4
 
