@@ -6,15 +6,22 @@
 
   inputs = {
     # nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05"; # deprecated
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11"; # current stable version
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    nixvim-config.url = "github:saitheninja/nixvim-config";
 
     # nixos-cosmic = {
     #   url = "github:lilyinstarlight/nixos-cosmic";
     #   inputs.nixpkgs.follows = "nixpkgs-unstable";
     # };
+
+    # Rocket League + mods
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # NeoVim configured with Nix
+    nixvim-config.url = "github:saitheninja/nixvim-config";
   };
 
   # Parameters in function `outputs` are defined in `inputs` and
@@ -28,9 +35,10 @@
     {
       # self,
       # nixos-cosmic,
-      nixpkgs-stable,
+      # nixpkgs-stable,
       nixpkgs-unstable,
       nixvim-config,
+      nix-gaming,
       ...
     }@inputs:
     let
@@ -42,7 +50,6 @@
       # The configuration name can be specified using `{path}#{name}`:
       #   sudo nixos-rebuild switch --flake /path/to/flakes/directory#<name>
       #   sudo nixos-rebuild switch --flake .#nixos-laptop
-
       nixosConfigurations = {
         "nixos-laptop" = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
@@ -78,7 +85,7 @@
             # Hyprland: Wayland dynamic tiling compositor
             # { config.configHyprland.enable = true; }
 
-            # COSMIC Desktop Environment from Pop!_OS
+            # COSMIC: Desktop Environment from Pop!_OS
             # {
             #   nix.settings = {
             #     substituters = [ "https://cosmic.cachix.org/" ];
@@ -95,6 +102,7 @@
 
         "nixos-desktop" = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
+
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules
@@ -104,6 +112,21 @@
               environment.systemPackages = [ nixvim-config.packages.${system}.default ];
               environment.variables.EDITOR = "nvim"; # set as default editor
             }
+
+            # nix-gaming
+            # cache, mostly for wine
+            {
+
+              nix.settings = {
+                substituters = [ "https://nix-gaming.cachix.org" ];
+                trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+              };
+              # Rocket League
+              environment.systemPackages = [ nix-gaming.packages.${system}.rocket-league ];
+              # Rocket League mods
+              # nix-gaming.rocket-league.enableBakkesmod = true;
+            }
+
           ];
         };
       };
