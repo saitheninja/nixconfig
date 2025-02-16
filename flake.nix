@@ -93,11 +93,17 @@
           ];
         };
 
-        "nixos-desktop" = nixpkgs-stable.lib.nixosSystem {
+        "nixos-desktop" = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/desktop/configuration.nix
             ./modules
+
+            # NixVim
+            {
+              environment.systemPackages = [ nixvim-config.packages.${system}.default ];
+              environment.variables.EDITOR = "nvim"; # set as default editor
+            }
           ];
         };
       };
