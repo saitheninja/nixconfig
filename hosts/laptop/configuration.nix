@@ -139,7 +139,6 @@
             bspc
             bksl
             caps a    s    d    h    f    j    k    l
-            lsft rsft
           )
 
           ;; mute = volume mute
@@ -179,10 +178,6 @@
             ;; caps lock: tap for esc, hold for left ctrl
             caps @caps
 
-            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
-            lsft @lsft
-            rsft @rsft
-
             ;; home-row mods
             a @a
             s @s
@@ -211,8 +206,6 @@
             bspc bksl
             bksl bspc
             caps @caps
-            lsft @lsft
-            rsft @rsft
           )
 
           (defvar
@@ -252,10 +245,6 @@
 
             ;; caps lock key: tap for escape, hold for left control
             caps (tap-hold-press 150 150 esc lctl)
-
-            ;; left/right shift: tap for round bracket open/close (shift+9/0), hold for left/right shift
-            lsft (tap-hold-press 150 150 S-9 lsft)
-            rsft (tap-hold-press 150 150 S-0 rsft)
 
             ;; home row mods
             ;; pressing another key on the same half of the keyboard as the home row mod will activate an early tap action
