@@ -81,7 +81,7 @@
 
     # video
     obs-studio # screen capture
-    davinci-resolve-studio # video editing, color, effects, audio
+    #davinci-resolve-studio # video editing, color, effects, audio
 
     # 3D
     blender
