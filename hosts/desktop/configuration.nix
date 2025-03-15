@@ -117,6 +117,7 @@
     vscode-fhs
 
     # games
+    discord
     heroic # launcher for Epic Games
 
     # game engines
