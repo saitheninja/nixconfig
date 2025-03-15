@@ -21,6 +21,7 @@
         "docker"
         "libvirtd" # VMs
         "networkmanager"
+        "uinput" # kanata keyboard remaps
         "wheel" # allow `sudo`
         "wireshark"
       ];

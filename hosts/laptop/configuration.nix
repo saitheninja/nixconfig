@@ -138,7 +138,7 @@
             esc
             bspc
             bksl
-            caps a    s    d    h    f    j    k    l
+            caps a    s    d    f    j    k    l    scln
           )
 
           ;; mute = volume mute

@@ -24,6 +24,89 @@
 
   hardware.bluetooth.enable = true;
 
+  services.kanata = {
+    enable = true;
+
+    keyboards.all-kbds = {
+      # all devices
+      devices = [ ];
+
+      config = # lisp
+        ''
+          (defsrc
+            a    s    d    f    j    k    l    scln
+          )
+
+          (deflayermap (default)
+            ;; input_key output_action
+
+            ;; home-row mods
+            a @a
+            s @s
+            d @d
+            f @f
+
+            j @j
+            k @k
+            l @l
+            scln @scln
+          )
+
+          (deflayermap (home-row-mods-off)
+            ;; home row mods off
+            a a
+            s s
+            d d
+            f f
+            j j
+            k k
+            l l
+            scln scln
+          )
+
+          (defvar
+            left-hand-keys (
+              q w e r t
+              a s d f g
+              z x c v b
+            )
+
+            right-hand-keys (
+              y u i o p
+              h j k l scln
+              n m , . /
+            )
+          )
+
+          (defvirtualkeys
+            to-base (layer-switch default)
+          )
+
+          (defalias
+            ;; home row mods
+            ;; switch back to default-layer after 20ms timeout
+            same-side (multi
+              (layer-switch home-row-mods-off)
+              (on-idle 20 tap-vkey to-base)
+            )
+            ;; left
+            a (tap-hold-release-keys 200 200 (multi a @same-side) lalt $left-hand-keys)
+            s (tap-hold-release-keys 200 200 (multi s @same-side) lmet $left-hand-keys)
+            d (tap-hold-release-keys 200 200 (multi d @same-side) lctl $left-hand-keys)
+            f (tap-hold-release-keys 200 200 (multi f @same-side) lsft $left-hand-keys)
+            ;; right
+            j (tap-hold-release-keys 200 200 (multi j @same-side) rsft $right-hand-keys)
+            k (tap-hold-release-keys 200 200 (multi k @same-side) rctl $right-hand-keys)
+            l (tap-hold-release-keys 200 200 (multi l @same-side) rmet $right-hand-keys)
+            scln (tap-hold-release-keys 200 200 (multi scln @same-side) ralt $right-hand-keys)
+          )
+        '';
+
+      # Without this, tap-hold actions will not activate for keys that are not in defsrc
+      extraDefCfg = "process-unmapped-keys yes";
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     # desktop
     piper # mouse controls
