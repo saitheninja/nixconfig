@@ -169,13 +169,22 @@
 
     # 3D
     blender
+
+    # Proton
+    protonplus
+    protonup-qt
   ];
 
   # Steam
   programs.steam = {
     enable = true;
+
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
   };
   hardware.graphics.enable32Bit = true; # Enables support for 32bit libs that steam uses
 
