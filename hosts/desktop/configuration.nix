@@ -114,7 +114,9 @@
     vlc
 
     # dev
-    vscode-fhs
+    vscode-fhs # the remote SSH is nice
+    postman # API requests
+    mysql-workbench # connect to remote, with a GUI
 
     # games
     discord
