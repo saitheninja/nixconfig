@@ -51,20 +51,32 @@
     };
 
     environment.systemPackages = with pkgs; [
-      # nixos deps
+      # NixOS deps
       curl
       wget
       vim
 
-      bat # better cat
-      btop # better htop
-      du-dust # better du
-      eza # better ls
-      fastfetch # maintained replacement for neofetch
-      # hollywood # fun
-      # systeroid # better sysctl
+      # system info, monitoring
+      du-dust # disk space (du, but with tree)
+      # systeroid # (sysctl, but formatted better)
+      btop # fancy system monitor (htop, but formatted better)
+      btop-rocm # add libs to monitor AMD GPUs
+      kmon # kernel manager and activity monitor
+      fastfetch # system info (neofetch, but maintained)
+
+      # networking
+      netscanner # network monitor (better wavemon?)
+      rustscan # port scanner (nmap, but faster, more intuitive)
       whois # DNS lookup
-      zathura # terminal pdf viewer
+
+      # fun
+      # hollywood # make terminal busy like Mission Impossible
+      # rust-stakeholder # make terminal busy like building projects
+
+      # ...rest
+      bat # read files as pages (cat, but formatted better)
+      eza # list directory (ls, but with colours, icons)
+      zathura # terminal PDF viewer
       zellij # terminal multiplexer
     ];
   };
