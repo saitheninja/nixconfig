@@ -273,12 +273,14 @@
     };
   };
 
+  services.ratbagd.enable = true;
+
   environment.systemPackages = with pkgs; [
     # terminal
     ghostty # terminal emulator written in Zig
 
     # desktop
-    piper # mouse controls
+    piper # mouse controls (also enable ratbagd)
     thunderbird # email
     vlc # video player
 

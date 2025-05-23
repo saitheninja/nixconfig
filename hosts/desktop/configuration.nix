@@ -107,9 +107,11 @@
     };
   };
 
+  services.ratbagd.enable = true;
+
   environment.systemPackages = with pkgs; [
     # desktop
-    piper # mouse controls
+    piper # mouse controls (also enable ratbagd)
     thunderbird
     vlc
 
