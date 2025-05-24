@@ -9,7 +9,7 @@
   options.configTerminal.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
-    description = "Add Zsh, configure aliases, add terminal apps.";
+    description = "Configure shell and aliases, add terminal apps.";
   };
 
   config = lib.mkIf config.configTerminal.enable {
@@ -22,24 +22,28 @@
       # diff booted and current, so only useful after an update
       nix-store-diff-closures-booted-current = "nix store diff-closures /run/booted-system /run/current-system";
       # example of comparing specific profiles
-      nix-store-diff-closures-profiles = "nix store diff-closures /nix/var/nix/profiles/system-655-link /nix/var/nix/profiles/system-658-link";
+      #nix-store-diff-closures-profiles = "nix store diff-closures /nix/var/nix/profiles/system-655-link /nix/var/nix/profiles/system-658-link";
     };
 
-    # prefer programs to environment.systemPackages because it has options configured
+    # shell
     programs = {
-      # direnv = {
-      #   enable = true;
-      #   loadInNixShell = true;
-      #   nix-direnv.enable = true;
-      # };
+      fish = {
+        enable = true;
 
-      starship.enable = true; # automatically pretty terminal prompt
-      usbtop.enable = true; # usb activity monitor
-      wavemon.enable = true; # wifi monitor
-      wireshark.enable = true; # network analyzer
+        # translate bash scripts to fish
+        # oh-my-fish/plugin-foreign-env is unmaintained, so babelfish instead
+        useBabelfish = true;
+
+        # some programs provide their own completions
+        vendor = {
+          config.enable = true;
+          completions.enable = true;
+          functions.enable = true;
+        };
+      };
 
       zsh = {
-        enable = true;
+        enable = false;
 
         enableCompletion = true;
         vteIntegration = true;
@@ -50,6 +54,21 @@
       };
     };
 
+    # terminal apps
+    # prefer programs to environment.systemPackages because it has options configured
+    programs = {
+      starship.enable = true; # pretty shell prompt
+
+      # monitoring
+      usbtop.enable = true; # USB activity monitor
+
+      # networking
+      wavemon.enable = true; # wifi monitor
+      wireshark.enable = true; # network analyzer
+
+    };
+
+    # terminal apps
     environment.systemPackages = with pkgs; [
       # NixOS deps
       curl
@@ -59,8 +78,8 @@
       # system info, monitoring
       du-dust # disk space (du, but with tree)
       # systeroid # (sysctl, but formatted better)
-      btop # fancy system monitor (htop, but formatted better)
-      btop-rocm # add libs to monitor AMD GPUs
+      btop # system monitor (htop, but formatted better)
+      btop-rocm # libs to monitor AMD GPUs
       kmon # kernel manager and activity monitor
       fastfetch # system info (neofetch, but maintained)
 

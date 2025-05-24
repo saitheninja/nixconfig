@@ -25,8 +25,10 @@
         "wheel" # allow `sudo`
         "wireshark"
       ];
+
       # packages = with pkgs; [ ]; # user specific packages
-      shell = pkgs.zsh;
+      #shell = pkgs.zsh;
+      shell = pkgs.fish;
     };
 
   };
