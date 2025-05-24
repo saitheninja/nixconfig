@@ -78,8 +78,7 @@
       # system info, monitoring
       du-dust # disk space (du, but with tree)
       # systeroid # (sysctl, but formatted better)
-      btop # system monitor (htop, but formatted better)
-      btop-rocm # libs to monitor AMD GPUs
+      btop-rocm # system monitor, with libs to monitor AMD GPUs (htop, but formatted better)
       kmon # kernel manager and activity monitor
       fastfetch # system info (neofetch, but maintained)
 
