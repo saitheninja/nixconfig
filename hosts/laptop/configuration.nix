@@ -287,7 +287,6 @@
     # dev
     evtest # input event debugging
     evtest-qt # Qt based GUI that provides a list of attached input devices, and displays which axis and buttons are pressed
-    ventoy # create bootable USB drive for ISO/WIM/IMG/VHD(x)/EFI files
     vscode-fhs # vscode, the non-nix way (Filesystem Hierarchy Standard)
 
     # game engines
