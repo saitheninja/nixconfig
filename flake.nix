@@ -6,7 +6,7 @@
 
   inputs = {
     # nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05"; # deprecated
-    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11"; # current stable version
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # nixos-cosmic = {
@@ -35,7 +35,7 @@
     {
       # self,
       # nixos-cosmic,
-      # nixpkgs-stable,
+      nixpkgs-stable,
       nixpkgs-unstable,
       nixvim-config,
       # nix-gaming,
@@ -100,7 +100,7 @@
           ];
         };
 
-        "nixos-desktop" = nixpkgs-unstable.lib.nixosSystem {
+        "nixos-desktop" = nixpkgs-stable.lib.nixosSystem {
           inherit system;
 
           modules = [
