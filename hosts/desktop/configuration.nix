@@ -123,7 +123,7 @@
     # games
     discord
     heroic # launcher for Epic Games
-    retroarch-full
+    # retroarch-full
 
     # Proton
     protonplus
