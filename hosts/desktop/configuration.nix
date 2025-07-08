@@ -123,6 +123,11 @@
     # games
     discord
     heroic # launcher for Epic Games
+    retroarch-full
+
+    # Proton
+    protonplus
+    protonup-qt
 
     # game engines
     godot_4
@@ -176,10 +181,6 @@
     # hip version for AMD hardware accelerated rendering
     # https://rocm.docs.amd.com/projects/HIP/en/docs-develop/what_is_hip.html
     # The Heterogeneous-computing Interface for Portability (HIP) API is a C++ runtime API and kernel language that lets developers create portable applications running in heterogeneous systems, using CPUs and AMD GPUs or NVIDIA GPUs from a single source code.
-
-    # Proton
-    protonplus
-    protonup-qt
   ];
 
   # Steam
