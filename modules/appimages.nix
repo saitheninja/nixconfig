@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -16,5 +17,9 @@
       enable = true;
       binfmt = true;
     };
+
+    environment.systemPackages = with pkgs; [
+      gearlever # manage AppImages
+    ];
   };
 }
