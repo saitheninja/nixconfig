@@ -1,5 +1,6 @@
 {
   imports = [
+    ./appimages.nix
     ./browsers.nix
     ./filesystem-drivers.nix
     ./git.nix
