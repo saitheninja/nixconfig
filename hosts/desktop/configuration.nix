@@ -123,7 +123,8 @@
     # games
     discord
     heroic # launcher for Epic Games
-    # retroarch-full
+    duckstation # PSX emulator NOTE: licence issues with new releases
+    # retroarch-full # lots of emulators
 
     # Proton
     protonplus
