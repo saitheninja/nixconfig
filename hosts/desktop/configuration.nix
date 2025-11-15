@@ -21,6 +21,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # Firewall - disabled for LAN games
+  networking.firewall.enable = true;
 
   hardware.bluetooth.enable = true;
 
