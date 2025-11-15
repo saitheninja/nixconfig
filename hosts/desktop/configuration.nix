@@ -125,6 +125,7 @@
     heroic # launcher for Epic Games
     duckstation # PSX emulator NOTE: licence issues with new releases
     # retroarch-full # lots of emulators
+    lutris
 
     # Proton
     protonplus
