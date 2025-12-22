@@ -307,7 +307,7 @@
 
     # photo
     darktable # raw editor
-    #vkdt-wayland # darktable fork
+    #vkdt # darktable fork
 
     # video
     obs-studio # screen capture
