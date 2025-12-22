@@ -5,8 +5,7 @@
   # `outputs` function will return all the build results of the flake.
 
   inputs = {
-    # nixpkgs-24-05.url = "github:NixOS/nixpkgs/nixos-24.05"; # deprecated
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05"; # current stable version
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # nixos-cosmic = {
