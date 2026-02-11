@@ -8,11 +8,6 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # nixos-cosmic = {
-    #   url = "github:lilyinstarlight/nixos-cosmic";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
-
     # Rocket League + mods
     # nix-gaming = {
     #   url = "github:fufexan/nix-gaming";
@@ -83,19 +78,6 @@
 
             # Hyprland: Wayland dynamic tiling compositor
             # { config.configHyprland.enable = true; }
-
-            # COSMIC: Desktop Environment from Pop!_OS
-            # {
-            #   nix.settings = {
-            #     substituters = [ "https://cosmic.cachix.org/" ];
-            #     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            #   };
-            # }
-            # nixos-cosmic.nixosModules.default
-            # {
-            #   services.desktopManager.cosmic.enable = true;
-            #   services.displayManager.cosmic-greeter.enable = true;
-            # }
           ];
         };
 
