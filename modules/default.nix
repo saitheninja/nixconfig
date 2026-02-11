@@ -8,9 +8,9 @@
     ./hyprland.nix
     ./locale-za.nix
     ./nix-config.nix
-    ./terminal.nix
     ./selected-fonts.nix
     ./sound.nix
+    ./terminal.nix
     ./users-sai.nix
     ./virtualisation.nix
   ];

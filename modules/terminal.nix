@@ -65,7 +65,6 @@
       # networking
       wavemon.enable = true; # wifi monitor
       wireshark.enable = true; # network analyzer
-
     };
 
     # terminal apps
@@ -95,7 +94,6 @@
       bat # read files as pages (cat, but formatted better)
       eza # list directory (ls, but with colours, icons)
       zathura # terminal PDF viewer
-      zellij # terminal multiplexer
     ];
   };
 }

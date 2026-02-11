@@ -21,7 +21,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # Firewall - disabled for LAN games
+  # Firewall - disable for LAN games
   networking.firewall.enable = true;
 
   hardware.bluetooth.enable = true;
@@ -114,13 +114,13 @@
   environment.systemPackages = with pkgs; [
     # desktop
     piper # mouse controls (also enable ratbagd)
-    thunderbird
-    vlc
+    thunderbird # email
+    vlc # media player
 
     # dev
     vscode-fhs # the remote SSH is nice
-    postman # API requests
-    mysql-workbench # connect to remote, with a GUI
+    #postman # API requests
+    #mysql-workbench # connect to remote, with a GUI
 
     # games
     discord
@@ -144,9 +144,9 @@
     pixelorama # godot pixel art
 
     # music
-    ardour # daw
+    ardour # DAW
     audacity # audio editor & recorder
-    bespokesynth # live daw (no VST2 because of licensing)
+    bespokesynth # live DAW (no VST2 because of licensing)
     calf # effects, instruments, tools
     cardinal # vcv-rack as a fully open source plugin
     carla # plugin host
@@ -157,7 +157,7 @@
     # helm # unmaintained predecessor to vital synth
     helvum # GTK patchbay for pipewire
     infamousPlugins # LV2 plugins
-    lmms # daw
+    lmms # DAW
     odin2 # synth
     qpwgraph # Qt graph manager for PipeWire, similar to QjackCtl
     sorcer # dubstep synth
@@ -168,7 +168,7 @@
     x42-plugins # LV2 plugins
     x42-gmsynth # general MIDI sample player LV2 plugin, intended as default synth for Ardour
     yoshimi # synth
-    zrythm # daw
+    zrythm # DAW
     zam-plugins # processing plugins
     zynaddsubfx # synth
 
