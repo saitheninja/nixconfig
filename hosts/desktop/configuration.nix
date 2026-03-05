@@ -27,7 +27,7 @@
   hardware.bluetooth.enable = true;
 
   services.kanata = {
-    enable = true;
+    enable = false;
 
     keyboards.all-kbds = {
       # all devices
