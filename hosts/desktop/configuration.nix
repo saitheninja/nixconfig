@@ -26,6 +26,7 @@
 
   hardware.bluetooth.enable = true;
 
+  # Swapped to mappings built into the keyboard for now.
   services.kanata = {
     enable = false;
 
