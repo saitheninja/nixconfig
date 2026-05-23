@@ -80,6 +80,8 @@
       btop-rocm # system monitor, with libs to monitor AMD GPUs (htop, but formatted better)
       kmon # kernel manager and activity monitor
       fastfetch # system info (neofetch, but maintained)
+      pciutils # Inspect and manipulate configuration of PCI devices.
+      usbutils # Tools for working with USB devices, such as lsusb.
 
       # networking
       netscanner # network monitor (better wavemon?)
