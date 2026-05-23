@@ -226,10 +226,10 @@
   # Allow MCHOSE Web Hub to write to mouse.
   # 100a: wireless receiver
   # 4018: mouse connected by USB
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="100a", MODE="0666", TAG+="uaccess"
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="4018", MODE="0666", TAG+="uaccess"
-  '';
+  # services.udev.extraRules = ''
+  #   KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="100a", MODE="0666", TAG+="uaccess"
+  #   KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="4018", MODE="0666", TAG+="uaccess"
+  # '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
