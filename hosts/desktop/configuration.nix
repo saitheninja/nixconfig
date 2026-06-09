@@ -159,7 +159,7 @@
     odin2 # synth
     qpwgraph # Qt graph manager for PipeWire, similar to QjackCtl
     sorcer # dubstep synth
-    surge-XT # synth
+    surge-xt # synth
     supercollider # programming language
     wolf-shaper # waveshaper plugin
     x42-avldrums # Drum sample player LV2 plugin dedicated to Glen MacArthur's AVLdrums
