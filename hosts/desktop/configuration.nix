@@ -21,8 +21,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # Firewall - disable for LAN games
-  networking.firewall.enable = true;
 
   hardware.bluetooth.enable = true;
 
@@ -215,11 +213,13 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Firewall
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  # Or disable the firewall altogether, e.g. for LAN games.
   # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # Allow MCHOSE Web Hub to write to mouse.
   # 100a: wireless receiver
