@@ -179,10 +179,12 @@
     #davinci-resolve-studio # video editing, color, effects, audio
 
     # 3D
-    blender-hip
     # hip version for AMD hardware accelerated rendering
     # https://rocm.docs.amd.com/projects/HIP/en/docs-develop/what_is_hip.html
     # The Heterogeneous-computing Interface for Portability (HIP) API is a C++ runtime API and kernel language that lets developers create portable applications running in heterogeneous systems, using CPUs and AMD GPUs or NVIDIA GPUs from a single source code.
+    # blender-hip
+    # blender-hip has been removed in favor of setting `config.rocmSupport = true` or using `pkgsRocm.blender`
+    pkgsRocm.blender
   ];
 
   # Steam
