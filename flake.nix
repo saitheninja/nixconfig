@@ -5,7 +5,7 @@
   # `outputs` function will return all the build results of the flake.
 
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11"; # current stable version
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05"; # current stable version
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Rocket League + mods
