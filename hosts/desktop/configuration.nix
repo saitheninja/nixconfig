@@ -133,14 +133,17 @@
     protonup-qt
 
     # game engines
-    godot_4
+    # godot_4
+    # Specifically Godot 4.7, to avoid breaking changes.
+    godotPackages_4_7.godot
+    godotPackages_4_7.export-template
 
     # image editors
     inkscape # vectors
     gimp # photoshop
     krita # drawing
     #aseprite # pixel art # licence requires building from source
-    pixelorama # godot pixel art
+    pixelorama # Godot pixel art
 
     # music
     ardour # DAW
