@@ -159,6 +159,7 @@
     # helm # unmaintained predecessor to vital synth
     infamousPlugins # LV2 plugins
     lmms # DAW
+    neural-amp-modeler-lv2 # Load NAM A2 files
     odin2 # synth
     qpwgraph # Qt graph manager for PipeWire, similar to QjackCtl
     sorcer # dubstep synth
