@@ -35,7 +35,7 @@
       config = # lisp
         ''
           (defsrc
-            a    s    d    f    j    k    l    scln
+            lctl a    s    d    f    j    k    l    scln
           )
 
           (deflayermap (default)
@@ -51,6 +51,9 @@
             k @k
             l @l
             scln @scln
+
+            ;; left control: tap for escape, hold for left control
+            lctl @lctl
           )
 
           (deflayermap (home-row-mods-off)
@@ -63,6 +66,9 @@
             k k
             l l
             scln scln
+
+            ;; other remaps on
+            lctl @lctl
           )
 
           (defvar
@@ -84,6 +90,9 @@
           )
 
           (defalias
+            ;; left control: tap for escape, hold for left control
+            lctl (tap-hold-press 150 150 esc lctl)
+
             ;; home row mods
             ;; switch back to default-layer after 20ms timeout
             same-side (multi
