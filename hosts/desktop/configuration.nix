@@ -131,12 +131,13 @@
     #mysql-workbench # connect to remote, with a GUI
 
     # games
+    cemu # Wii U emulator.
     discord
-    heroic # launcher for Epic Games
-    # retroarch-full # lots of emulators
+    heroic # launcher for Epic Games.
+    # retroarch-full # lots of emulators.
     lutris
-    r2modman # Lethal Company mods
-    rpcs3
+    r2modman # Lethal Company mods.
+    rpcs3 # PS3 emulator.
 
     # Proton
     protonplus
