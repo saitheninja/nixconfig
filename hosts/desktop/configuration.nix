@@ -136,6 +136,7 @@
     # retroarch-full # lots of emulators
     lutris
     r2modman # Lethal Company mods
+    rpcs3
 
     # Proton
     protonplus
