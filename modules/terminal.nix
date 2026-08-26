@@ -67,14 +67,14 @@
       wireshark.enable = true; # network analyzer
     };
 
-    # terminal apps
+    # Terminal apps.
     environment.systemPackages = with pkgs; [
-      # NixOS deps
+      # NixOS deps.
       curl
       wget
       vim
 
-      # system info, monitoring
+      # System info, monitoring.
       dust # disk space (du, but with tree)
       # systeroid # (sysctl, but formatted better)
       btop-rocm # system monitor, with libs to monitor AMD GPUs (htop, but formatted better)
@@ -83,18 +83,19 @@
       pciutils # Inspect and manipulate configuration of PCI devices.
       usbutils # Tools for working with USB devices, such as lsusb.
 
-      # networking
+      # Networking.
       netscanner # network monitor (better wavemon?)
       rustscan # port scanner (nmap, but faster, more intuitive)
       whois # DNS lookup
 
-      # fun
+      # Fun.
       # hollywood # make terminal busy like Mission Impossible
       # rust-stakeholder # make terminal busy like building projects
 
-      # ...rest
+      # ...rest.
       bat # read files as pages (cat, but formatted better)
       eza # list directory (ls, but with colours, icons)
+      unrar # Handle `.rar` files. Integrates with KDE Ark.
       zathura # terminal PDF viewer
     ];
   };
