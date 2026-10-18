@@ -26,7 +26,7 @@
 
   # Swapped to mappings built into the keyboard for now.
   services.kanata = {
-    enable = true;
+    enable = false;
 
     keyboards.all-kbds = {
       # all devices
