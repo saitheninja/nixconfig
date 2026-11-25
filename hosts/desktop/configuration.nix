@@ -134,8 +134,8 @@
     cemu # Wii U emulator.
     discord
     heroic # launcher for Epic Games.
-    # retroarch-full # lots of emulators.
-    lutris
+    retroarch-full # lots of emulators.
+    lutris # Launcher.
     ppsspp-sdl-wayland # PSP emulator.
     r2modman # Lethal Company mods.
     rpcs3 # PS3 emulator.
