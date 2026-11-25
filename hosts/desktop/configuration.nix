@@ -133,8 +133,13 @@
     # games
     cemu # Wii U emulator.
     discord
-    heroic # launcher for Epic Games.
-    retroarch-full # lots of emulators.
+    heroic # Launcher for Epic Games.
+    # Lots of emulators, as cores.
+    (retroarch.withCores (
+      cores: with cores; [
+        libretro.beetle-psx-hw # Port of Mednafen's PSX Engine core to libretro (with hardware acceleration support)
+      ]
+    ))
     lutris # Launcher.
     ppsspp-sdl-wayland # PSP emulator.
     r2modman # Lethal Company mods.
